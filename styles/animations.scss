@@ -1,0 +1,56 @@
+
+@keyframes ship {
+  $y: 1vw;
+	0% {
+		transform: translatey($y);
+	}
+	50% {
+		transform: translatey(-$y);
+	}
+	100% {
+		transform: translatey($y);
+	}
+}
+
+@keyframes basket {
+  $degree : 5deg;
+  $x: 1vw;
+	0% {
+		// transform: translatey(3vw);
+    transform: rotate(-$degree) translatex($x);
+	}
+	50% {
+		// transform: translatey(-3vw);
+    transform: rotate($degree) translatex(-$x);
+	}
+	100% {
+		// transform: translatey(3vw);
+    transform: rotate(-$degree) translatex($x);
+	}
+}
+
+@keyframes fish {
+  $y: 0.5vw;
+	0% {
+		transform: translatey($y);
+	}
+	50% {
+		transform: translatey(-$y);
+	}
+	100% {
+		transform: translatey($y);
+	}
+}
+
+@keyframes meteor {
+  $y: 0.25vw;
+	0% {
+		transform: translatey($y);
+	}
+	50% {
+		transform: translatey(-$y);
+	}
+	100% {
+		transform: translatey($y);
+	}
+}

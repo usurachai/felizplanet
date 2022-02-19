@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "String operations.",
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Feliz_CitizensFlat_1_5.sol": "Strings"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Feliz_CitizensFlat_1_5.sol": {
+			"keccak256": "0x4f9bdc3449852118719294534156236bec7d84a6a61bb1dffb083347bf63d29a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1d448abe73a2d878065721de81f35a501a3836daa6b9276aed8789cdf0906c15",
+				"dweb:/ipfs/Qmbp99ftUM7etoPjAR4WAt2BHrqRr7Kgux9DPa3UiyQqjQ"
+			]
+		}
+	},
+	"version": 1
+}

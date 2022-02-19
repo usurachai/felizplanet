@@ -1,0 +1,2 @@
+export const FELIZ_CITIZENS = 'CITIZENS'
+export const FELIZ_STARDRUST = 'STARDRUST'

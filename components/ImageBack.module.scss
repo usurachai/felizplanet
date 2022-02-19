@@ -1,0 +1,16 @@
+.ImageBack {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  span {
+    z-index: 0;
+    display: block;
+  }
+  h3 {
+    // margin: 0vw;
+    // padding: 0vw;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+}
