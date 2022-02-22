@@ -7,7 +7,12 @@ import { useRouter } from "next/router";
 // import { useMoralis } from "react-moralis";
 import Web3 from "web3";
 import { ethers } from "ethers";
-import { FELIZ_CITIZENS, FELIZ_STARDRUST } from "../utils/enum/token";
+
+import {
+    FELIZ_CITIZENS,
+    FELIZ_STARDRUST_SILVER,
+    FELIZ_STARDRUST_GOLD,
+} from "../utils/enum/token";
 
 import Img from "../components/Img";
 
@@ -24,43 +29,71 @@ import contractAddress from "../contractAddress.json";
 import { MINT, MINT_COMMING, MINT_PRESALE } from "../utils/enum/mint";
 import mintDate from "../utils/test/mintDate";
 import dateFormatter from "../utils/dateFormatter";
+import Modal, { SUCCESS, LOADING, FAILED } from "../components/Modal";
+import PopUp from "../components/PopUp";
 
 export default function Home() {
+    const router = useRouter();
     const checkWalletIsConnected = async () => {
         const { ethereum } = window;
+        // console.log(ethereum.chainId, typeof ethereum.chainId)
+        if (ethereum) {
+            // detect Metamask account change
+            window.ethereum.on("accountsChanged", function (accounts) {
+                setAccount(undefined);
+                setAddress("");
+            });
 
-        console.log(ethereum);
-        if (!ethereum) {
-            console.log("Make sure you have Metamask installed!");
-        } else {
-            console.log("Wallet exists! We're ready to go");
+            // detect Network account change
+            window.ethereum.on("networkChanged", function (networkId) {
+                console.log(
+                    "networkChanged",
+                    networkId,
+                    typeof networkId,
+                    networkId !== "4"
+                );
+                if (networkId !== "4") {
+                    alert("Wrong network");
+                    setAccount(undefined);
+                    setAddress("");
+                }
+            });
         }
 
-        const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
-        });
-
-        if (accounts.length !== 0) {
-            const account = accounts[0];
-            console.log("Found an authorized account: ", account);
-            setAccount(account);
+        if (!ethereum) {
+            // alert('Please install Metamask')
+            setAccount(undefined);
+            setAddress("");
+        } else if (ethereum.chainId !== "0x4") {
+            // alert("Change network to Rinkeby network.")
+            setAccount(undefined);
+            setAddress("");
+        } else {
+            try {
+                const provider = new ethers.providers.Web3Provider(ethereum);
+                const signer = await provider.getSigner();
+                setAccount(signer);
+                setAddress(await signer.getAddress());
+            } catch (err) {}
         }
     };
 
     const connectWalletHandler = async () => {
         const { ethereum } = window;
 
+        // console.log(ethereum.chainId, typeof ethereum.chainId)
         if (!ethereum) {
             alert("Please install Metamask");
+        } else if (ethereum.chainId !== "0x4") {
+            alert("Change network to Rinkeby network.");
+        } else {
+            try {
+                const provider = new ethers.providers.Web3Provider(ethereum);
+                const signer = await provider.getSigner();
+                setAccount(signer);
+                setAddress(await signer.getAddress());
+            } catch (err) {}
         }
-
-        try {
-            const accounts = await ethereum.request({
-                method: "eth_requestAccounts",
-            });
-            console.log("Found an account! Address: ", accounts[0]);
-            setAccount(accounts[0]);
-        } catch (err) {}
     };
 
     const mintNftHandler = () => {};
@@ -88,12 +121,14 @@ export default function Home() {
             if (todate <= 0) {
                 setCountdown(dateFormatter(0));
                 clearInterval(interval);
+            } else {
+                setCountdown(dateFormatter(todate));
             }
-            setCountdown(dateFormatter(todate));
             // console.log(typeof todate)
             // console.log(dateFormatter(todate))
             // console.log((new Date()) - mintDate)
         }, 1000);
+
         return () => {
             clearInterval(interval);
         };
@@ -103,19 +138,19 @@ export default function Home() {
 
     const [navlst, setNavlst] = useState([
         {
-            href: "/",
+            href: "#home",
             data: "Home",
         },
         {
-            href: "/#mission",
+            href: "#mission",
             data: "Mission",
         },
         {
-            href: "/",
+            href: "#roadmap",
             data: "Roadmap",
         },
         {
-            href: "/",
+            href: "#partner",
             data: "Partner",
         },
         {
@@ -124,7 +159,8 @@ export default function Home() {
         },
     ]);
 
-    const [account, setAccount] = useState("");
+    const [account, setAccount] = useState(undefined);
+    const [address, setAddress] = useState("");
     const [countdown, setCountdown] = useState("00:00:00:00");
 
     const [cardList, setCardList] = useState([
@@ -134,14 +170,21 @@ export default function Home() {
         },
         {
             src: "/images/fish.png",
-            type: FELIZ_STARDRUST,
+            type: FELIZ_STARDRUST_SILVER,
         },
         {
             src: "/images/meteor.png",
-            type: FELIZ_STARDRUST,
+            type: FELIZ_STARDRUST_GOLD,
         },
     ]);
     const [index, setIndex] = useState(0);
+
+    const [popupText, setPopupText] = useState("");
+    const [popupNum, setPopupNum] = useState(0);
+    const [modalTitle, setModalTitle] = useState("");
+    const [modalContent, setModalContent] = useState("");
+    const [modalType, setModalType] = useState(undefined);
+    const [modalNum, setModalNum] = useState(0);
 
     // Card slide show
     const slideLeft = () => {
@@ -152,8 +195,8 @@ export default function Home() {
         setIndex((index + 1) % cardList.length);
     };
 
-    const walletDom = (account) => {
-        if (!account) {
+    const walletDom = (address) => {
+        if (!address) {
             return (
                 <ImageBack
                     src="/images/m_wallet.png"
@@ -167,7 +210,7 @@ export default function Home() {
                 <ImageBack
                     src="/images/m_wallet.png"
                     className={styles.walleton}
-                    text={account}
+                    text={address}
                 />
             );
         }
@@ -203,24 +246,76 @@ export default function Home() {
         else if (delta < 0) slideRight();
     };
 
+    const alert = (text) => {
+        setPopupText(text);
+        setPopupNum((prev) => prev + 1);
+    };
+
+    const modal = (title, content, type) => {
+        setModalTitle(title);
+        setModalContent(content);
+        setModalType(type);
+        setModalNum((prev) => prev + 1);
+    };
+
+    const clickDoor = (signer) => () => {};
+
+    // const clickDoor = (account) = async () => {
+    //   try {
+    //     const { ethereum } = window
+    //     if (ethereum) {
+    //       // const contract = new Web3
+    //       const provider = new ethers.providers.Web3Provider(ethereum)
+    //       const citizenContract = new ethers.Contract(contractAddress.StardustCask, stardrustAbi.abi, account)
+    //       const caskContract = new ethers.Contract(contractAddress.StardustCask, stardrustAbi.abi, account)
+
+    //       const address = await account.address();
+    //       const citizen = citizenContract.addressMintedBalance(address)
+    //       // const gold =
+    //       // // cost
+    //       // const cost = await nftContract.getGoldenCasksCost()
+    //       // console.log("Gold cost: ", ethers.utils.formatUnits(cost, 'ether'))
+    //       // setCost(Math.round(ethers.utils.formatUnits(cost, 'ether') * 10000) / 10000 )
+
+    //       // // Max CASK
+    //       // const MaxCasksPerAddress = await nftContract.MaxCasksPerAddress()
+    //       // setMaxSupply(MaxCasksPerAddress.toNumber())
+    //       // console.log("MaxCasksPerAddress: ", MaxCasksPerAddress.toNumber())
+
+    //       // // Minted CASKs
+    //       // const totalGoldCasks = await nftContract.getTotalGoldenCasks()
+    //       // setTotalSupply(totalGoldCasks.toNumber())
+    //       // console.log("totalGoldCasks: ", totalGoldCasks.toNumber())
+
+    //       // // Limit
+    //       // setLimit(MaxCasksPerAddress.toNumber() -totalGoldCasks.toNumber())
+    //       if (citizen.toNumber() > 0) {
+    //         router.push('/dashboard')
+    //       } else {
+    //         alert('You are not feliz citizens')
+    //       }
+
+    //     }
+    //   } catch (err) {
+    //     console.log(err)
+    //   }
+    // }
+
     return (
         <>
-            {/* <div className={styles.background}> */}
+            <Modal
+                title={modalTitle}
+                content={modalContent}
+                type={modalType}
+                num={modalNum}
+            />
+            {popupText && (
+                <PopUp timeout={3000} text={popupText} num={popupNum} />
+            )}
             <header className={styles.main}>
-                {/* <motion.div 
-          animate={{
-            x: '20vw'
-          }}
-          transition={{
-            type: 'tween',
-            duration: 2
-          }}
-        >
-          Weeee I'm animated
-      </motion.div> */}
                 <Navbar navs={navlst} className={styles.mainNav} />
 
-                {walletDom(account)}
+                {walletDom(address)}
 
                 <h3 className={styles.info}>
                     8,700 Citizens NFT is coming soon
@@ -249,7 +344,7 @@ export default function Home() {
                     href="/minigame"
                     className={styles.basket}
                 />
-                <Link href="/">
+                <Link href="https://discord.com/">
                     <a className={styles.island_discord}></a>
                 </Link>
                 <ImageLink
@@ -258,8 +353,9 @@ export default function Home() {
                     className={styles.opensea}
                 />
             </header>
+
             <main>
-                <section className={styles.story}>
+                <section className={styles.story} id="story">
                     <article>
                         <h2>The Feliz Story</h2>
                     </article>
@@ -273,6 +369,7 @@ export default function Home() {
 
                 <section className={styles.mission} id="mission">
                     <h2>Our Missinos</h2>
+
                     <section
                         className={styles.citizen}
                         onMouseUp={onMouseUp}
@@ -281,13 +378,6 @@ export default function Home() {
                         onTouchEnd={onTouchEnd}
                         // onDrag
                     >
-                        {/* <motion.div
-                initial={{ x: '100px'}}
-                animate={{ y: '100px'}}
-                exit={{ opacity: 0 }}
-              > */}
-                        {/* <button onClick={slideLeft}>prev</button>
-              <button onClick={slideRight}>next</button> */}
                         {cardList.map((card, idx) => {
                             // console.log(index)
                             let className = "";
@@ -300,6 +390,7 @@ export default function Home() {
                                 className = styles.mintCardmain;
                             else if (idx === (index + 1) % cardList.length)
                                 className = styles.mintCardnext;
+                            console.log("card-", card.type);
                             return (
                                 <MintCard
                                     key={"card-" + idx}
@@ -309,23 +400,28 @@ export default function Home() {
                                     account={account}
                                     type={card.type}
                                     countdown={countdown}
+                                    alert={alert}
+                                    modal={modal}
                                 />
                             );
                         })}
                     </section>
+
                     <section className={styles.stardrust}>
-                        <h3 className={styles.dashboard}>Dashboard</h3>
-                        <Link href="/dashboard">
-                            <a className={styles.door}></a>
-                        </Link>
+                        <h3 className={styles.dashboard}>FELIZ HQ</h3>
+                        <div
+                            className={styles.door}
+                            onClick={clickDoor(account)}
+                        ></div>
+                        {/* <Link href='/dashboard'><a className={styles.door}></a></Link> */}
                         <ImageLink
-                            href="/"
+                            href="https://discord.com/"
                             src="/images/mimi screen1.png"
                             className={styles.miniscreen1}
                             text="Discord"
                         />
                         <ImageLink
-                            href="/"
+                            href="https://twitter.com/"
                             src="/images/mimi screen2.png"
                             className={styles.miniscreen2}
                             text="Twitter"
@@ -337,14 +433,15 @@ export default function Home() {
                             text="Whitepaper"
                         />
                         <ImageLink
-                            href="/"
+                            href="https://opensea.io/"
                             src="/images/mimi screen4.png"
                             className={styles.miniscreen4}
                             text="Opensea"
                         />
                     </section>
                 </section>
-                <section className={styles.roadmap}>
+
+                <section className={styles.roadmap} id="roadmap">
                     <header>
                         <h2>Q1-Q2 Road Map</h2>
                         <p>
@@ -353,6 +450,7 @@ export default function Home() {
                             with their friends.
                         </p>
                     </header>
+
                     <main>
                         <Img src="/images/road.png" className={styles.road} />
                         <aside className={styles.roadpoint1}>
@@ -435,7 +533,8 @@ export default function Home() {
                     </main>
                 </section>
             </main>
-            <footer className={styles.partner}>
+
+            <footer className={styles.partner} id="partner">
                 <h2>Partner</h2>
                 <div className={styles.socials}>
                     <Img

@@ -1,876 +1,847 @@
-@import 'fonts.scss';
-@import 'animations.scss';
+@import "fonts.scss";
+@import "animations.scss";
 
 // for background images
 @function img($map, $key) {
-  @return map-get($map, $key);
-};
+    @return map-get($map, $key);
+}
 
 @mixin section-title {
-  color: white;
-  font-family: 'badabb';
-  font-size: 7vw;
-  letter-spacing: 0.25vw;
-  text-align: center;
-  // padding: 10vw auto;
-  margin: 2.7vw auto;
+    color: white;
+    font-family: "badabb";
+    font-size: 7vw;
+    letter-spacing: 0.25vw;
+    text-align: center;
+    // padding: 10vw auto;
+    margin: 2.7vw auto;
 }
 
 $bg_main: (
-  url: url('/images/bg/m_home.png'),
-  width: 100%,
-  // height: 133vw,
-  height: 118vw,
-  x: 0vw,
-  y: 0vw,
-  size: 100%,
-  // seaY: 65vw
-  seaY: 49.5vw
+    url: url("/images/bg/m_home.png"),
+    width: 100%,
+    height: 118vw,
+    // height: 100em,
+    x: 0vw,
+    y: 0vw,
+    size: 100%,
+    // seaY: 65vw
+    seaY: 49.5vw,
 );
 
 $m_island: (
-  url: url('/images/m_island.png'),
-  size: 32vw,
-  x: 0vw,
-  y: img($bg_main, 'seaY') - 32vw,
+    url: url("/images/m_island.png"),
+    size: 32vw,
+    x: 0vw,
+    y: img($bg_main, "seaY") - 32vw,
 );
 
 $m_skyDevice: (
-  url: url('/images/m_spyDevice.png'),
-  size: 17.5vw,
-  x: calc((100vw - 17.5vw) / 2),
-  y: img($bg_main, 'seaY') - 14.5vw,
+    url: url("/images/m_spyDevice.png"),
+    size: 17.5vw,
+    x: calc((100vw - 17.5vw) / 2),
+    y: img($bg_main, "seaY") - 14.5vw,
 );
 
 $bg_story: (
-  url: url('/images/bg/m_story.png'),
-  width: 100%,
-  height: 131vw,
-  x: 0vw,
-  y: 0vw,
-  size: 100%
+    url: url("/images/bg/m_story.png"),
+    width: 100%,
+    height: 131vw,
+    x: 0vw,
+    y: 0vw,
+    size: 100%,
 );
 
 $m_star: (
-  url: url('/images/m_star.png'),
-  size: 120vw,
-  // x: 0vw,
-  x: calc((100vw - 120vw) / 2),
-  y: img($bg_story, 'y') + img($bg_story, 'height') - 19vw,
+    url: url("/images/m_star.png"),
+    size: 120vw,
+    // x: 0vw,
+    x: calc((100vw - 120vw) / 2),
+    y: img($bg_story, "y") + img($bg_story, "height") - 19vw,
 );
 
 $m_light: (
-  url: url('/images/m_light.png'),
-  size: 100vw,
-  x: 0vw,
-  y: img($m_star, 'y') - 22vw,
+    url: url("/images/m_light.png"),
+    size: 100vw,
+    x: 0vw,
+    y: img($m_star, "y") - 22vw,
 );
 
 $bg_mission: (
-  url: url('/images/bg/m_mission.png'),
-  width: 100%,
-  height: 158.5vw,
-  x: 0vw,
-  y: 0vw,
-  size: 100%
+    url: url("/images/bg/m_mission.png"),
+    width: 100%,
+    height: 158.5vw,
+    x: 0vw,
+    y: 0vw,
+    size: 100%,
 );
 
 $bg_roadmap: (
-  url: url('/images/bg/m_roadmap.png'),
-  width: 100%,
-  height: 131vw,
-  x: 0vw,
-  y: 0vw,
-  size: 100%
+    url: url("/images/bg/m_roadmap.png"),
+    width: 100%,
+    height: 131vw,
+    x: 0vw,
+    y: 0vw,
+    size: 100%,
 );
 
 $r_top: (
-  url: url('/images/r_top.png'),
-  size: 100vw,
-  x: 0vw,
-  y: 0vw,
+    url: url("/images/r_top.png"),
+    size: 100vw,
+    x: 0vw,
+    y: 0vw,
 );
 
 $bg_partner: (
-  url: url('/images/bg/m_roadmap.png'),
-  width: 100%,
-  height: 91vw,
-  x: 0vw,
-  y: 0vw,
-  size: 100%
+    url: url("/images/bg/m_roadmap.png"),
+    width: 100%,
+    height: 91vw,
+    x: 0vw,
+    y: 0vw,
+    size: 100%,
 );
-
-
-
 
 // main section
 .main {
     overflow: hidden;
-    background-image:
-    img($m_skyDevice, "url"),
-    img($m_island, "url"),
-    img($bg_main, "url")
-    ;
+    background-image: img($m_skyDevice, "url"), img($m_island, "url"),
+        img($bg_main, "url");
 
-  background-size:
-    img($m_skyDevice, "size"),
-    img($m_island, "size"),
-    img($bg_main, "size")
-    ;
+    background-size: img($m_skyDevice, "size"), img($m_island, "size"),
+        img($bg_main, "size");
 
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position:
-    img($m_skyDevice, "x") img($m_skyDevice, "y"),
-    img($m_island, "x") img($m_island, "y"),
-    img($bg_main, "x") img($bg_main, "y")
-    ;
-  box-sizing: border-box;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: img($m_skyDevice, "x") img($m_skyDevice, "y"),
+        img($m_island, "x") img($m_island, "y"),
+        img($bg_main, "x") img($bg_main, "y");
+    box-sizing: border-box;
 
-  position: relative;
-  width: img($bg_main, 'width');
-  height: img($bg_main, 'height');
+    position: relative;
+    width: img($bg_main, "width");
+    height: img($bg_main, "height");
 
-
-
-  nav {
-    display: inline-block;
-    ul {
-      display:inline-block;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      // background-color: #E91E63;
-      li {
+    nav {
         display: inline-block;
-        a {
-          display: block;
-          text-align: center;
-          text-decoration: none;
-          text-transform: uppercase;
+        ul {
+            display: inline-block;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            // background-color: #E91E63;
+            li {
+                display: inline-block;
+                a {
+                    display: block;
+                    text-align: center;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                }
+            }
         }
-      }
     }
-  }
 
-  .mainNav {
-    padding-left: 4vw;
-    padding-top: 2.5vw;
-    ul {
-      li {
-        a {
-          color: white;
-          padding: 1vw 0.6vw;
-          font-size: 2.3vw;
-          font-family: 'badabb';
+    .mainNav {
+        padding-left: 4vw;
+        padding-top: 2.5vw;
+        ul {
+            li {
+                a {
+                    color: white;
+                    padding: 1vw 0.6vw;
+                    font-size: 2.3vw;
+                    font-family: "badabb";
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
         }
-        a:hover {
-          text-decoration: underline;
-        }
-      }
     }
-  }
 
-  .socialBar {
-    margin: 2.5vw 4vw 0vw 0vw;
-    float: right;
-  }
+    .socialBar {
+        margin: 2.5vw 4vw 0vw 0vw;
+        float: right;
+    }
 }
 
 .info {
-  display: inline-block;
-  position: absolute;
-  top: img($m_skyDevice, 'y') + 5vw;
-  left: img($m_skyDevice, 'x') + 3vw;
-  width: 12vw;
-  font-size: 2vw;
-  display: inline-block;
-  text-align: center;
-  color: #fff;
-  text-shadow: 0px 0px 0.5vw #000000;
-  font-family: 'bravery'!important;
+    display: inline-block;
+    position: absolute;
+    top: img($m_skyDevice, "y") + 5vw;
+    left: img($m_skyDevice, "x") + 3vw;
+    width: 12vw;
+    font-size: 2vw;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0px 0px 0.5vw #000000;
+    font-family: "bravery" !important;
 }
 .mint {
-  position: absolute;
-  display: inline-block;
-  top: img($m_skyDevice, 'y') + 15vw;
-  left: img($m_skyDevice, 'x') + 6.5vw;
-  // background-color: aqua;
-  // width: 5vw;
-  // height: 3vw;
-  color: #fff;
-  font-family: 'bravery'!important;
-  text-shadow: 0px 0px 0.5vw #000000;
+    position: absolute;
+    display: inline-block;
+    top: img($m_skyDevice, "y") + 15vw;
+    left: img($m_skyDevice, "x") + 6.5vw;
+    // background-color: aqua;
+    // width: 5vw;
+    // height: 3vw;
+    color: #fff;
+    font-family: "bravery" !important;
+    text-shadow: 0px 0px 0.5vw #000000;
 
-  font-size: 3vw;
+    font-size: 3vw;
 }
 
 .countdown {
-  position: absolute!important;
-  // top: 38vw;
-  top: 26vw;
-  // left: 40vw;
-  left: 38vw;
-  // width: 22vw;
-  width: 26vw;
-  height: 6vw;
-  h3 {
-    // position: absolute;
-    top: 1.1vw;
-    margin: 0vw auto;
-    width: 9vw;
-    height: 3.6vw;
-    // text-align: center;
-    vertical-align: middle;
-    line-break: auto;
-    text-overflow: ellipsis;
-    font-family: bm_jua;
-    font-size: 1.6vw;
-    line-height: 6vw;
-  }
+    position: absolute !important;
+    // top: 38vw;
+    top: 26vw;
+    // left: 40vw;
+    left: 38vw;
+    // width: 22vw;
+    width: 26vw;
+    height: 6vw;
+    h3 {
+        // position: absolute;
+        top: 1.1vw;
+        margin: 0vw auto;
+        width: 9vw;
+        height: 3.6vw;
+        // text-align: center;
+        vertical-align: middle;
+        line-break: auto;
+        text-overflow: ellipsis;
+        font-family: bm_jua;
+        font-size: 1.6vw;
+        line-height: 6vw;
+    }
 }
 
 // wallet button
 .walleton,
 .walletoff {
-  margin-top: 2.5vw;
-  float: right;
-  right: 4vw;
-  width: 10vw;
-  height: 5vw;
-  color: #fff;
-  text-align: center;
-  h3 {
-    margin: 1vw auto;
-    width: 8vw;
-    height: 3.6vw;
-    vertical-align: middle;
-    line-break: auto;
-    text-overflow: ellipsis;
-    font-family: bm_jua;
-    font-size: 1vw;
-  }
+    margin-top: 2.5vw;
+    float: right;
+    right: 4vw;
+    width: 10vw;
+    height: 5vw;
+    color: #fff;
+    text-align: center;
+    h3 {
+        margin: 0vw auto;
+        line-height: 4vw;
+        width: 7vw;
+        height: 3.6vw;
+        vertical-align: middle;
+        line-break: auto;
+        text-overflow: ellipsis;
+        font-family: bm_jua;
+        font-size: 1vw;
+    }
 }
 
-.walletoff {
-  h3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-}
+// .walletoff {
+//   h3 {
+//     display: -webkit-box;
+//     -webkit-line-clamp: 2; /* number of lines to show */
+//             line-clamp: 2;
+//     -webkit-box-orient: vertical;
+//   }
+// }
 
-.walleton {
-  h3 {
-    line-height: 3.5vw;
-  }
-}
+// .walleton {
+//   h3 {
+//     // line-height: vw;
+//   }
+// }
 
 .logo {
-  // $width: 38vw;
-  $width: 32vw;
-  // $height: 22vw;
-  $height: 16vw;
-  position: absolute!important;
-  // top: 16vw;
-  top: 10vw;
-  left: calc((100vw - $width) / 2);
-  span {
-    width: $width!important;
-    height: $height!important;
-    object-position: 10vw 10vw;
-  }
-  width: $width;
-  height: $height;
+    // $width: 38vw;
+    $width: 32vw;
+    // $height: 22vw;
+    $height: 16vw;
+    position: absolute !important;
+    // top: 16vw;
+    top: 10vw;
+    left: calc((100vw - $width) / 2);
+    span {
+        width: $width !important;
+        height: $height !important;
+        object-position: 10vw 10vw;
+    }
+    width: $width;
+    height: $height;
 }
 
 .island_discord {
-  position:absolute;
-  display: inline-block;
-  width: 15vw;
-  height: 18vw;
-  top: img($m_island, 'y');
-  left: 3vw;
-  // background-image: url('/images/m_island_title.png');
+    position: absolute;
+    display: inline-block;
+    width: 15vw;
+    height: 18vw;
+    top: img($m_island, "y");
+    left: 3vw;
+    // background-image: url('/images/m_island_title.png');
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .island_discord:hover {
-  background-image: url('/images/m_island_title.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 0vw 0vw;
+    background-image: url("/images/m_island_title.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0vw 0vw;
 }
 
 // story section
 .story {
-  position: relative;
-  z-index: -1;
-  $marinTop: -16vw;
-  background-image:
-    img($m_star, "url"),
-    img($m_light, "url"),
-    img($bg_story, "url")
-    ;
+    position: relative;
+    z-index: -1;
+    $marinTop: -16vw;
+    background-image: img($m_star, "url"), img($m_light, "url"),
+        img($bg_story, "url");
 
-  background-size:
-    img($m_star, "size"),
-    img($m_light, "size"),
-    img($bg_story, "size")
-    ;
+    background-size: img($m_star, "size"), img($m_light, "size"),
+        img($bg_story, "size");
 
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position:
-    img($m_star, "x") img($m_star, "y"),
-    img($m_light, "x") img($m_light, "y"),
-    img($bg_story, "x") img($bg_story, "y")
-    ;
-  box-sizing: border-box;
-  height: img($bg_story, 'height') - $marinTop + 10vw;
-  width: 100%;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: img($m_star, "x") img($m_star, "y"),
+        img($m_light, "x") img($m_light, "y"),
+        img($bg_story, "x") img($bg_story, "y");
+    box-sizing: border-box;
+    height: img($bg_story, "height") - $marinTop + 10vw;
+    width: 100%;
 
-  margin-top: $marinTop;
-  article {
-    width: 70vw;
-    padding-top: 16vw;
-    margin: 0vw auto;
-    display: block;
-    h2 {
-      text-align: center;
-      font-family: 'badabb';
-      color: white;
-      font-size: 7vw;
+    margin-top: $marinTop;
+    article {
+        width: 70vw;
+        padding-top: 16vw;
+        margin: 0vw auto;
+        display: block;
+        h2 {
+            text-align: center;
+            font-family: "badabb";
+            color: white;
+            font-size: 7vw;
+        }
     }
-  }
 }
 
 // mission section
 .mission {
-  $marginTop: -18.1vw;
-  background-image: img($bg_mission, "url");
-  background-size: img($bg_mission, "size");
-  background-repeat: no-repeat;
-  background-position: img($bg_mission, "x") img($bg_mission, "y");
-  box-sizing: border-box;
-  margin-top: $marginTop;
-  height: img($bg_mission, 'height');
-  width: 100%;
-  h2 {
-    text-transform: uppercase;
-    text-align: center;
-    letter-spacing: 0.2vw;
-    color: white;
-    font-family: 'badabb';
-    font-size: 6vw;
-    margin: 0vw;
-    padding: 2vw 0vw;
-  }
-  // section {
-  //   transition: all 1s;
-
-  // }
-  .citizen {
-    // background-color: aquamarine;
-    position: relative;
-    height: 60vw;
-
-    @media only screen and (max-width: 800px) {
-      .mintCardmain,
-      .mintCardprev,
-      .mintCardnext {
-        position: absolute;
-      }
-      
-      .mintCardmain {
-        width: 25vw;
-        height: 47.5vw;
-        left: 37vw;
-        top: 4vw;
-        z-index: 5;
-        font-size: 1.4vw;
-      }
-
-      .mintCardprev,
-      .mintCardnext {
-        width: 15vw;
-        height: 28vw;
-        top: 20.5vw;
-        z-index: 4;
-        font-size: 0.9vw;
-      }
-
-      .mintCardprev {
-        left: 20vw;
-      }
-
-      .mintCardnext {
-        left: 64vw;
-      }
+    $marginTop: -18.1vw;
+    background-image: img($bg_mission, "url");
+    background-size: img($bg_mission, "size");
+    background-repeat: no-repeat;
+    background-position: img($bg_mission, "x") img($bg_mission, "y");
+    box-sizing: border-box;
+    margin-top: $marginTop;
+    height: img($bg_mission, "height");
+    width: 100%;
+    h2 {
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 0.2vw;
+        color: white;
+        font-family: "badabb";
+        font-size: 6vw;
+        margin: 0vw;
+        padding: 2vw 0vw;
     }
+    // section {
+    //   transition: all 1s;
 
-    @media only screen and (min-width: 800px) {
-      .mintCardmain,
-      .mintCardprev,
-      .mintCardnext {
-        width: 15vw;
-        height: 28vw;
-        position: absolute;
-        font-size: 0.85vw;
-      }
-  
-      .mintCardmain {
-        left: 42vw;
-        top: 12.2vw;
-      }
-  
-      .mintCardprev,
-      .mintCardnext {
-        top: 24.5vw;
-      }
-  
-      .mintCardprev {
-        left: 20vw;
-      }
-  
-      .mintCardnext {
-        left: 64vw;
-      }
+    // }
+    .citizen {
+        // background-color: aquamarine;
+        position: relative;
+        height: 60vw;
+
+        @media only screen and (max-width: 800px) {
+            .mintCardmain,
+            .mintCardprev,
+            .mintCardnext {
+                position: absolute;
+            }
+
+            .mintCardmain {
+                width: 25vw;
+                height: 47.5vw;
+                left: 37vw;
+                top: 4vw;
+                z-index: 5;
+                font-size: 1.4vw;
+            }
+
+            .mintCardprev,
+            .mintCardnext {
+                width: 15vw;
+                height: 28vw;
+                top: 20.5vw;
+                z-index: 4;
+                font-size: 0.9vw;
+            }
+
+            .mintCardprev {
+                left: 20vw;
+            }
+
+            .mintCardnext {
+                left: 64vw;
+            }
+        }
+
+        @media only screen and (min-width: 800px) {
+            .mintCardmain,
+            .mintCardprev,
+            .mintCardnext {
+                width: 15vw;
+                height: 28vw;
+                position: absolute;
+                font-size: 0.85vw;
+            }
+
+            .mintCardmain {
+                left: 42vw;
+                top: 12.2vw;
+            }
+
+            .mintCardprev,
+            .mintCardnext {
+                top: 24.5vw;
+            }
+
+            .mintCardprev {
+                left: 20vw;
+            }
+
+            .mintCardnext {
+                left: 64vw;
+            }
+        }
     }
+    .stardrust {
+        // background-color: bisque;
+        height: 88vw;
+        position: relative;
 
+        h3.dashboard {
+            margin: 0vw;
+            position: absolute;
+            width: 28vw;
+            left: 17vw;
+            top: 4vw;
+            transform: rotate(-4deg);
+            color: #fff;
+            text-transform: uppercase;
+            font-family: badabb;
+            font-size: 6vw;
+            font-weight: 300;
+            text-align: center;
+        }
 
-  }
-  .stardrust {
-    // background-color: bisque;
-    height: 88vw;
-    position: relative;
+        .door {
+            // background-color: aqua;
+            position: absolute;
+            display: inline-block;
+            // width: 25vw;
+            // height: 35vw;
+            // // top: img($m_island, 'y');
+            // left: 18.6vw;
+            // top: 20vw;
+            width: 38vw;
+            height: 45vw;
+            left: 18.5vw;
+            top: 14vw;
+            box-sizing: border-box;
+            cursor: pointer;
+            text-align: center;
+            // border-radius: 100vw 0vw 0vw 0vw;
+        }
 
-    h3.dashboard {
-      margin: 0vw;
-      position: absolute;
-      left: 19vw;
-      top: 5vw;
-      transform: rotate(-4deg);
-      color: #fff;
-      text-transform: uppercase;
-      font-family: badabb;
-      font-size: 6vw;
-      font-weight: 300;
+        .door:hover {
+            background-image: url("/images/m_doorlight.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 0vw 0vw;
+        }
+
+        .miniscreen1,
+        .miniscreen2,
+        .miniscreen3,
+        .miniscreen4 {
+            position: absolute;
+            width: 16vw;
+            height: 12vw;
+            color: #fff;
+            font-family: bm_jua;
+            font-size: 2vw;
+            text-align: center;
+            line-height: 7vw;
+        }
+
+        .miniscreen1 {
+            top: 13vw;
+            left: 54.5vw;
+        }
+
+        .miniscreen2 {
+            top: 13vw;
+            left: 73vw;
+        }
+
+        .miniscreen3 {
+            top: 26vw;
+            left: 54.5vw;
+        }
+
+        .miniscreen4 {
+            top: 26vw;
+            left: 73vw;
+        }
     }
-
-    .door {
-      // background-color: aqua;
-      position:absolute;
-      display: inline-block;
-      // width: 25vw;
-      // height: 35vw;
-      // // top: img($m_island, 'y');
-      // left: 18.6vw;
-      // top: 20vw;
-      width: 38vw;
-      height: 45vw;
-      left: 18.5vw;
-      top: 14vw;
-      box-sizing: border-box;
-      // border-radius: 100vw 0vw 0vw 0vw;
-    }
-
-    .door:hover {
-      background-image: url('/images/m_doorlight.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: 0vw 0vw;
-    }
-
-    .miniscreen1,
-    .miniscreen2,
-    .miniscreen3,
-    .miniscreen4 {
-      position: absolute;
-      width: 16vw;
-      height: 12vw;
-      color: #fff;
-      font-family: bm_jua;
-      font-size: 2vw;
-      text-align: center;
-      line-height: 7vw;
-    }
-
-    .miniscreen1 {
-      top: 13vw;
-      left: 54.5vw;
-    }
-
-    .miniscreen2 {
-      top: 13vw;
-      left: 73vw;
-    }
-
-    .miniscreen3 {
-      top: 26vw;
-      left: 54.5vw;
-    }
-
-    .miniscreen4 {
-      top: 26vw;
-      left: 73vw;
-    }
-  }
 }
-
 
 // Roadmap section
 .roadmap {
-  background-image:
-    img($r_top, "url"),
-    img($bg_roadmap, "url");
-  background-size:
-    img($r_top, "size"),
-    img($bg_roadmap, "size");
-  background-repeat: no-repeat, no-repeat;
-  background-position:
-    img($r_top, "x") img($r_top, "y"),
-    img($bg_roadmap, "x") img($bg_roadmap, "y");
-  box-sizing: border-box;
-  width: 100%;
-  height: img($bg_roadmap, "height");
-  header {
-    padding-top: 20vw;
-    height: 50vw;
-    // background-color: grey;
-    h2 {
-      @include section-title;
-
-    }
-    p {
-      // display: block;
-      width: 55vw;
-      margin: 0vw auto;
-      color: white;
-      font-family: 'bm_jua';
-      font-size: 2.8vw;
-      text-align: center;
-    }
-  }
-
-  main {
-    margin-top: 7vw;
-    height: 80vw;
-    position: relative;
-    .road {
-      $width: 30vw;
-      $height: 56vw;
-      position: absolute;
-      top: 1vw;
-      left: 35vw;
-      span {
-        width: $width!important;
-        height: $height!important;
-        object-position: 10vw 10vw;
-      }
-      width: $width;
-      height: $height;
-    }
-
-
-    .roadpoint1 {
-      top: 0vw;
-      .point {
-        left: 25vw!important;
-      }
-    }
-
-    .roadpoint3 {
-      top: 10.5vw;
-    }
-    
-    .roadpoint5 {
-      top: 24vw;
-    }
-
-    .roadpoint7 {
-      top: 38.5vw;
-    }
-
-    .roadpoint2 {
-      top: 3vw;
-    }
-
-    .roadpoint4 {
-      top: 17.5vw;
-    }
-
-    .roadpoint6 {
-      top: 31.5vw;
-    }
-
-    .roadpoint8 {
-      top: 46vw;
-    }
-
-    .roadpoint9 {
-      top: 61vw;
-      left: 53vw;
-      .point {
-        left: -9vw;
-        top: -8vw;
-      }
-    }
-
-
-    .roadpoint1,
-    .roadpoint3,
-    .roadpoint5,
-    .roadpoint7 {
-      text-align: right;
-      left: 8vw;
-      .point {
-        left: 22vw;
-      }
-    }
-
-    .roadpoint2,
-    .roadpoint4,
-    .roadpoint6,
-    .roadpoint8 {
-      text-align: left;
-      left: 68vw;
-      .point {
-        left: -10vw;
-      }
-      // left: 81vw;
-    }
-
-    aside {
-      z-index: 1;
-      position: absolute;
-      display: inline-block;
-      width: 25vw;
-      // padding-right: 18vw;
-      // margin-bottom: 6vw;
-      color: #fff;
-      font-family: bm_jua;
-      h4 {
-        font-size: 2.3vw;
-        margin: 0vw
-      }
-      p {
-        font-size: 1.5vw;
-        margin: 0vw;
-      }
-      .point {
-        $width: 12vw;
-        $height: 7vw;
-        position: absolute;
-        top: -0.5vw;
-        z-index: 1;
-        span {
-          width: $width!important;
-          height: $height!important;
-          // object-position: 10vw 10vw;
+    background-image: img($r_top, "url"), img($bg_roadmap, "url");
+    background-size: img($r_top, "size"), img($bg_roadmap, "size");
+    background-repeat: no-repeat, no-repeat;
+    background-position: img($r_top, "x") img($r_top, "y"),
+        img($bg_roadmap, "x") img($bg_roadmap, "y");
+    box-sizing: border-box;
+    width: 100%;
+    height: img($bg_roadmap, "height");
+    header {
+        padding-top: 20vw;
+        height: 50vw;
+        // background-color: grey;
+        h2 {
+            @include section-title;
         }
-        width: $width;
-        height: $height;
-      }
-
+        p {
+            // display: block;
+            width: 55vw;
+            margin: 0vw auto;
+            color: white;
+            font-family: "bm_jua";
+            font-size: 2.8vw;
+            text-align: center;
+        }
     }
-  }
+
+    main {
+        margin-top: 7vw;
+        height: 80vw;
+        position: relative;
+        .road {
+            $width: 30vw;
+            $height: 56vw;
+            position: absolute;
+            top: 1vw;
+            left: 35vw;
+            span {
+                width: $width !important;
+                height: $height !important;
+                object-position: 10vw 10vw;
+            }
+            width: $width;
+            height: $height;
+        }
+
+        .roadpoint1 {
+            top: 0vw;
+            .point {
+                left: 25vw !important;
+            }
+        }
+
+        .roadpoint3 {
+            top: 10.5vw;
+        }
+
+        .roadpoint5 {
+            top: 24vw;
+        }
+
+        .roadpoint7 {
+            top: 38.5vw;
+        }
+
+        .roadpoint2 {
+            top: 3vw;
+        }
+
+        .roadpoint4 {
+            top: 17.5vw;
+        }
+
+        .roadpoint6 {
+            top: 31.5vw;
+        }
+
+        .roadpoint8 {
+            top: 46vw;
+        }
+
+        .roadpoint9 {
+            top: 61vw;
+            left: 53vw;
+            .point {
+                left: -9vw;
+                top: -8vw;
+            }
+        }
+
+        .roadpoint1,
+        .roadpoint3,
+        .roadpoint5,
+        .roadpoint7 {
+            text-align: right;
+            left: 8vw;
+            .point {
+                left: 22vw;
+            }
+        }
+
+        .roadpoint2,
+        .roadpoint4,
+        .roadpoint6,
+        .roadpoint8 {
+            text-align: left;
+            left: 68vw;
+            .point {
+                left: -10vw;
+            }
+            // left: 81vw;
+        }
+
+        aside {
+            z-index: 1;
+            position: absolute;
+            display: inline-block;
+            width: 25vw;
+            // padding-right: 18vw;
+            // margin-bottom: 6vw;
+            color: #fff;
+            font-family: bm_jua;
+            h4 {
+                font-size: 2.3vw;
+                margin: 0vw;
+            }
+            p {
+                font-size: 1.5vw;
+                margin: 0vw;
+            }
+            .point {
+                $width: 12vw;
+                $height: 7vw;
+                position: absolute;
+                top: -0.5vw;
+                z-index: 1;
+                span {
+                    width: $width !important;
+                    height: $height !important;
+                    // object-position: 10vw 10vw;
+                }
+                width: $width;
+                height: $height;
+            }
+        }
+    }
 }
 
 // Partner section
 .partner {
-  display: block;
-  position: relative;
-  background-image: img($bg_partner, "url");
-  background-size: img($bg_partner, "size");
-  background-repeat: no-repeat;
-  background-position: img($bg_partner, "x") img($bg_partner, "y");
-  box-sizing: border-box;
-  width: 100%;
-  height: img($bg_partner, "height")!important;
-  margin-top: -1vw;
-
-  h2 {
-    @include section-title;
-    margin-top: 0vw;
-    padding-top: 8vw;
-  }
-
-  .socials {
-    position: absolute;
-    top: 70vw;
-    .socialIcon1,
-    .socialIcon2,
-    .socialIcon3 {
-      position: relative;
-      $width: 6vw;
-      $height: 6vw;
-      // left: 100vw - $width;
-      span {
-        width: $width!important;
-        height: $height!important;
-      }
-    }
-
-    .socialIcon1 {
-      left: 40vw;
-    }
-
-    .socialIcon2 {
-      left: 47vw;
-    }
-
-    .socialIcon3 {
-      left: 54vw;
-    }
-  }
-  a {
-    bottom: 9vw;
-    // top: 77vw;
-    // margin: auto;
-    width: 100%;
-    position: absolute;
-    font-family: bravery;
-    font-size: 4vw;
-    color: #fff;
     display: block;
-    text-align: center;
-    text-align: center;
-  }
+    position: relative;
+    background-image: img($bg_partner, "url");
+    background-size: img($bg_partner, "size");
+    background-repeat: no-repeat;
+    background-position: img($bg_partner, "x") img($bg_partner, "y");
+    box-sizing: border-box;
+    width: 100%;
+    height: img($bg_partner, "height") !important;
+    margin-top: -1vw;
+
+    h2 {
+        @include section-title;
+        margin-top: 0vw;
+        padding-top: 8vw;
+    }
+
+    .socials {
+        position: absolute;
+        top: 70vw;
+        .socialIcon1,
+        .socialIcon2,
+        .socialIcon3 {
+            position: relative;
+            $width: 6vw;
+            $height: 6vw;
+            // left: 100vw - $width;
+            span {
+                width: $width !important;
+                height: $height !important;
+            }
+        }
+
+        .socialIcon1 {
+            left: 40vw;
+        }
+
+        .socialIcon2 {
+            left: 47vw;
+        }
+
+        .socialIcon3 {
+            left: 54vw;
+        }
+    }
+    a {
+        bottom: 9vw;
+        // top: 77vw;
+        // margin: auto;
+        width: 100%;
+        position: absolute;
+        font-family: bravery;
+        font-size: 4vw;
+        color: #fff;
+        display: block;
+        text-align: center;
+        text-align: center;
+    }
 }
 
 // ship
 .ship {
-  $width: 41.5vw;
-  $height: 57vw;
-  position: absolute;
-  // top: 56vw;
-  top: 36vw;
-  left: 101vw - $width;
-  span {
-    width: $width!important;
-    height: $height!important;
-  }
-  animation: ship 5s ease-in-out infinite;
+    $width: 41.5vw;
+    $height: 57vw;
+    position: absolute;
+    // top: 56vw;
+    top: 36vw;
+    left: 101vw - $width;
+    span {
+        width: $width !important;
+        height: $height !important;
+    }
+    animation: ship 5s ease-in-out infinite;
 }
 
 // basket
 .basket {
-  $width: 25vw;
-  $height: 15vw;
-  position: absolute !important;
-  // top: 77.5vw;
-  top: 55.5vw;
-  left: 10.5vw;
-  span {
-    width: $width!important;
-    height: $height!important;
-    object-position: 10vw 10vw;
-  }
-  // width: $width;
-  // height: $height;
-  max-width:$width;
-  max-height:$height;
-  width: auto;
-  height: auto;
-  animation: basket 5s ease-in-out infinite;
+    $width: 25vw;
+    $height: 15vw;
+    position: absolute !important;
+    // top: 77.5vw;
+    top: 55.5vw;
+    left: 10.5vw;
+    span {
+        width: $width !important;
+        height: $height !important;
+        object-position: 10vw 10vw;
+    }
+    // width: $width;
+    // height: $height;
+    max-width: $width;
+    max-height: $height;
+    width: auto;
+    height: auto;
+    animation: basket 5s ease-in-out infinite;
 }
 
 .opensea {
-  position: absolute!important;
-  // padding-top: -20vw;
-  $width: 38vw;
-  $height: 12vw;
-  // position: relative;
-  // z-index: 1;
-  margin: 0vw auto;
-  display: block;
-  bottom: 0vw;
-  // top: 77.5vw;
-  left: calc((100vw - $width) / 2)!important;
-  // padding-top: 0vw;
-  span {
-    width: $width!important;
-    height: $height!important;
-    // object-position: 10vw 10vw;
-  }
-  width: $width;
-  height: $height;
-  // animation: float-a 3s ease-in-out infinite;
-
+    position: absolute !important;
+    // padding-top: -20vw;
+    $width: 38vw;
+    $height: 12vw;
+    // position: relative;
+    // z-index: 1;
+    margin: 0vw auto;
+    display: block;
+    bottom: 0vw;
+    // top: 77.5vw;
+    left: calc((100vw - $width) / 2) !important;
+    // padding-top: 0vw;
+    span {
+        width: $width !important;
+        height: $height !important;
+        // object-position: 10vw 10vw;
+    }
+    width: $width;
+    height: $height;
+    // animation: float-a 3s ease-in-out infinite;
 }
 
 @mixin fish {
-  $width: 7vw;
-  $height: 7vw;
-  position: absolute;
-  // top: 77.5vw;
-  // left: 10.5vw;
-  span {
-    width: $width!important;
-    height: $height!important;
-    object-position: 10vw 10vw;
-  }
-  width: $width * 1.5;
-  height: $height * 1.5;
-  animation: fish 6s ease-in-out infinite;
+    $width: 7vw;
+    $height: 7vw;
+    position: absolute;
+    // top: 77.5vw;
+    // left: 10.5vw;
+    span {
+        width: $width !important;
+        height: $height !important;
+        object-position: 10vw 10vw;
+    }
+    width: $width * 1.5;
+    height: $height * 1.5;
+    animation: fish 6s ease-in-out infinite;
 }
 
 .fish1 {
-  @include fish;
-  top: 21vw;
-  left: 8vw;
-  span {
-    transform: rotate(-75deg);
-  }
+    @include fish;
+    top: 21vw;
+    left: 8vw;
+    span {
+        transform: rotate(-75deg);
+    }
 }
 
 .fish2 {
-  @include fish;
-  top: 57vw;
-  left: 4vw;
-  span {
-    transform: rotate(180deg);
-  }
+    @include fish;
+    top: 57vw;
+    left: 4vw;
+    span {
+        transform: rotate(180deg);
+    }
 }
 
 .fish3 {
-  @include fish;
-  top: 100vw;
-  left: 6vw;
+    @include fish;
+    top: 100vw;
+    left: 6vw;
 }
 
 .fish4 {
-  @include fish;
-  top: 77vw;
-  left: 87vw;
-  span {
-    transform: rotate(55deg);
-  }
+    @include fish;
+    top: 77vw;
+    left: 87vw;
+    span {
+        transform: rotate(55deg);
+    }
 }
 
 .fish5 {
-  @include fish;
-  top: 104vw;
-  left: 83vw;
-  span {
-    transform: rotate(140deg);
-  }
+    @include fish;
+    top: 104vw;
+    left: 83vw;
+    span {
+        transform: rotate(140deg);
+    }
 }
 
 .meteor {
-  $width: 30vw;
-  $height: 32vw;
-  position: absolute;
-  top: 16vw;
-  left: 65vw;
-  span {
-    width: $width!important;
-    height: $height!important;
-    object-position: 10vw 10vw;
-  }
-  width: $width;
-  height: $height;
-  animation: meteor 6s ease-in-out infinite;
+    $width: 30vw;
+    $height: 32vw;
+    position: absolute;
+    top: 16vw;
+    left: 65vw;
+    span {
+        width: $width !important;
+        height: $height !important;
+        object-position: 10vw 10vw;
+    }
+    width: $width;
+    height: $height;
+    animation: meteor 6s ease-in-out infinite;
 }

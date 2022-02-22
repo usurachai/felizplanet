@@ -46,7 +46,10 @@ abstract contract Context {
 abstract contract Ownable is Context {
     address private _owner;
 
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    event OwnershipTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
 
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
@@ -86,7 +89,10 @@ abstract contract Ownable is Context {
      * Can only be called by the current owner.
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        require(
+            newOwner != address(0),
+            "Ownable: new owner is the zero address"
+        );
         _transferOwnership(newOwner);
     }
 
@@ -205,7 +211,13 @@ interface IERC1155 is IERC165 {
     /**
      * @dev Emitted when `value` tokens of token type `id` are transferred from `from` to `to` by `operator`.
      */
-    event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value);
+    event TransferSingle(
+        address indexed operator,
+        address indexed from,
+        address indexed to,
+        uint256 id,
+        uint256 value
+    );
 
     /**
      * @dev Equivalent to multiple {TransferSingle} events, where `operator`, `from` and `to` are the same for all
@@ -223,7 +235,11 @@ interface IERC1155 is IERC165 {
      * @dev Emitted when `account` grants or revokes permission to `operator` to transfer their tokens, according to
      * `approved`.
      */
-    event ApprovalForAll(address indexed account, address indexed operator, bool approved);
+    event ApprovalForAll(
+        address indexed account,
+        address indexed operator,
+        bool approved
+    );
 
     /**
      * @dev Emitted when the URI for token type `id` changes to `value`, if it is a non-programmatic URI.
@@ -241,7 +257,10 @@ interface IERC1155 is IERC165 {
      *
      * - `account` cannot be the zero address.
      */
-    function balanceOf(address account, uint256 id) external view returns (uint256);
+    function balanceOf(address account, uint256 id)
+        external
+        view
+        returns (uint256);
 
     /**
      * @dev xref:ROOT:erc1155.adoc#batch-operations[Batched] version of {balanceOf}.
@@ -271,7 +290,10 @@ interface IERC1155 is IERC165 {
      *
      * See {setApprovalForAll}.
      */
-    function isApprovedForAll(address account, address operator) external view returns (bool);
+    function isApprovedForAll(address account, address operator)
+        external
+        view
+        returns (bool);
 
     /**
      * @dev Transfers `amount` tokens of token type `id` from `from` to `to`.
@@ -443,10 +465,16 @@ library Address {
      * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
      */
     function sendValue(address payable recipient, uint256 amount) internal {
-        require(address(this).balance >= amount, "Address: insufficient balance");
+        require(
+            address(this).balance >= amount,
+            "Address: insufficient balance"
+        );
 
-        (bool success, ) = recipient.call{value: amount}("");
-        require(success, "Address: unable to send value, recipient may have reverted");
+        (bool success, ) = recipient.call{ value: amount }("");
+        require(
+            success,
+            "Address: unable to send value, recipient may have reverted"
+        );
     }
 
     /**
@@ -467,7 +495,10 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
+    function functionCall(address target, bytes memory data)
+        internal
+        returns (bytes memory)
+    {
         return functionCall(target, data, "Address: low-level call failed");
     }
 
@@ -501,7 +532,13 @@ library Address {
         bytes memory data,
         uint256 value
     ) internal returns (bytes memory) {
-        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
+        return
+            functionCallWithValue(
+                target,
+                data,
+                value,
+                "Address: low-level call with value failed"
+            );
     }
 
     /**
@@ -516,10 +553,15 @@ library Address {
         uint256 value,
         string memory errorMessage
     ) internal returns (bytes memory) {
-        require(address(this).balance >= value, "Address: insufficient balance for call");
+        require(
+            address(this).balance >= value,
+            "Address: insufficient balance for call"
+        );
         require(isContract(target), "Address: call to non-contract");
 
-        (bool success, bytes memory returndata) = target.call{value: value}(data);
+        (bool success, bytes memory returndata) = target.call{ value: value }(
+            data
+        );
         return verifyCallResult(success, returndata, errorMessage);
     }
 
@@ -529,8 +571,17 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
-        return functionStaticCall(target, data, "Address: low-level static call failed");
+    function functionStaticCall(address target, bytes memory data)
+        internal
+        view
+        returns (bytes memory)
+    {
+        return
+            functionStaticCall(
+                target,
+                data,
+                "Address: low-level static call failed"
+            );
     }
 
     /**
@@ -556,8 +607,16 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
-        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
+    function functionDelegateCall(address target, bytes memory data)
+        internal
+        returns (bytes memory)
+    {
+        return
+            functionDelegateCall(
+                target,
+                data,
+                "Address: low-level delegate call failed"
+            );
     }
 
     /**
@@ -608,6 +667,7 @@ library Address {
 
 // File: @openzeppelin/contracts/token/ERC721/IERC721.sol
 pragma solidity ^0.8.0;
+
 /**
  * @dev Required interface of an ERC721 compliant contract.
  */
@@ -615,17 +675,29 @@ interface IERC721 is IERC165 {
     /**
      * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
      */
-    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
+    event Transfer(
+        address indexed from,
+        address indexed to,
+        uint256 indexed tokenId
+    );
 
     /**
      * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
      */
-    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+    event Approval(
+        address indexed owner,
+        address indexed approved,
+        uint256 indexed tokenId
+    );
 
     /**
      * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
      */
-    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
+    event ApprovalForAll(
+        address indexed owner,
+        address indexed operator,
+        bool approved
+    );
 
     /**
      * @dev Returns the number of tokens in ``owner``'s account.
@@ -703,7 +775,10 @@ interface IERC721 is IERC165 {
      *
      * - `tokenId` must exist.
      */
-    function getApproved(uint256 tokenId) external view returns (address operator);
+    function getApproved(uint256 tokenId)
+        external
+        view
+        returns (address operator);
 
     /**
      * @dev Approve or remove `operator` as an operator for the caller.
@@ -722,7 +797,10 @@ interface IERC721 is IERC165 {
      *
      * See {setApprovalForAll}
      */
-    function isApprovedForAll(address owner, address operator) external view returns (bool);
+    function isApprovedForAll(address owner, address operator)
+        external
+        view
+        returns (bool);
 
     /**
      * @dev Safely transfers `tokenId` token from `from` to `to`.
@@ -747,6 +825,7 @@ interface IERC721 is IERC165 {
 
 // File: @openzeppelin/contracts/token/ERC721/extensions/IERC721Enumerable.sol
 pragma solidity ^0.8.0;
+
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -761,7 +840,10 @@ interface IERC721Enumerable is IERC721 {
      * @dev Returns a token ID owned by `owner` at a given `index` of its token list.
      * Use along with {balanceOf} to enumerate all of ``owner``'s tokens.
      */
-    function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256 tokenId);
+    function tokenOfOwnerByIndex(address owner, uint256 index)
+        external
+        view
+        returns (uint256 tokenId);
 
     /**
      * @dev Returns a token ID at a given `index` of all the tokens stored by the contract.
@@ -794,7 +876,13 @@ abstract contract ERC165 is IERC165 {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override
+        returns (bool)
+    {
         return interfaceId == type(IERC165).interfaceId;
     }
 }
@@ -839,7 +927,13 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        virtual
+        override(ERC165, IERC165)
+        returns (bool)
+    {
         return
             interfaceId == type(IERC1155).interfaceId ||
             interfaceId == type(IERC1155MetadataURI).interfaceId ||
@@ -867,8 +961,17 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
      *
      * - `account` cannot be the zero address.
      */
-    function balanceOf(address account, uint256 id) public view virtual override returns (uint256) {
-        require(account != address(0), "ERC1155: balance query for the zero address");
+    function balanceOf(address account, uint256 id)
+        public
+        view
+        virtual
+        override
+        returns (uint256)
+    {
+        require(
+            account != address(0),
+            "ERC1155: balance query for the zero address"
+        );
         return _balances[id][account];
     }
 
@@ -886,7 +989,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         override
         returns (uint256[] memory)
     {
-        require(accounts.length == ids.length, "ERC1155: accounts and ids length mismatch");
+        require(
+            accounts.length == ids.length,
+            "ERC1155: accounts and ids length mismatch"
+        );
 
         uint256[] memory batchBalances = new uint256[](accounts.length);
 
@@ -900,14 +1006,24 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
     /**
      * @dev See {IERC1155-setApprovalForAll}.
      */
-    function setApprovalForAll(address operator, bool approved) public virtual override {
+    function setApprovalForAll(address operator, bool approved)
+        public
+        virtual
+        override
+    {
         _setApprovalForAll(_msgSender(), operator, approved);
     }
 
     /**
      * @dev See {IERC1155-isApprovedForAll}.
      */
-    function isApprovedForAll(address account, address operator) public view virtual override returns (bool) {
+    function isApprovedForAll(address account, address operator)
+        public
+        view
+        virtual
+        override
+        returns (bool)
+    {
         return _operatorApprovals[account][operator];
     }
 
@@ -968,10 +1084,20 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         address operator = _msgSender();
 
-        _beforeTokenTransfer(operator, from, to, _asSingletonArray(id), _asSingletonArray(amount), data);
+        _beforeTokenTransfer(
+            operator,
+            from,
+            to,
+            _asSingletonArray(id),
+            _asSingletonArray(amount),
+            data
+        );
 
         uint256 fromBalance = _balances[id][from];
-        require(fromBalance >= amount, "ERC1155: insufficient balance for transfer");
+        require(
+            fromBalance >= amount,
+            "ERC1155: insufficient balance for transfer"
+        );
         unchecked {
             _balances[id][from] = fromBalance - amount;
         }
@@ -999,7 +1125,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         uint256[] memory amounts,
         bytes memory data
     ) internal virtual {
-        require(ids.length == amounts.length, "ERC1155: ids and amounts length mismatch");
+        require(
+            ids.length == amounts.length,
+            "ERC1155: ids and amounts length mismatch"
+        );
         require(to != address(0), "ERC1155: transfer to the zero address");
 
         address operator = _msgSender();
@@ -1011,7 +1140,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
             uint256 amount = amounts[i];
 
             uint256 fromBalance = _balances[id][from];
-            require(fromBalance >= amount, "ERC1155: insufficient balance for transfer");
+            require(
+                fromBalance >= amount,
+                "ERC1155: insufficient balance for transfer"
+            );
             unchecked {
                 _balances[id][from] = fromBalance - amount;
             }
@@ -1020,7 +1152,14 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         emit TransferBatch(operator, from, to, ids, amounts);
 
-        _doSafeBatchTransferAcceptanceCheck(operator, from, to, ids, amounts, data);
+        _doSafeBatchTransferAcceptanceCheck(
+            operator,
+            from,
+            to,
+            ids,
+            amounts,
+            data
+        );
     }
 
     /**
@@ -1067,12 +1206,26 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         address operator = _msgSender();
 
-        _beforeTokenTransfer(operator, address(0), to, _asSingletonArray(id), _asSingletonArray(amount), data);
+        _beforeTokenTransfer(
+            operator,
+            address(0),
+            to,
+            _asSingletonArray(id),
+            _asSingletonArray(amount),
+            data
+        );
 
         _balances[id][to] += amount;
         emit TransferSingle(operator, address(0), to, id, amount);
 
-        _doSafeTransferAcceptanceCheck(operator, address(0), to, id, amount, data);
+        _doSafeTransferAcceptanceCheck(
+            operator,
+            address(0),
+            to,
+            id,
+            amount,
+            data
+        );
     }
 
     /**
@@ -1091,7 +1244,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         bytes memory data
     ) internal virtual {
         require(to != address(0), "ERC1155: mint to the zero address");
-        require(ids.length == amounts.length, "ERC1155: ids and amounts length mismatch");
+        require(
+            ids.length == amounts.length,
+            "ERC1155: ids and amounts length mismatch"
+        );
 
         address operator = _msgSender();
 
@@ -1103,7 +1259,14 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         emit TransferBatch(operator, address(0), to, ids, amounts);
 
-        _doSafeBatchTransferAcceptanceCheck(operator, address(0), to, ids, amounts, data);
+        _doSafeBatchTransferAcceptanceCheck(
+            operator,
+            address(0),
+            to,
+            ids,
+            amounts,
+            data
+        );
     }
 
     /**
@@ -1123,7 +1286,14 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
 
         address operator = _msgSender();
 
-        _beforeTokenTransfer(operator, from, address(0), _asSingletonArray(id), _asSingletonArray(amount), "");
+        _beforeTokenTransfer(
+            operator,
+            from,
+            address(0),
+            _asSingletonArray(id),
+            _asSingletonArray(amount),
+            ""
+        );
 
         uint256 fromBalance = _balances[id][from];
         require(fromBalance >= amount, "ERC1155: burn amount exceeds balance");
@@ -1147,7 +1317,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         uint256[] memory amounts
     ) internal virtual {
         require(from != address(0), "ERC1155: burn from the zero address");
-        require(ids.length == amounts.length, "ERC1155: ids and amounts length mismatch");
+        require(
+            ids.length == amounts.length,
+            "ERC1155: ids and amounts length mismatch"
+        );
 
         address operator = _msgSender();
 
@@ -1158,7 +1331,10 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
             uint256 amount = amounts[i];
 
             uint256 fromBalance = _balances[id][from];
-            require(fromBalance >= amount, "ERC1155: burn amount exceeds balance");
+            require(
+                fromBalance >= amount,
+                "ERC1155: burn amount exceeds balance"
+            );
             unchecked {
                 _balances[id][from] = fromBalance - amount;
             }
@@ -1220,7 +1396,15 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         bytes memory data
     ) private {
         if (to.isContract()) {
-            try IERC1155Receiver(to).onERC1155Received(operator, from, id, amount, data) returns (bytes4 response) {
+            try
+                IERC1155Receiver(to).onERC1155Received(
+                    operator,
+                    from,
+                    id,
+                    amount,
+                    data
+                )
+            returns (bytes4 response) {
                 if (response != IERC1155Receiver.onERC1155Received.selector) {
                     revert("ERC1155: ERC1155Receiver rejected tokens");
                 }
@@ -1241,10 +1425,18 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         bytes memory data
     ) private {
         if (to.isContract()) {
-            try IERC1155Receiver(to).onERC1155BatchReceived(operator, from, ids, amounts, data) returns (
-                bytes4 response
-            ) {
-                if (response != IERC1155Receiver.onERC1155BatchReceived.selector) {
+            try
+                IERC1155Receiver(to).onERC1155BatchReceived(
+                    operator,
+                    from,
+                    ids,
+                    amounts,
+                    data
+                )
+            returns (bytes4 response) {
+                if (
+                    response != IERC1155Receiver.onERC1155BatchReceived.selector
+                ) {
                     revert("ERC1155: ERC1155Receiver rejected tokens");
                 }
             } catch Error(string memory reason) {
@@ -1255,7 +1447,11 @@ contract ERC1155 is Context, ERC165, IERC1155, IERC1155MetadataURI {
         }
     }
 
-    function _asSingletonArray(uint256 element) private pure returns (uint256[] memory) {
+    function _asSingletonArray(uint256 element)
+        private
+        pure
+        returns (uint256[] memory)
+    {
         uint256[] memory array = new uint256[](1);
         array[0] = element;
 
@@ -1283,7 +1479,11 @@ library SafeMath {
      *
      * _Available since v3.4._
      */
-    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+    function tryAdd(uint256 a, uint256 b)
+        internal
+        pure
+        returns (bool, uint256)
+    {
         unchecked {
             uint256 c = a + b;
             if (c < a) return (false, 0);
@@ -1296,7 +1496,11 @@ library SafeMath {
      *
      * _Available since v3.4._
      */
-    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+    function trySub(uint256 a, uint256 b)
+        internal
+        pure
+        returns (bool, uint256)
+    {
         unchecked {
             if (b > a) return (false, 0);
             return (true, a - b);
@@ -1308,7 +1512,11 @@ library SafeMath {
      *
      * _Available since v3.4._
      */
-    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+    function tryMul(uint256 a, uint256 b)
+        internal
+        pure
+        returns (bool, uint256)
+    {
         unchecked {
             // Gas optimization: this is cheaper than requiring 'a' not being zero, but the
             // benefit is lost if 'b' is also tested.
@@ -1325,7 +1533,11 @@ library SafeMath {
      *
      * _Available since v3.4._
      */
-    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+    function tryDiv(uint256 a, uint256 b)
+        internal
+        pure
+        returns (bool, uint256)
+    {
         unchecked {
             if (b == 0) return (false, 0);
             return (true, a / b);
@@ -1337,7 +1549,11 @@ library SafeMath {
      *
      * _Available since v3.4._
      */
-    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {
+    function tryMod(uint256 a, uint256 b)
+        internal
+        pure
+        returns (bool, uint256)
+    {
         unchecked {
             if (b == 0) return (false, 0);
             return (true, a % b);
@@ -1565,36 +1781,36 @@ library Base64 {
 // pragma solidity ^0.8.0;
 
 interface AggregatorV3Interface {
-  function decimals() external view returns (uint8);
+    function decimals() external view returns (uint8);
 
-  function description() external view returns (string memory);
+    function description() external view returns (string memory);
 
-  function version() external view returns (uint256);
+    function version() external view returns (uint256);
 
-  // getRoundData and latestRoundData should both raise "No data present"
-  // if they do not have data to report, instead of returning unset values
-  // which could be misinterpreted as actual reported values.
-  function getRoundData(uint80 _roundId)
-    external
-    view
-    returns (
-      uint80 roundId,
-      int256 answer,
-      uint256 startedAt,
-      uint256 updatedAt,
-      uint80 answeredInRound
-    );
+    // getRoundData and latestRoundData should both raise "No data present"
+    // if they do not have data to report, instead of returning unset values
+    // which could be misinterpreted as actual reported values.
+    function getRoundData(uint80 _roundId)
+        external
+        view
+        returns (
+            uint80 roundId,
+            int256 answer,
+            uint256 startedAt,
+            uint256 updatedAt,
+            uint80 answeredInRound
+        );
 
-  function latestRoundData()
-    external
-    view
-    returns (
-      uint80 roundId,
-      int256 answer,
-      uint256 startedAt,
-      uint256 updatedAt,
-      uint80 answeredInRound
-    );
+    function latestRoundData()
+        external
+        view
+        returns (
+            uint80 roundId,
+            int256 answer,
+            uint256 startedAt,
+            uint256 updatedAt,
+            uint80 answeredInRound
+        );
 }
 
 ////// src/StardustCasksNFT.sol
@@ -1620,24 +1836,20 @@ library Errors {
 /// @notice An ERC721 NFT that replaces the StardustCasks NFTs that are issued by the OpenSea Storefront Smart contract.
 /// This smart contract enables users to either mint a new StardustCasksNFT or
 /// "transfer" their StardustCasks NFTs from the OpenSea smart contract to this one.
-contract StardustCask is
-    ERC1155,
-    Ownable,
-    ReentrancyGuard
-{
+contract StardustCask is ERC1155, Ownable, ReentrancyGuard {
     // We use safemath to avoid under and over flows
     using SafeMath for uint256;
     // At the time of writing, a new StardustCasksNFT costs 0.25 ether.
     // This variable can change by the appropriate function
-    uint256 private silverCaskCost = 2500000000;  // Price per NFTs in USD 
-    uint256 private goldenCaskCost = 3500000000;  // Price per NFTs in USD
+    uint256 private silverCaskCost = 2500000000; // Price per NFTs in USD
+    uint256 private goldenCaskCost = 3500000000; // Price per NFTs in USD
     // Internal Ids that are used to differentiate between the different StardustCasks NFTs
     uint256 private constant BRONZE_CASK_ID = 8;
     uint256 private constant SILVER_CASK_ID = 68;
     uint256 private constant GOLD_CASK_ID = 168;
     uint256 public MaxCasksPerAddress = 10; //Allow user to mint 10 NFTs per Type
-    address private ETHLinkAddress = 0x8A753747A1Fa494EC906cE90E9f37563A8AF630e; // Change to Mainnet Chainlink contract 
-    address public citizensAddress = 0x6c67Ba02dd5Cc63bda9E38C40C06A8d0e7DF62CB; 
+    address private ETHLinkAddress = 0x8A753747A1Fa494EC906cE90E9f37563A8AF630e; // Change to Mainnet Chainlink contract
+    address public citizensAddress = 0x6c67Ba02dd5Cc63bda9E38C40C06A8d0e7DF62CB;
     // Events
     event LogEthDeposit(address);
 
@@ -1645,7 +1857,7 @@ contract StardustCask is
     uint256 private mintedSilverCounter = 0;
     uint256 private mintedGoldCounter = 0;
     uint256 private mintedBronzeCounter = 0;
- 
+
     // NFT metadata
     mapping(uint256 => string) private tokenURIs;
     mapping(uint256 => string) private stardustCaskDescriptions;
@@ -1654,10 +1866,7 @@ contract StardustCask is
     uint256 private reservedStardustCask;
 
     /// @notice Initialise StardustCasksNFT smart contract with the appropriate address and ItemIds of the
-    constructor()
-        Ownable()
-        ERC1155("")
-    {
+    constructor() Ownable() ERC1155("") {
         // defaultRoyalty = TokenRoyalty(_royaltyRecipient, _royaltyBPS);
         tokenURIs[
             BRONZE_CASK_ID
@@ -1684,13 +1893,16 @@ contract StardustCask is
         payable
         nonReentrant
     {
-        require(msg.sender != this.owner(),"Owner can't mint the Casks!");
+        require(msg.sender != this.owner(), "Owner can't mint the Casks!");
         require(
-          this.balanceOf(msg.sender, SILVER_CASK_ID) + _silverNumber <= MaxCasksPerAddress,
-          "Max NFT per address exceeded!"
+            this.balanceOf(msg.sender, SILVER_CASK_ID) + _silverNumber <=
+                MaxCasksPerAddress,
+            "Max NFT per address exceeded!"
         );
         require(
-            msg.value >= getStardustCasksPrice(getCitizensCost(silverCaskCost), 18) * _silverNumber,
+            msg.value >=
+                getStardustCasksPrice(getCitizensCost(silverCaskCost), 18) *
+                    _silverNumber,
             "Silver Cask need more ETH."
         );
         require(
@@ -1705,9 +1917,7 @@ contract StardustCask is
             _silverNumber,
             ""
         );
-        mintedSilverCounter = mintedSilverCounter.add(
-                _silverNumber
-        );
+        mintedSilverCounter = mintedSilverCounter.add(_silverNumber);
     }
 
     function purchaseGoldCask(uint256 _goldenNumber)
@@ -1715,13 +1925,16 @@ contract StardustCask is
         payable
         nonReentrant
     {
-        require(msg.sender != this.owner(),"No need owner mint!");
+        require(msg.sender != this.owner(), "No need owner mint!");
         require(
-          this.balanceOf(msg.sender, GOLD_CASK_ID) + _goldenNumber <= MaxCasksPerAddress,
-          "Max NFT per address exceeded!"
+            this.balanceOf(msg.sender, GOLD_CASK_ID) + _goldenNumber <=
+                MaxCasksPerAddress,
+            "Max NFT per address exceeded!"
         );
         require(
-            msg.value >= getStardustCasksPrice(getCitizensCost(goldenCaskCost), 18) * _goldenNumber,
+            msg.value >=
+                getStardustCasksPrice(getCitizensCost(goldenCaskCost), 18) *
+                    _goldenNumber,
             "Golden Cask need more ETH."
         );
         require(
@@ -1736,9 +1949,7 @@ contract StardustCask is
             _goldenNumber,
             ""
         );
-        mintedGoldCounter = mintedGoldCounter.add(
-                _goldenNumber
-        );
+        mintedGoldCounter = mintedGoldCounter.add(_goldenNumber);
     }
 
     ///@notice Mint new StardustCasksNFTs to an Feliz project address.
@@ -1751,17 +1962,11 @@ contract StardustCask is
         uint256 _numberOfCasks
     ) public onlyOwner {
         if (_caskType == 68) {
-            mintedSilverCounter = mintedSilverCounter.add(
-                0
-            );
+            mintedSilverCounter = mintedSilverCounter.add(0);
         } else if (_caskType == 168) {
-            mintedGoldCounter = mintedGoldCounter.add(
-                0
-            );
+            mintedGoldCounter = mintedGoldCounter.add(0);
         } else if (_caskType == 8) {
-            mintedBronzeCounter = mintedBronzeCounter.add(
-                0
-            );
+            mintedBronzeCounter = mintedBronzeCounter.add(0);
         } else {
             revert(Errors.invalidStardustCasksshipId);
         }
@@ -1785,7 +1990,7 @@ contract StardustCask is
     }
 
     /// @notice Return the current cost of minting a new Golden StardustCasks NFT.
-    function getGoldenCost() external view returns (uint256) { 
+    function getGoldenCost() external view returns (uint256) {
         return goldenCaskCost;
     }
 
@@ -1794,47 +1999,47 @@ contract StardustCask is
         view
         returns (uint256)
     {
-        require(_decimals > uint8(0) && _decimals <= uint8(18), "Invalid _decimals");
-        int256 decimals = int256(10 ** uint256(_decimals));
-        int256 basePrice = int256(_Price) ;
+        require(
+            _decimals > uint8(0) && _decimals <= uint8(18),
+            "Invalid _decimals"
+        );
+        int256 decimals = int256(10**uint256(_decimals));
+        int256 basePrice = int256(_Price);
         // ( , int256 basePrice, , , ) = AggregatorV3Interface(_base).latestRoundData();
         uint8 baseDecimals = AggregatorV3Interface(ETHLinkAddress).decimals();
         basePrice = scalePrice(basePrice, baseDecimals, _decimals);
 
-        ( , int256 quotePrice, , , ) = AggregatorV3Interface(ETHLinkAddress).latestRoundData();
+        (, int256 quotePrice, , , ) = AggregatorV3Interface(ETHLinkAddress)
+            .latestRoundData();
         uint8 quoteDecimals = AggregatorV3Interface(ETHLinkAddress).decimals();
         quotePrice = scalePrice(quotePrice, quoteDecimals, _decimals);
 
-        return uint256(basePrice * decimals / quotePrice);
+        return uint256((basePrice * decimals) / quotePrice);
     }
 
-    function getCitizensCost(uint256 _Price)
-        internal
-        view
-        returns (uint256)
-    {
+    function getCitizensCost(uint256 _Price) internal view returns (uint256) {
         IERC721 token = IERC721(citizensAddress);
         uint256 ownedAmount = token.balanceOf(msg.sender);
         uint256 updateCost;
         uint256 CitizenPerventage = 70;
         uint256 nonCitizenPerventage = 85;
         if (ownedAmount > 0) {
-            updateCost = _Price * CitizenPerventage / 100;
+            updateCost = (_Price * CitizenPerventage) / 100;
         } else {
-            updateCost = _Price * nonCitizenPerventage / 100;
+            updateCost = (_Price * nonCitizenPerventage) / 100;
         }
         return updateCost;
     }
 
-    function scalePrice(int256 _price, uint8 _priceDecimals, uint8 _decimals)
-        internal
-        pure
-        returns (int256)
-    {
+    function scalePrice(
+        int256 _price,
+        uint8 _priceDecimals,
+        uint8 _decimals
+    ) internal pure returns (int256) {
         if (_priceDecimals < _decimals) {
-            return _price * int256(10 ** uint256(_decimals - _priceDecimals));
+            return _price * int256(10**uint256(_decimals - _priceDecimals));
         } else if (_priceDecimals > _decimals) {
-            return _price / int256(10 ** uint256(_priceDecimals - _decimals));
+            return _price / int256(10**uint256(_priceDecimals - _decimals));
         }
         return _price;
     }
@@ -1844,19 +2049,19 @@ contract StardustCask is
         citizensAddress = _newAddress;
     }
 
-    function setSilverStardustCasksPrice (uint256 _newPrice) public onlyOwner {
+    function setSilverStardustCasksPrice(uint256 _newPrice) public onlyOwner {
         silverCaskCost = _newPrice;
     }
 
-    function setGoldenStardustCasksPrice (uint256 _newPrice) public onlyOwner {
+    function setGoldenStardustCasksPrice(uint256 _newPrice) public onlyOwner {
         goldenCaskCost = _newPrice;
     }
 
-    function setMaxCasksPerAddress (uint256 _maxTx) public onlyOwner {
+    function setMaxCasksPerAddress(uint256 _maxTx) public onlyOwner {
         MaxCasksPerAddress = _maxTx;
     }
 
-    function setEthAddress (address _eth) public onlyOwner {
+    function setEthAddress(address _eth) public onlyOwner {
         ETHLinkAddress = _eth;
     }
 
@@ -1890,7 +2095,7 @@ contract StardustCask is
     /// Can only becalled by the owner of the smart contract.
     function WithdrawFunds() external onlyOwner {
         uint256 amount = address(this).balance;
-        (bool success, ) = owner().call{value: amount}("");
+        (bool success, ) = owner().call{ value: amount }("");
         require(success, "Anti-corruption agencies stopped the transfer");
     }
 
@@ -1986,5 +2191,4 @@ contract StardustCask is
             tokenURIs[_StardustCasksNFTIds[i]] = _tokenURIs[i];
         }
     }
-
 }

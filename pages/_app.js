@@ -1,13 +1,11 @@
-// import { MoralisProvider } from "react-moralis";
+import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
+import { config } from "@fortawesome/fontawesome-svg-core";
 import "../styles/globals.css";
-function MyApp({ Component, pageProps }) {
-  return (
-    // <MoralisProvider
-    //   appId={process.env.NEXT_PUBLIC_APP_ID}
-    //   serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-    // >
-    // </MoralisProvider>
-      <Component {...pageProps} />
-  );
-}
-export default MyApp;
+config.autoAddCss = false; // Tell Font Awesome to skip adding the CSS automatically since it's being imported above
+
+const App = ({ Component, pageProps }) => {
+    return <Component {...pageProps} />;
+};
+
+export default App;
+// kindacode.com

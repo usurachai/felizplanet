@@ -1,0 +1,117 @@
+@import "../styles/fonts.scss";
+
+.Modal {
+    background-color: #ffffff70;
+    margin-top: 0vw;
+    padding: 1.3vw 3vw;
+    border-radius: 1vw;
+    border-width: 0vw;
+    // opacity: 0.5;
+    font-family: "bm_jua";
+
+    header {
+        text-align: center;
+        .Loading {
+            width: 2vw;
+            height: 2vw;
+        }
+        .Success,
+        .Failed {
+            width: 2vw;
+            height: 2vw;
+            display: inline-block;
+            border-radius: 50%;
+            border-style: solid;
+            border-width: 0.3vw;
+            padding: 0.5vw 0.5vw;
+            font-size: 3vw;
+        }
+        .Success {
+            border-color: #741188;
+            color: #741188;
+        }
+        .Failed {
+            border-color: #f47466;
+            color: #f47466;
+        }
+    }
+
+    main {
+        margin: 0vw;
+        text-align: center;
+        p {
+            font-size: 1.5vw;
+            font-weight: 700;
+            width: 20vw;
+            max-height: 30vw;
+            word-wrap: break-word;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+    }
+    main.Loading {
+        color: #e3ee4a;
+    }
+    main.Success {
+        color: #741188;
+        h5 {
+            font-size: 1.6vw;
+            margin: 1vw 0vw 0vw 0vw;
+        }
+        p {
+            font-size: 1.2vw;
+            margin: 0vw 0vw 1vw 0vw;
+        }
+    }
+    main.Failed {
+        color: #f47466;
+    }
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        button {
+            display: inline-block;
+            color: #ffffff;
+            border-width: 0vw;
+            width: 5vw;
+            height: 1.5vw;
+            font-size: 1vw;
+            border-radius: 0.75vw;
+            cursor: pointer;
+        }
+        button.Success {
+            background-color: #741188;
+        }
+        button.Success:hover {
+            background-color: #8d15a5;
+        }
+        button.Failed {
+            background-color: #f47466;
+        }
+        button.Failed:hover {
+            background-color: #fa8b7f;
+        }
+    }
+    // width: 300px;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ffffff33;
+    z-index: 102;
+}
+
+.Modal {
+    // left: 25vw;
+    // top: 2vw;
+    width: fit-content;
+    margin: 0.3vw auto;
+    // width: 50vw;
+    height: fit-content;
+    z-index: 102;
+}

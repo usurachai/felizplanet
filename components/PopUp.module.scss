@@ -1,0 +1,39 @@
+@import "../styles/fonts.scss";
+
+.Modal {
+    background-color: #ffffffda;
+    margin-top: 0vw;
+    padding: 1.3vw 3vw;
+    border-radius: 1vw;
+    border-width: 0vw;
+    // opacity: 0.5;
+    p {
+        color: #ca55e1;
+        font-size: 1.2vw;
+        font-style: "bm_jua";
+        font-weight: 700;
+        margin: 0vw;
+    }
+    // width: 300px;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    // background-color: rebeccapurple;
+    z-index: 100;
+}
+
+.Modal,
+.Overlay {
+    // left: 25vw;
+    // top: 2vw;
+    width: fit-content;
+    margin: 0.3vw auto;
+    // width: 50vw;
+    height: fit-content;
+    z-index: 100;
+}
