@@ -39,3 +39,18 @@ export const contractError = (error) => {
     }
     return msg;
 };
+
+export default function errorFilter(error) {
+    console.log(error.code);
+    console.log(error.message);
+    let msg = "";
+    switch (error.code) {
+        case "UNSUPPORTED_OPERATION":
+            msg = "Please login Metamask";
+            break;
+        default:
+            msg = "Something wrong";
+            break;
+    }
+    return msg;
+}

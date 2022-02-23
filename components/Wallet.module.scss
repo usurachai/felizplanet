@@ -1,0 +1,24 @@
+@import "../styles/fonts.scss";
+
+// wallet button
+.walleton,
+.walletoff {
+    margin-top: 2.5vw;
+    float: right;
+    right: 4vw;
+    width: 10vw;
+    height: 5vw;
+    color: #fff;
+    text-align: center;
+    h3 {
+        margin: 0vw auto;
+        line-height: 4vw;
+        width: 7vw;
+        height: 3.6vw;
+        vertical-align: middle;
+        line-break: auto;
+        text-overflow: ellipsis;
+        font-family: bm_jua;
+        font-size: 1vw;
+    }
+}

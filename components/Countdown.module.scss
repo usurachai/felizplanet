@@ -1,0 +1,58 @@
+@import "../styles/fonts.scss";
+
+.Countdown {
+    font-family: "badabb";
+    position: relative;
+
+    p,
+    span {
+        color: #fff;
+        position: absolute;
+        display: inline-block;
+        margin: 0%;
+        padding: 0%;
+    }
+
+    p {
+        font-size: 50%;
+        bottom: 29%;
+    }
+
+    p.day {
+        left: 20.5%;
+    }
+
+    p.hour {
+        left: 40%;
+    }
+
+    p.min {
+        left: 61%;
+    }
+
+    p.sec {
+        left: 84%;
+    }
+
+    span {
+        font-size: 100%;
+        bottom: 26%;
+    }
+
+    span.day {
+        left: 8.5%;
+    }
+
+    span.hour {
+        left: 27.7%;
+    }
+
+    span.min {
+        left: 48.9%;
+    }
+
+    span.sec {
+        left: 71.8%;
+    }
+    // display: flex;
+}

@@ -1,0 +1,255 @@
+@import "fonts.scss";
+// @import 'animations.scss';
+
+.minigame {
+    background-image: url("/images/bg/m_roadmap.png");
+    background-repeat: repeat;
+    background-size: 100%;
+    background-position: auto;
+    // height: 136vw;
+    min-height: 100vh;
+    // width: 99vw;
+    // height: 1000vh;
+    header {
+        .mainNav {
+            display: inline-block;
+            padding-left: 4vw;
+            padding-top: 2.5vw;
+            ul {
+                display: inline-block;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                li {
+                    display: inline-block;
+                    a {
+                        color: white;
+                        padding: 1vw 0.6vw;
+                        font-size: 2.3vw;
+                        font-family: "badabb";
+                    }
+                    a:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    main {
+        position: relative;
+        // height: 100vw;
+        .star,
+        .earth {
+            $width: 12vw;
+            $height: 12vw;
+            position: relative;
+            // top: 56vw;
+            // top: 15vw;
+            // left: 10vw;
+            height: $height;
+            width: $width;
+            margin-top: 7vw;
+            // display: block;
+            // margin: 0vw auto;
+            span {
+                width: $width !important;
+                height: $height !important;
+            }
+        }
+
+        .star {
+            float: left;
+            margin-left: 9vw;
+            // left: 0vw;
+        }
+
+        .earth {
+            float: right;
+            margin-right: 9vw;
+        }
+
+        .flightcap {
+            position: relative;
+            color: #fff;
+            font-family: "badabb";
+            font-size: 1.5vw;
+            text-transform: uppercase;
+            float: left;
+            top: 18.5vw;
+            left: -10vw;
+        }
+
+        .spacecraft {
+            position: relative;
+            top: 8vw;
+        }
+
+        .timer {
+            width: 50vw;
+            height: 10vw;
+            margin: 11vw auto 0vw auto;
+            font-size: 3.8vw;
+        }
+
+        .progressbar {
+            width: 70vw;
+            height: 5vw;
+            margin: 2vw auto;
+        }
+
+        .cat {
+            position: relative;
+            display: inline-block;
+            background-image: url("/images/cat1.png");
+            background-size: cover;
+            width: 22vw;
+            height: 20vw;
+            margin: 1vw 0vw 0vw 5vw;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .cat:hover {
+            background-image: url("/images/cat2.png");
+        }
+
+        .light {
+            $width: 40vw;
+            $height: 30vw;
+            position: absolute;
+            display: inline-block;
+            width: $width;
+            height: $height;
+            left: -8vw;
+            top: 38vw;
+            z-index: 0;
+            background-image: url("/images/light.png");
+            background-size: $width $height;
+            background-repeat: no-repeat;
+            transform: rotate(-15deg);
+            // background-position: 4vw 50vw;
+        }
+
+        .sendcap {
+            position: absolute;
+            display: inline-block;
+            color: #fff;
+            width: 24vw;
+            left: 21vw;
+            top: 44vw;
+            text-align: center;
+            font-family: "bm_jua";
+            font-size: 1.5vw;
+        }
+
+        .supply {
+            position: relative;
+            $width: 16vw;
+            $height: 10vw;
+            float: right;
+            right: 15vw;
+            top: -2vw;
+            margin: 0vw;
+            height: $height;
+            width: $width;
+            cursor: pointer;
+            // margin-top: 7vw;
+            transform: rotate(-8deg);
+            span {
+                width: $width !important;
+                height: $height !important;
+            }
+        }
+
+        .discord {
+            position: relative;
+            margin: auto;
+            $width: 60vw;
+            $height: 24vw;
+            // float: right;
+            // right: 15vw;
+            top: -10vw;
+            // margin: 0vw;
+            height: $height;
+            width: $width;
+            cursor: pointer;
+            // margin-top: 7vw;
+            // transform: rotate(-8deg);
+            span {
+                width: $width !important;
+                height: $height !important;
+            }
+        }
+
+        .tab {
+            position: relative;
+            width: 60vw;
+            height: 22vw;
+            margin: auto;
+            font-family: "bm_jua";
+            z-index: 0;
+            top: -5vw;
+            p,
+            span {
+                width: 100%;
+                display: block;
+                position: absolute;
+                font-size: 3vw;
+                z-index: 1;
+                text-align: center;
+            }
+
+            p {
+                color: #d3cc33;
+                text-align: center;
+                top: 25%;
+                span {
+                    width: auto;
+                    position: relative;
+                    display: inline-block;
+                    color: #d3cc33;
+                    // font-size: 2vw;
+                    top: 0%;
+
+                    width: auto;
+                    height: auto;
+                    left: auto;
+                    text-align: center;
+                    // cursor: pointer;
+                }
+                margin: 0%;
+            }
+            span {
+                // background-color: aqua;
+                display: inline-block;
+                width: 50%;
+                height: 28%;
+                left: 25%;
+                top: 67%;
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+                // font-size: 3vw;
+            }
+        }
+    }
+
+    footer {
+        position: relative;
+        padding-bottom: 5vw;
+        .socials {
+            margin-top: 7vw;
+            // top: 10vw;
+        }
+        p {
+            display: block;
+            color: #fff;
+            font-family: "bm_jua";
+            font-size: 2vw;
+            text-align: center;
+            margin: auto;
+        }
+    }
+}

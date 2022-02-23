@@ -32,6 +32,9 @@ import dateFormatter from "../utils/dateFormatter";
 import Modal, { SUCCESS, LOADING, FAILED } from "../components/Modal";
 import PopUp from "../components/PopUp";
 
+import Wallet from "../components/Wallet";
+import errorFilter from "../utils/errorFilter";
+
 export default function Home() {
     const router = useRouter();
     const checkWalletIsConnected = async () => {
@@ -88,11 +91,16 @@ export default function Home() {
             alert("Change network to Rinkeby network.");
         } else {
             try {
+                // if (ethereum.accounts.length === 0) alert('Please login metamask')
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = await provider.getSigner();
+                console.log("signer", signer);
                 setAccount(signer);
                 setAddress(await signer.getAddress());
-            } catch (err) {}
+            } catch (err) {
+                console.log(err);
+                alert(errorFilter(err));
+            }
         }
     };
 
@@ -315,7 +323,8 @@ export default function Home() {
             <header className={styles.main}>
                 <Navbar navs={navlst} className={styles.mainNav} />
 
-                {walletDom(address)}
+                {/* {walletDom(address)} */}
+                <Wallet address={address} onClick={connectWalletHandler} />
 
                 <h3 className={styles.info}>
                     8,700 Citizens NFT is coming soon

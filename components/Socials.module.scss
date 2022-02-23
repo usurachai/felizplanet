@@ -1,0 +1,31 @@
+.Socials {
+    position: relative;
+    // top: 70vw;
+    // height: ;
+    display: block;
+    height: 6vw;
+    .socialIcon1,
+    .socialIcon2,
+    .socialIcon3 {
+        position: relative;
+        $width: 6vw;
+        $height: 6vw;
+        // left: 100vw - $width;
+        span {
+            width: $width !important;
+            height: $height !important;
+        }
+    }
+
+    .socialIcon1 {
+        left: 40vw;
+    }
+
+    .socialIcon2 {
+        left: 47vw;
+    }
+
+    .socialIcon3 {
+        left: 54vw;
+    }
+}

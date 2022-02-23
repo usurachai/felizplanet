@@ -1,0 +1,27 @@
+.Spacecraft {
+    position: relative;
+
+    // $width: 60vw;
+    // $height: 14vw;
+    // height: $height;
+    // width: $width;
+    display: block;
+    margin: 0% auto;
+    div {
+        display: block;
+        margin: 0% auto;
+
+        width: 80%;
+        height: 80%;
+    }
+}
+
+.craft {
+    display: inline-block !important;
+    position: absolute !important;
+    width: 26% !important;
+    height: 75% !important;
+    // transform: rotate(-30deg);
+    // left: -1%;
+    // top: 7%;
+}
