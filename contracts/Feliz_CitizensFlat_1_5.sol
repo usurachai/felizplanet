@@ -2,7 +2,6 @@
 // File: @openzeppelin/contracts/security/ReentrancyGuard.sol
 // OpenZeppelin Contracts v4.4.1 (security/ReentrancyGuard.sol)
 pragma solidity ^0.8.0;
-
 /**
  * @dev Contract module that helps prevent reentrant calls to a function.
  *
@@ -160,11 +159,7 @@ library Strings {
     /**
      * @dev Converts a `uint256` to its ASCII `string` hexadecimal representation with fixed length.
      */
-    function toHexString(uint256 value, uint256 length)
-        internal
-        pure
-        returns (string memory)
-    {
+    function toHexString(uint256 value, uint256 length) internal pure returns (string memory) {
         bytes memory buffer = new bytes(2 * length + 2);
         buffer[0] = "0";
         buffer[1] = "x";
@@ -223,10 +218,7 @@ pragma solidity ^0.8.0;
 abstract contract Ownable is Context {
     address private _owner;
 
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
@@ -266,10 +258,7 @@ abstract contract Ownable is Context {
      * Can only be called by the current owner.
      */
     function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(
-            newOwner != address(0),
-            "Ownable: new owner is the zero address"
-        );
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
         _transferOwnership(newOwner);
     }
 
@@ -339,16 +328,10 @@ library Address {
      * https://solidity.readthedocs.io/en/v0.5.11/security-considerations.html#use-the-checks-effects-interactions-pattern[checks-effects-interactions pattern].
      */
     function sendValue(address payable recipient, uint256 amount) internal {
-        require(
-            address(this).balance >= amount,
-            "Address: insufficient balance"
-        );
+        require(address(this).balance >= amount, "Address: insufficient balance");
 
-        (bool success, ) = recipient.call{ value: amount }("");
-        require(
-            success,
-            "Address: unable to send value, recipient may have reverted"
-        );
+        (bool success, ) = recipient.call{value: amount}("");
+        require(success, "Address: unable to send value, recipient may have reverted");
     }
 
     /**
@@ -369,10 +352,7 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(address target, bytes memory data)
-        internal
-        returns (bytes memory)
-    {
+    function functionCall(address target, bytes memory data) internal returns (bytes memory) {
         return functionCall(target, data, "Address: low-level call failed");
     }
 
@@ -406,13 +386,7 @@ library Address {
         bytes memory data,
         uint256 value
     ) internal returns (bytes memory) {
-        return
-            functionCallWithValue(
-                target,
-                data,
-                value,
-                "Address: low-level call with value failed"
-            );
+        return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
     }
 
     /**
@@ -427,15 +401,10 @@ library Address {
         uint256 value,
         string memory errorMessage
     ) internal returns (bytes memory) {
-        require(
-            address(this).balance >= value,
-            "Address: insufficient balance for call"
-        );
+        require(address(this).balance >= value, "Address: insufficient balance for call");
         require(isContract(target), "Address: call to non-contract");
 
-        (bool success, bytes memory returndata) = target.call{ value: value }(
-            data
-        );
+        (bool success, bytes memory returndata) = target.call{value: value}(data);
         return verifyCallResult(success, returndata, errorMessage);
     }
 
@@ -445,17 +414,8 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(address target, bytes memory data)
-        internal
-        view
-        returns (bytes memory)
-    {
-        return
-            functionStaticCall(
-                target,
-                data,
-                "Address: low-level static call failed"
-            );
+    function functionStaticCall(address target, bytes memory data) internal view returns (bytes memory) {
+        return functionStaticCall(target, data, "Address: low-level static call failed");
     }
 
     /**
@@ -481,16 +441,8 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(address target, bytes memory data)
-        internal
-        returns (bytes memory)
-    {
-        return
-            functionDelegateCall(
-                target,
-                data,
-                "Address: low-level delegate call failed"
-            );
+    function functionDelegateCall(address target, bytes memory data) internal returns (bytes memory) {
+        return functionDelegateCall(target, data, "Address: low-level delegate call failed");
     }
 
     /**
@@ -597,7 +549,6 @@ interface IERC165 {
 // OpenZeppelin Contracts v4.4.1 (utils/introspection/ERC165.sol)
 
 pragma solidity ^0.8.0;
-
 /**
  * @dev Implementation of the {IERC165} interface.
  *
@@ -616,23 +567,17 @@ abstract contract ERC165 is IERC165 {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override
-        returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view virtual override returns (bool) {
         return interfaceId == type(IERC165).interfaceId;
     }
 }
 
 // File: @openzeppelin/contracts/token/ERC721/IERC721.sol
 
+
 // OpenZeppelin Contracts v4.4.1 (token/ERC721/IERC721.sol)
 
 pragma solidity ^0.8.0;
-
 /**
  * @dev Required interface of an ERC721 compliant contract.
  */
@@ -640,29 +585,17 @@ interface IERC721 is IERC165 {
     /**
      * @dev Emitted when `tokenId` token is transferred from `from` to `to`.
      */
-    event Transfer(
-        address indexed from,
-        address indexed to,
-        uint256 indexed tokenId
-    );
+    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
     /**
      * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
      */
-    event Approval(
-        address indexed owner,
-        address indexed approved,
-        uint256 indexed tokenId
-    );
+    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
 
     /**
      * @dev Emitted when `owner` enables or disables (`approved`) `operator` to manage all of its assets.
      */
-    event ApprovalForAll(
-        address indexed owner,
-        address indexed operator,
-        bool approved
-    );
+    event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     /**
      * @dev Returns the number of tokens in ``owner``'s account.
@@ -740,10 +673,7 @@ interface IERC721 is IERC165 {
      *
      * - `tokenId` must exist.
      */
-    function getApproved(uint256 tokenId)
-        external
-        view
-        returns (address operator);
+    function getApproved(uint256 tokenId) external view returns (address operator);
 
     /**
      * @dev Approve or remove `operator` as an operator for the caller.
@@ -762,10 +692,7 @@ interface IERC721 is IERC165 {
      *
      * See {setApprovalForAll}
      */
-    function isApprovedForAll(address owner, address operator)
-        external
-        view
-        returns (bool);
+    function isApprovedForAll(address owner, address operator) external view returns (bool);
 
     /**
      * @dev Safely transfers `tokenId` token from `from` to `to`.
@@ -792,7 +719,6 @@ interface IERC721 is IERC165 {
 // OpenZeppelin Contracts v4.4.1 (token/ERC721/extensions/IERC721Metadata.sol)
 
 pragma solidity ^0.8.0;
-
 /**
  * @title ERC-721 Non-Fungible Token Standard, optional metadata extension
  * @dev See https://eips.ethereum.org/EIPS/eip-721
@@ -815,6 +741,7 @@ interface IERC721Metadata is IERC721 {
 }
 
 // File: @openzeppelin/contracts/token/ERC721/ERC721.sol
+
 
 // OpenZeppelin Contracts v4.4.1 (token/ERC721/ERC721.sol)
 
@@ -858,13 +785,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC165-supportsInterface}.
      */
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        virtual
-        override(ERC165, IERC165)
-        returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {
         return
             interfaceId == type(IERC721).interfaceId ||
             interfaceId == type(IERC721Metadata).interfaceId ||
@@ -874,35 +795,17 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-balanceOf}.
      */
-    function balanceOf(address owner)
-        public
-        view
-        virtual
-        override
-        returns (uint256)
-    {
-        require(
-            owner != address(0),
-            "ERC721: balance query for the zero address"
-        );
+    function balanceOf(address owner) public view virtual override returns (uint256) {
+        require(owner != address(0), "ERC721: balance query for the zero address");
         return _balances[owner];
     }
 
     /**
      * @dev See {IERC721-ownerOf}.
      */
-    function ownerOf(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (address)
-    {
+    function ownerOf(uint256 tokenId) public view virtual override returns (address) {
         address owner = _owners[tokenId];
-        require(
-            owner != address(0),
-            "ERC721: owner query for nonexistent token"
-        );
+        require(owner != address(0), "ERC721: owner query for nonexistent token");
         return owner;
     }
 
@@ -923,23 +826,11 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721Metadata-tokenURI}.
      */
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
+    function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
 
         string memory baseURI = _baseURI();
-        return
-            bytes(baseURI).length > 0
-                ? string(abi.encodePacked(baseURI, tokenId.toString()))
-                : "";
+        return bytes(baseURI).length > 0 ? string(abi.encodePacked(baseURI, tokenId.toString())) : "";
     }
 
     /**
@@ -969,17 +860,8 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-getApproved}.
      */
-    function getApproved(uint256 tokenId)
-        public
-        view
-        virtual
-        override
-        returns (address)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721: approved query for nonexistent token"
-        );
+    function getApproved(uint256 tokenId) public view virtual override returns (address) {
+        require(_exists(tokenId), "ERC721: approved query for nonexistent token");
 
         return _tokenApprovals[tokenId];
     }
@@ -987,24 +869,14 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
     /**
      * @dev See {IERC721-setApprovalForAll}.
      */
-    function setApprovalForAll(address operator, bool approved)
-        public
-        virtual
-        override
-    {
+    function setApprovalForAll(address operator, bool approved) public virtual override {
         _setApprovalForAll(_msgSender(), operator, approved);
     }
 
     /**
      * @dev See {IERC721-isApprovedForAll}.
      */
-    function isApprovedForAll(address owner, address operator)
-        public
-        view
-        virtual
-        override
-        returns (bool)
-    {
+    function isApprovedForAll(address owner, address operator) public view virtual override returns (bool) {
         return _operatorApprovals[owner][operator];
     }
 
@@ -1017,10 +889,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         uint256 tokenId
     ) public virtual override {
         //solhint-disable-next-line max-line-length
-        require(
-            _isApprovedOrOwner(_msgSender(), tokenId),
-            "ERC721: transfer caller is not owner nor approved"
-        );
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
 
         _transfer(from, to, tokenId);
     }
@@ -1045,10 +914,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         uint256 tokenId,
         bytes memory _data
     ) public virtual override {
-        require(
-            _isApprovedOrOwner(_msgSender(), tokenId),
-            "ERC721: transfer caller is not owner nor approved"
-        );
+        require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721: transfer caller is not owner nor approved");
         _safeTransfer(from, to, tokenId, _data);
     }
 
@@ -1077,10 +943,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         bytes memory _data
     ) internal virtual {
         _transfer(from, to, tokenId);
-        require(
-            _checkOnERC721Received(from, to, tokenId, _data),
-            "ERC721: transfer to non ERC721Receiver implementer"
-        );
+        require(_checkOnERC721Received(from, to, tokenId, _data), "ERC721: transfer to non ERC721Receiver implementer");
     }
 
     /**
@@ -1102,20 +965,10 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
      *
      * - `tokenId` must exist.
      */
-    function _isApprovedOrOwner(address spender, uint256 tokenId)
-        internal
-        view
-        virtual
-        returns (bool)
-    {
-        require(
-            _exists(tokenId),
-            "ERC721: operator query for nonexistent token"
-        );
+    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view virtual returns (bool) {
+        require(_exists(tokenId), "ERC721: operator query for nonexistent token");
         address owner = ERC721.ownerOf(tokenId);
-        return (spender == owner ||
-            getApproved(tokenId) == spender ||
-            isApprovedForAll(owner, spender));
+        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
     }
 
     /**
@@ -1212,10 +1065,7 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         address to,
         uint256 tokenId
     ) internal virtual {
-        require(
-            ERC721.ownerOf(tokenId) == from,
-            "ERC721: transfer of token that is not own"
-        );
+        require(ERC721.ownerOf(tokenId) == from, "ERC721: transfer of token that is not own");
         require(to != address(0), "ERC721: transfer to the zero address");
 
         _beforeTokenTransfer(from, to, tokenId);
@@ -1272,20 +1122,11 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
         bytes memory _data
     ) private returns (bool) {
         if (to.isContract()) {
-            try
-                IERC721Receiver(to).onERC721Received(
-                    _msgSender(),
-                    from,
-                    tokenId,
-                    _data
-                )
-            returns (bytes4 retval) {
+            try IERC721Receiver(to).onERC721Received(_msgSender(), from, tokenId, _data) returns (bytes4 retval) {
                 return retval == IERC721Receiver.onERC721Received.selector;
             } catch (bytes memory reason) {
                 if (reason.length == 0) {
-                    revert(
-                        "ERC721: transfer to non ERC721Receiver implementer"
-                    );
+                    revert("ERC721: transfer to non ERC721Receiver implementer");
                 } else {
                     assembly {
                         revert(add(32, reason), mload(reason))
@@ -1322,334 +1163,274 @@ contract ERC721 is Context, ERC165, IERC721, IERC721Metadata {
 pragma solidity >=0.7.0 <0.9.0;
 
 contract FelizCitizen is ERC721, Ownable, ReentrancyGuard {
-    using Strings for uint256;
-    using Counters for Counters.Counter;
+  using Strings for uint256;
+  using Counters for Counters.Counter;
 
-    Counters.Counter private supply;
-    Counters.Counter private Leader_supply;
+  Counters.Counter private supply;
+  Counters.Counter private Leader_supply;
 
-    string public uriPrefix = "";
-    string public uriSuffix = ".json";
-    string public hiddenMetadataUri;
+  string public uriPrefix = "";
+  string public uriSuffix = ".json";
+  string public hiddenMetadataUri;
 
-    uint256 public costLeader = 0.1 ether;
-    uint256 public cost = 0.05 ether;
-    // uint256 public costPremium = 0.02 ether;
-    uint256 public preSaleCost = 0.02 ether;
-    uint256 public maxSupply = 8888;
-    uint256 public maxLeaderSupply = 88;
-    uint256 public maxMintAmountPerTx = 10;
-    uint256 public maxNFTPerAccount = 10;
-    uint256 public maxMintAmountPresale = 2;
-    uint256 public nftPerAddressLimitPresale = 2;
-    uint256 public preSaleMaxSupply = 1188;
-    uint256 public preSaleEndDate = 1645203600;
-    mapping(address => uint256) public addressMintedBalance;
-    mapping(address => bool) whitelistedAddresses;
+  uint256 public costLeader = 0.1 ether;
+  uint256 public cost = 0.05 ether;
+  // uint256 public costPremium = 0.02 ether;
+  uint256 public preSaleCost = 0.02 ether;
+  uint256 public maxSupply = 8888;
+  uint256 public maxLeaderSupply = 88;
+  uint256 public maxMintAmountPerTx = 10;
+  uint256 public maxNFTPerAccount = 10;
+  uint256 public maxMintAmountPresale = 2;
+  uint256 public nftPerAddressLimitPresale = 2;
+  uint256 public preSaleMaxSupply = 1188;
+  uint256 public preSaleEndDate = 1645203600;
+  mapping(address => uint256) public addressMintedBalance;
+  mapping(address => bool) whitelistedAddresses;
 
-    bool public paused = true;
-    bool public LeaderPaused = true;
-    bool public revealed = false;
+  bool public paused = true;
+  bool public LeaderPaused = true;
+  bool public revealed = false;
 
-    constructor() ERC721("Feliz Citizens", "FC") {
-        setHiddenMetadataUri(
-            "ipfs://QmbFcQsjJWUUTGGURZFeFpwmrK2kW42bfbDf2SJVYGbnjR/hidden.json"
-        );
-        for (uint256 i = 0; i <= 87; i++) {
-            supply.increment();
-        }
-        _mintLoop(msg.sender, 100);
+  constructor() ERC721("Feliz Citizens", "FC") {
+    setHiddenMetadataUri("ipfs://QmbFcQsjJWUUTGGURZFeFpwmrK2kW42bfbDf2SJVYGbnjR/hidden.json");
+    for (uint256 i = 0; i <= 87; i++) {
+      supply.increment();
     }
+    _mintLoop(msg.sender, 100);
+  }
 
-    // Modifier
-    modifier mintCompliance(uint256 _mintAmount) {
-        require(
-            _mintAmount > 0 && _mintAmount <= maxMintAmountPerTx,
-            "Invalid mint amount!"
-        );
-        require(
-            _mintAmount + addressMintedBalance[msg.sender] <= maxNFTPerAccount,
-            "You reach maximum NFTs per address!"
-        );
-        _;
-    }
+// Modifier 
+  modifier mintCompliance(uint256 _mintAmount) {
+    require(_mintAmount > 0 && _mintAmount <= maxMintAmountPerTx, "Invalid mint amount!");
+    require(_mintAmount + addressMintedBalance[msg.sender] <= maxNFTPerAccount, "You reach maximum NFTs per address!");
+    _;
+  }
 
-    function totalSupply() public view returns (uint256) {
-        return supply.current();
-    }
+  function totalSupply() public view returns (uint256) {
+    return supply.current();
+  }
 
-    function totalLeaderSupply() public view returns (uint256) {
-        return Leader_supply.current();
-    }
+  function totalLeaderSupply() public view returns (uint256) {
+    return Leader_supply.current();
+  }
 
-    // Check presale validate
-    function presaleValidations(
-        uint256 _ownerMintedCount,
-        uint256 _mintAmount,
-        uint256 _supply
-    ) internal {
-        uint256 actualCost;
-        _supply < 1088 //Need to update to 1088
-            ? actualCost = preSaleCost
-            : actualCost = cost;
-        require(isWhitelisted(msg.sender), "You are not whitelisted.");
-        require(
-            _ownerMintedCount + _mintAmount <= nftPerAddressLimitPresale,
-            "Max NFT per address exceeded for presale."
-        );
-        require(
-            msg.value >= actualCost * _mintAmount,
-            "Presale : insufficient funds."
-        );
-        require(
-            _mintAmount <= maxMintAmountPresale,
-            "Max mint amount per transaction exceeded."
-        );
-        require(
-            _supply + _mintAmount <= preSaleMaxSupply,
-            "Max NFT presale limit exceeded please wait for public sale round."
-        );
-    }
+// Check presale validate
+  function presaleValidations(
+    uint256 _ownerMintedCount,
+    uint256 _mintAmount,
+    uint256 _supply
+  ) internal {
+    uint256 actualCost;
+    _supply < 1088 //Need to update to 1088
+      ? actualCost = preSaleCost
+      : actualCost = cost;
+    require(isWhitelisted(msg.sender), "You are not whitelisted.");
+    require(
+      _ownerMintedCount + _mintAmount <= nftPerAddressLimitPresale,
+      "Max NFT per address exceeded for presale."
+    );
+    require(msg.value >= actualCost * _mintAmount, "Presale : insufficient funds.");
+    require(
+      _mintAmount <= maxMintAmountPresale,
+      "Max mint amount per transaction exceeded."
+    );
+    require(
+      _supply + _mintAmount <= preSaleMaxSupply,
+      "Max NFT presale limit exceeded please wait for public sale round."
+    );
+  }
+// public sale validate
+  function publicsaleValidations(uint256 _ownerMintedCount, uint256 _mintAmount)
+    internal
+  {
+    require(
+      _ownerMintedCount + _mintAmount <= maxNFTPerAccount,
+      "Max NFT per address exceeded."
+    );
+    require(msg.value >= cost * _mintAmount, "Public Sale : insufficient funds.");
+    require(
+      _mintAmount <= maxMintAmountPerTx,
+      "Max mint amount per transaction exceeded."
+    );
+  }
 
-    // public sale validate
-    function publicsaleValidations(
-        uint256 _ownerMintedCount,
-        uint256 _mintAmount
-    ) internal {
-        require(
-            _ownerMintedCount + _mintAmount <= maxNFTPerAccount,
-            "Max NFT per address exceeded."
-        );
-        require(
-            msg.value >= cost * _mintAmount,
-            "Public Sale : insufficient funds."
-        );
-        require(
-            _mintAmount <= maxMintAmountPerTx,
-            "Max mint amount per transaction exceeded."
-        );
-    }
+  function mint(uint256 _mintAmount) public payable nonReentrant mintCompliance(_mintAmount) {
+    require(!paused, "The contract is paused!");
+    uint256 ownerMintedCount = addressMintedBalance[msg.sender];
 
-    function mint(uint256 _mintAmount)
-        public
-        payable
-        nonReentrant
-        mintCompliance(_mintAmount)
-    {
-        require(!paused, "The contract is paused!");
-        uint256 ownerMintedCount = addressMintedBalance[msg.sender];
+    block.timestamp < preSaleEndDate
+      ? presaleValidations(ownerMintedCount, _mintAmount, supply.current())
+      : publicsaleValidations(ownerMintedCount, _mintAmount);
+    
+    require(supply.current() + _mintAmount <= maxSupply, "Max supply exceeded!");
 
-        block.timestamp < preSaleEndDate
-            ? presaleValidations(
-                ownerMintedCount,
-                _mintAmount,
-                supply.current()
-            )
-            : publicsaleValidations(ownerMintedCount, _mintAmount);
+    _mintLoop(msg.sender, _mintAmount);
+  }
 
-        require(
-            supply.current() + _mintAmount <= maxSupply,
-            "Max supply exceeded!"
-        );
 
-        _mintLoop(msg.sender, _mintAmount);
-    }
+  function mintLeader(uint256 _mintAmount) public payable nonReentrant mintCompliance(_mintAmount) {
+    require(!LeaderPaused, "The Leader contract is paused!");
+    require(Leader_supply.current() + _mintAmount <= maxLeaderSupply, "Max supply of Leader exceeded!");
+    require(msg.value >= costLeader * _mintAmount, "Insufficient funds!");
 
-    function mintLeader(uint256 _mintAmount)
-        public
-        payable
-        nonReentrant
-        mintCompliance(_mintAmount)
-    {
-        require(!LeaderPaused, "The Leader contract is paused!");
-        require(
-            Leader_supply.current() + _mintAmount <= maxLeaderSupply,
-            "Max supply of Leader exceeded!"
-        );
-        require(msg.value >= costLeader * _mintAmount, "Insufficient funds!");
+    _mintLoopLeader(msg.sender, _mintAmount);
+  }
+  
+  function mintForAddress(uint256 _mintAmount, address _receiver) public mintCompliance(_mintAmount) onlyOwner {
+    _mintLoop(_receiver, _mintAmount);
+  }
 
-        _mintLoopLeader(msg.sender, _mintAmount);
-    }
-
-    function mintForAddress(uint256 _mintAmount, address _receiver)
-        public
-        mintCompliance(_mintAmount)
-        onlyOwner
-    {
-        _mintLoop(_receiver, _mintAmount);
-    }
-
-    function burnFeliz(uint256 tokenId) public {
-        //require block time > 4 years
-        require(
-            _isApprovedOrOwner(_msgSender(), tokenId),
-            "ERC721Burnable: caller is not owner nor approved"
-        );
+  function burnFeliz(uint256 tokenId) public { //require block time > 4 years
+     require(_isApprovedOrOwner(_msgSender(), tokenId), "ERC721Burnable: caller is not owner nor approved");
         _burn(tokenId);
-    }
+  }
 
-    function walletOfOwner(address _owner)
-        public
-        view
-        returns (uint256[] memory)
-    {
-        uint256 ownerTokenCount = balanceOf(_owner);
-        uint256[] memory ownedTokenIds = new uint256[](ownerTokenCount);
-        uint256 currentTokenId = 1;
-        uint256 ownedTokenIndex = 0;
+  function walletOfOwner(address _owner)
+    public
+    view
+    returns (uint256[] memory)
+  {
+    uint256 ownerTokenCount = balanceOf(_owner);
+    uint256[] memory ownedTokenIds = new uint256[](ownerTokenCount);
+    uint256 currentTokenId = 1;
+    uint256 ownedTokenIndex = 0;
+  
+    while (ownedTokenIndex < ownerTokenCount && currentTokenId <= maxSupply) {
+      if (_exists(currentTokenId)) {
+        address currentTokenOwner = ownerOf(currentTokenId);
 
-        while (
-            ownedTokenIndex < ownerTokenCount && currentTokenId <= maxSupply
-        ) {
-            if (_exists(currentTokenId)) {
-                address currentTokenOwner = ownerOf(currentTokenId);
+        if (currentTokenOwner == _owner) {
+          ownedTokenIds[ownedTokenIndex] = currentTokenId;
 
-                if (currentTokenOwner == _owner) {
-                    ownedTokenIds[ownedTokenIndex] = currentTokenId;
-
-                    ownedTokenIndex++;
-                }
-            }
-
-            currentTokenId++;
+          ownedTokenIndex++;
         }
-
-        return ownedTokenIds;
+      } 
+      
+      currentTokenId++;
     }
 
-    function tokenURI(uint256 _tokenId)
-        public
-        view
-        virtual
-        override
-        returns (string memory)
-    {
-        require(
-            _exists(_tokenId),
-            "ERC721Metadata: URI query for nonexistent token"
-        );
+    return ownedTokenIds;
+  }
 
-        if (revealed == false) {
-            return hiddenMetadataUri;
-        }
+  function tokenURI(uint256 _tokenId)
+    public
+    view
+    virtual
+    override
+    returns (string memory)
+  {
+    require(
+      _exists(_tokenId),
+      "ERC721Metadata: URI query for nonexistent token"
+    );
 
-        string memory currentBaseURI = _baseURI();
-        return
-            bytes(currentBaseURI).length > 0
-                ? string(
-                    abi.encodePacked(
-                        currentBaseURI,
-                        _tokenId.toString(),
-                        uriSuffix
-                    )
-                )
-                : "";
+    if (revealed == false) {
+      return hiddenMetadataUri;
     }
 
-    function isWhitelisted(address _user) public view returns (bool) {
-        return whitelistedAddresses[_user];
+    string memory currentBaseURI = _baseURI();
+    return bytes(currentBaseURI).length > 0
+        ? string(abi.encodePacked(currentBaseURI, _tokenId.toString(), uriSuffix))
+        : "";
+  }
+
+  function isWhitelisted(address _user) public view returns (bool) {
+    return whitelistedAddresses[_user];
+  }
+
+// SETTING parameter
+
+  function setPresaleEndDate(uint256 _date) public onlyOwner {
+    preSaleEndDate = _date;
+  }
+
+  function setRevealed(bool _state) public onlyOwner {
+    revealed = _state;
+  }
+
+  function setCostLeader(uint256 _cost) public onlyOwner {
+    costLeader = _cost;
+  }
+
+  function setCostPresale(uint256 _cost) public onlyOwner {
+    preSaleCost = _cost;
+  }
+
+  function setCost(uint256 _cost) public onlyOwner {
+    cost = _cost;
+  }
+
+  // function setCostPremium(uint256 _cost) public onlyOwner {
+  //   costPremium = _cost;
+  // }
+
+  function setMaxMintAmountPerTx(uint256 _maxMintAmountPerTx) public onlyOwner {
+    maxMintAmountPerTx = _maxMintAmountPerTx;
+  }
+
+  function setMaxNFTPerAccount(uint256 _maxNFT) public onlyOwner {
+    maxNFTPerAccount = _maxNFT;
+  }
+
+  function setHiddenMetadataUri(string memory _hiddenMetadataUri) public onlyOwner {
+    hiddenMetadataUri = _hiddenMetadataUri;
+  }
+
+  function setUriPrefix(string memory _uriPrefix) public onlyOwner {
+    uriPrefix = _uriPrefix;
+  }
+
+  function setUriSuffix(string memory _uriSuffix) public onlyOwner {
+    uriSuffix = _uriSuffix;
+  }
+
+  function setPaused(bool _state) public onlyOwner {
+    paused = _state;
+  }
+
+  function setPausedLeader(bool _state) public onlyOwner {
+    LeaderPaused = _state;
+  }
+
+  function whitelistUsers(address[] memory addresses) public onlyOwner {
+    for (uint256 i = 0; i < addresses.length; i++) {
+      whitelistedAddresses[addresses[i]] = true;
     }
+  }
 
-    // SETTING parameter
+  function withdraw() public onlyOwner {
+    // This will pay Coreteam 10% of the initial sale.
+    // =============================================================================
+    (bool hs, ) = payable(0xd0ae54A3540AC770783F47477e07D3b7Aade019c).call{value: address(this).balance * 10 / 100}("");
+    require(hs);
+    // =============================================================================
 
-    function setPresaleEndDate(uint256 _date) public onlyOwner {
-        preSaleEndDate = _date;
+    // This will transfer the remaining contract balance to the owner.
+    // Do not remove this otherwise you will not be able to withdraw the funds.
+    // =============================================================================
+    (bool os, ) = payable(owner()).call{value: address(this).balance}("");
+    require(os);
+    // =============================================================================
+  }
+
+  function _mintLoop(address _receiver, uint256 _mintAmount) internal {
+    for (uint256 i = 0; i < _mintAmount; i++) {
+      supply.increment();
+      addressMintedBalance[msg.sender]++;
+      _safeMint(_receiver, supply.current());
     }
+  }
 
-    function setRevealed(bool _state) public onlyOwner {
-        revealed = _state;
+  function _mintLoopLeader(address _receiver, uint256 _mintAmount) internal {
+    for (uint256 i = 0; i < _mintAmount; i++) {
+      Leader_supply.increment();
+      addressMintedBalance[msg.sender]++;
+      _safeMint(_receiver, Leader_supply.current());
     }
+  }
 
-    function setCostLeader(uint256 _cost) public onlyOwner {
-        costLeader = _cost;
-    }
-
-    function setCostPresale(uint256 _cost) public onlyOwner {
-        preSaleCost = _cost;
-    }
-
-    function setCost(uint256 _cost) public onlyOwner {
-        cost = _cost;
-    }
-
-    // function setCostPremium(uint256 _cost) public onlyOwner {
-    //   costPremium = _cost;
-    // }
-
-    function setMaxMintAmountPerTx(uint256 _maxMintAmountPerTx)
-        public
-        onlyOwner
-    {
-        maxMintAmountPerTx = _maxMintAmountPerTx;
-    }
-
-    function setMaxNFTPerAccount(uint256 _maxNFT) public onlyOwner {
-        maxNFTPerAccount = _maxNFT;
-    }
-
-    function setHiddenMetadataUri(string memory _hiddenMetadataUri)
-        public
-        onlyOwner
-    {
-        hiddenMetadataUri = _hiddenMetadataUri;
-    }
-
-    function setUriPrefix(string memory _uriPrefix) public onlyOwner {
-        uriPrefix = _uriPrefix;
-    }
-
-    function setUriSuffix(string memory _uriSuffix) public onlyOwner {
-        uriSuffix = _uriSuffix;
-    }
-
-    function setPaused(bool _state) public onlyOwner {
-        paused = _state;
-    }
-
-    function setPausedLeader(bool _state) public onlyOwner {
-        LeaderPaused = _state;
-    }
-
-    function whitelistUsers(address[] memory addresses) public onlyOwner {
-        for (uint256 i = 0; i < addresses.length; i++) {
-            whitelistedAddresses[addresses[i]] = true;
-        }
-    }
-
-    function withdraw() public onlyOwner {
-        // This will pay Coreteam 10% of the initial sale.
-        // =============================================================================
-        (bool hs, ) = payable(0xd0ae54A3540AC770783F47477e07D3b7Aade019c).call{
-            value: (address(this).balance * 10) / 100
-        }("");
-        require(hs);
-        // =============================================================================
-
-        // This will transfer the remaining contract balance to the owner.
-        // Do not remove this otherwise you will not be able to withdraw the funds.
-        // =============================================================================
-        (bool os, ) = payable(owner()).call{ value: address(this).balance }("");
-        require(os);
-        // =============================================================================
-    }
-
-    function _mintLoop(address _receiver, uint256 _mintAmount) internal {
-        for (uint256 i = 0; i < _mintAmount; i++) {
-            supply.increment();
-            addressMintedBalance[msg.sender]++;
-            _safeMint(_receiver, supply.current());
-        }
-    }
-
-    function _mintLoopLeader(address _receiver, uint256 _mintAmount) internal {
-        for (uint256 i = 0; i < _mintAmount; i++) {
-            Leader_supply.increment();
-            addressMintedBalance[msg.sender]++;
-            _safeMint(_receiver, Leader_supply.current());
-        }
-    }
-
-    function _baseURI() internal view virtual override returns (string memory) {
-        return uriPrefix;
-    }
+  function _baseURI() internal view virtual override returns (string memory) {
+    return uriPrefix;
+  }
 }

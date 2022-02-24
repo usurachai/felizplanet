@@ -4,7 +4,6 @@ import ImageLink from "../components/ImageLink";
 import Link from "next/link";
 import Head from "next/head";
 import { useRouter } from "next/router";
-// import { useMoralis } from "react-moralis";
 import Web3 from "web3";
 import { ethers } from "ethers";
 
@@ -23,17 +22,20 @@ import MintCard from "../components/MintCard";
 // import img_basket from '../public/images/m_basket.png'
 import Navbar from "../components/Navbar";
 
-import FelizCitizenAbi from "../contracts/artifacts/FelizCitizen.json";
-import StardustCaskAbi from "../contracts/artifacts/StardustCask.json";
-import contractAddress from "../contractAddress.json";
 import { MINT, MINT_COMMING, MINT_PRESALE } from "../utils/enum/mint";
 import mintDate from "../utils/test/mintDate";
 import dateFormatter from "../utils/dateFormatter";
 import Modal, { SUCCESS, LOADING, FAILED } from "../components/Modal";
-import PopUp from "../components/PopUp";
+import PopUp, { WARN } from "../components/PopUp";
 
 import Wallet from "../components/Wallet";
 import errorFilter from "../utils/errorFilter";
+
+// import { getContractAddress } from 'ethers/lib/utils'
+import contractAddress from "../contractAddress.json";
+import citizenAbi from "../contracts/artifacts/FelizCitizen.json";
+import stardrustAbi from "../contracts/artifacts/StardustCask.json";
+import erc20Abi from "../contracts/artifacts/IERC20.json";
 
 export default function Home() {
     const router = useRouter();
@@ -43,6 +45,7 @@ export default function Home() {
         if (ethereum) {
             // detect Metamask account change
             window.ethereum.on("accountsChanged", function (accounts) {
+                console.log("account is changed", accounts);
                 setAccount(undefined);
                 setAddress("");
             });
@@ -93,6 +96,7 @@ export default function Home() {
             try {
                 // if (ethereum.accounts.length === 0) alert('Please login metamask')
                 const provider = new ethers.providers.Web3Provider(ethereum);
+                await provider.send("eth_requestAccounts", []);
                 const signer = await provider.getSigner();
                 console.log("signer", signer);
                 setAccount(signer);
@@ -104,22 +108,52 @@ export default function Home() {
         }
     };
 
-    const mintNftHandler = () => {};
-
-    // const mintCitizenHandler = async () => {
-    //   try {
-    //     const { ethereum } = window;
-
-    //     if (ethereum) {
-    //       const provider = new ethers.providers.Web3Provider(ethereum)
-    //       const signer = provider.getSigner()
-    //       const nftContract = new ethers.Contract(contractAddress.FelizCitizen, FelizCitizenAbi)
-    //       let nft
-    //     }
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
+    const isFelizCitizen = async (signer) => {
+        var ret = false;
+        try {
+            const { ethereum } = window;
+            if (ethereum) {
+                const citizenContract = new ethers.Contract(
+                    contractAddress.FelizCitizen,
+                    citizenAbi.abi,
+                    signer
+                );
+                const citizen = (
+                    await citizenContract.balanceOf(signer.getAddress())
+                ).toNumber();
+                console.log("citizen balance: ", citizen);
+                console.log("test", citizen);
+                if (citizen > 0) ret = true;
+                if (!ret) {
+                    const stardustContract = new ethers.Contract(
+                        contractAddress.StardustCask,
+                        stardrustAbi.abi,
+                        signer
+                    );
+                    // Minted CASKs
+                    const totalGoldCasks = (
+                        await stardustContract.balanceOf(
+                            signer.getAddress(),
+                            signer.getAddress()
+                        )
+                    ).toNumber();
+                    console.log("stardust balance: ", citizen);
+                    if (totalGoldCasks > 0) ret = true;
+                }
+                if (!ret) {
+                    alert("You are not feliz citizen", WARN);
+                } else {
+                    alert("citizen");
+                    router.push("/dashboard", undefined, { scroll: false });
+                }
+            }
+        } catch (err) {
+            console.log(err);
+            alert("You are not feliz citizen!", WARN);
+            return false;
+        }
+        return false;
+    };
 
     useEffect(() => {
         checkWalletIsConnected();
@@ -188,6 +222,7 @@ export default function Home() {
     const [index, setIndex] = useState(0);
 
     const [popupText, setPopupText] = useState("");
+    const [popupType, setPopupType] = useState(undefined);
     const [popupNum, setPopupNum] = useState(0);
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState("");
@@ -201,27 +236,6 @@ export default function Home() {
 
     const slideRight = () => {
         setIndex((index + 1) % cardList.length);
-    };
-
-    const walletDom = (address) => {
-        if (!address) {
-            return (
-                <ImageBack
-                    src="/images/m_wallet.png"
-                    className={styles.walletoff}
-                    text="Connect wallet"
-                    onClick={connectWalletHandler}
-                />
-            );
-        } else {
-            return (
-                <ImageBack
-                    src="/images/m_wallet.png"
-                    className={styles.walleton}
-                    text={address}
-                />
-            );
-        }
     };
 
     let posX = -1;
@@ -254,8 +268,9 @@ export default function Home() {
         else if (delta < 0) slideRight();
     };
 
-    const alert = (text) => {
+    const alert = (text, type) => {
         setPopupText(text);
+        setPopupType(type);
         setPopupNum((prev) => prev + 1);
     };
 
@@ -266,51 +281,11 @@ export default function Home() {
         setModalNum((prev) => prev + 1);
     };
 
-    const clickDoor = (signer) => () => {};
-
-    // const clickDoor = (account) = async () => {
-    //   try {
-    //     const { ethereum } = window
-    //     if (ethereum) {
-    //       // const contract = new Web3
-    //       const provider = new ethers.providers.Web3Provider(ethereum)
-    //       const citizenContract = new ethers.Contract(contractAddress.StardustCask, stardrustAbi.abi, account)
-    //       const caskContract = new ethers.Contract(contractAddress.StardustCask, stardrustAbi.abi, account)
-
-    //       const address = await account.address();
-    //       const citizen = citizenContract.addressMintedBalance(address)
-    //       // const gold =
-    //       // // cost
-    //       // const cost = await nftContract.getGoldenCasksCost()
-    //       // console.log("Gold cost: ", ethers.utils.formatUnits(cost, 'ether'))
-    //       // setCost(Math.round(ethers.utils.formatUnits(cost, 'ether') * 10000) / 10000 )
-
-    //       // // Max CASK
-    //       // const MaxCasksPerAddress = await nftContract.MaxCasksPerAddress()
-    //       // setMaxSupply(MaxCasksPerAddress.toNumber())
-    //       // console.log("MaxCasksPerAddress: ", MaxCasksPerAddress.toNumber())
-
-    //       // // Minted CASKs
-    //       // const totalGoldCasks = await nftContract.getTotalGoldenCasks()
-    //       // setTotalSupply(totalGoldCasks.toNumber())
-    //       // console.log("totalGoldCasks: ", totalGoldCasks.toNumber())
-
-    //       // // Limit
-    //       // setLimit(MaxCasksPerAddress.toNumber() -totalGoldCasks.toNumber())
-    //       if (citizen.toNumber() > 0) {
-    //         router.push('/dashboard')
-    //       } else {
-    //         alert('You are not feliz citizens')
-    //       }
-
-    //     }
-    //   } catch (err) {
-    //     console.log(err)
-    //   }
-    // }
-
     return (
         <>
+            <Head>
+                <title>Feliz</title>
+            </Head>
             <Modal
                 title={modalTitle}
                 content={modalContent}
@@ -318,14 +293,22 @@ export default function Home() {
                 num={modalNum}
             />
             {popupText && (
-                <PopUp timeout={3000} text={popupText} num={popupNum} />
+                <PopUp
+                    timeout={3000}
+                    text={popupText}
+                    num={popupNum}
+                    type={popupType}
+                />
             )}
             <header className={styles.main}>
                 <Navbar navs={navlst} className={styles.mainNav} />
 
                 {/* {walletDom(address)} */}
-                <Wallet address={address} onClick={connectWalletHandler} />
-
+                <Wallet
+                    address={address}
+                    onClick={connectWalletHandler}
+                    className={styles.wallet}
+                />
                 <h3 className={styles.info}>
                     8,700 Citizens NFT is coming soon
                 </h3>
@@ -420,7 +403,15 @@ export default function Home() {
                         <h3 className={styles.dashboard}>FELIZ HQ</h3>
                         <div
                             className={styles.door}
-                            onClick={clickDoor(account)}
+                            onClick={() => {
+                                console.log("signer", account);
+                                // console.log("signer", signer.getAddress())
+                                if (!account) {
+                                    alert("Please connect wallet");
+                                } else {
+                                    isFelizCitizen(account);
+                                }
+                            }}
                         ></div>
                         {/* <Link href='/dashboard'><a className={styles.door}></a></Link> */}
                         <ImageLink

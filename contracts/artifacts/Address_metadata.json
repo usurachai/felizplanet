@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/StardustCasks_v1_6.sol": "Address"
+			"contracts/MiniGame_V1_3_Flat.sol": "Address"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -33,12 +33,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/StardustCasks_v1_6.sol": {
-			"keccak256": "0x899f09be64f153d440e92f0b9728cf04298556dc1b18b97bb492dbae7c9680c5",
+		"contracts/MiniGame_V1_3_Flat.sol": {
+			"keccak256": "0x0209495caa6c058c1b9b5e65101df9b2b0d50601f9e28d05c7bab9ada39ce274",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://77de094a31a7e760051faf85a042767e134325e1290cac6daab88e184d5840b5",
-				"dweb:/ipfs/QmYf5xpfT27QQQ4aLUbBL5PgqSFBSLT8E6gKrkY4ss3baz"
+				"bzz-raw://2d03b6a4a8a3f44a4275d64ef7bfa9701bb89676769a3e1b1c79915a7587e60f",
+				"dweb:/ipfs/QmUxoyYfqjx1v93NJ4WqvZkEBwdy9aq12qSqUAC4yNnvUg"
 			]
 		}
 	},

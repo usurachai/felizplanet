@@ -39,6 +39,7 @@ export default function Spacecraft({ width, startTime, endTime, className }) {
     const updateXYD = (startTime, endTime, R, H, X, dAngle) => {
         const now = Date.now();
         if (now > endTime) {
+            setCraftStyle(path.end.x, path.end.y, path.end.angle);
             return;
         }
         let progress = (now - startTime) / (endTime - startTime);
@@ -46,7 +47,6 @@ export default function Spacecraft({ width, startTime, endTime, className }) {
         let dx = X * progress - X / 2;
         const y = Math.sqrt(R * R - Math.pow(dx, 2)) - (R - H);
         const angle = dAngle * (1 - progress * 2);
-        console.log("angle", angle);
         setCraftStyle(x, y, angle);
     };
 
@@ -59,10 +59,9 @@ export default function Spacecraft({ width, startTime, endTime, className }) {
 
         const timer = setInterval(() => {
             const now = Date.now();
+            updateXYD(startTime, endTime, R, H, X, dAngle);
             if (now > endTime) {
                 clearInterval(timer);
-            } else {
-                updateXYD(startTime, endTime, R, H, X, dAngle);
             }
         }, 1000);
         return () => {

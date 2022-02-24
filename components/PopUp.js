@@ -9,7 +9,7 @@ const customStyles = {};
 
 let poped = 0;
 
-export default function PopUp({ timeout, text, num }) {
+export default function PopUp({ timeout, text, num, type }) {
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [timerId, setTimerId] = useState(-1);
@@ -54,7 +54,11 @@ export default function PopUp({ timeout, text, num }) {
             // appElement={document.getElementsByTagName("body")}
         >
             {console.log("timeout", timeout)}
-            <p>{text}</p>
+            {console.log(WARN)}
+            {type === WARN && <p className={styles.warning}>{text}</p>}
+            {type !== WARN && <p>{text}</p>}
         </RModal>
     );
 }
+
+export const WARN = "WARN";
