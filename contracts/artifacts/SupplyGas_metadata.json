@@ -88,7 +88,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_claim",
+						"type": "address"
+					}
+				],
 				"name": "getCounter",
 				"outputs": [
 					{
@@ -101,7 +107,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_claim",
+						"type": "address"
+					}
+				],
 				"name": "getDelay",
 				"outputs": [
 					{
@@ -127,7 +139,13 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_claim",
+						"type": "address"
+					}
+				],
 				"name": "getSupply",
 				"outputs": [
 					{
@@ -177,7 +195,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MiniGame_V1_3_Flat.sol": "SupplyGas"
+			"contracts/MiniGame_v_1_4.sol": "SupplyGas"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -191,12 +209,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/MiniGame_V1_3_Flat.sol": {
-			"keccak256": "0x0209495caa6c058c1b9b5e65101df9b2b0d50601f9e28d05c7bab9ada39ce274",
+		"contracts/MiniGame_v_1_4.sol": {
+			"keccak256": "0xabe48eeadf3a993b25fff69e1e5b6c506405e754108a354cde450e35d9a7aaf2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2d03b6a4a8a3f44a4275d64ef7bfa9701bb89676769a3e1b1c79915a7587e60f",
-				"dweb:/ipfs/QmUxoyYfqjx1v93NJ4WqvZkEBwdy9aq12qSqUAC4yNnvUg"
+				"bzz-raw://4ba449ed37691d2f60ff79fc10151d0be745c73f049549ebc4beb1674be8cb97",
+				"dweb:/ipfs/QmaU6kyw4ZpmoaMJu6iL8qQDYyimuw2nb1x3ESeZp2BG1S"
 			]
 		}
 	},

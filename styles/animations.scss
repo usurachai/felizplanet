@@ -1,56 +1,102 @@
-
 @keyframes ship {
-  $y: 1vw;
-	0% {
-		transform: translatey($y);
-	}
-	50% {
-		transform: translatey(-$y);
-	}
-	100% {
-		transform: translatey($y);
-	}
+    $y: 1vw;
+    0% {
+        transform: translatey($y);
+    }
+    50% {
+        transform: translatey(-$y);
+    }
+    100% {
+        transform: translatey($y);
+    }
 }
 
 @keyframes basket {
-  $degree : 5deg;
-  $x: 1vw;
-	0% {
-		// transform: translatey(3vw);
-    transform: rotate(-$degree) translatex($x);
-	}
-	50% {
-		// transform: translatey(-3vw);
-    transform: rotate($degree) translatex(-$x);
-	}
-	100% {
-		// transform: translatey(3vw);
-    transform: rotate(-$degree) translatex($x);
-	}
+    $degree: 5deg;
+    $x: 1vw;
+    0% {
+        // transform: translatey(3vw);
+        transform: rotate(-$degree) translatex($x);
+    }
+    50% {
+        // transform: translatey(-3vw);
+        transform: rotate($degree) translatex(-$x);
+    }
+    100% {
+        // transform: translatey(3vw);
+        transform: rotate(-$degree) translatex($x);
+    }
 }
 
 @keyframes fish {
-  $y: 0.5vw;
-	0% {
-		transform: translatey($y);
-	}
-	50% {
-		transform: translatey(-$y);
-	}
-	100% {
-		transform: translatey($y);
-	}
+    $y: 0.5vw;
+    0% {
+        transform: translatey($y);
+    }
+    50% {
+        transform: translatey(-$y);
+    }
+    100% {
+        transform: translatey($y);
+    }
 }
 
 @keyframes meteor {
-  $y: 0.25vw;
-	0% {
-		transform: translatey($y);
-	}
-	50% {
-		transform: translatey(-$y);
-	}
-	100% {
-		transform: translatey($y);
-	}
+    $y: 0.25vw;
+    0% {
+        transform: translatey($y);
+    }
+    50% {
+        transform: translatey(-$y);
+    }
+    100% {
+        transform: translatey($y);
+    }
+}
+
+@keyframes chair {
+    $y: 1vw;
+    0% {
+        transform: translatey($y);
+    }
+    50% {
+        transform: translatey(-$y);
+    }
+    100% {
+        transform: translatey($y);
+    }
+}
+
+/* Animate neon flicker */
+@keyframes flicker {
+    $unit: 0.3vw;
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+        text-shadow: -0.2 * $unit -0.2 * $unit $unit #fff,
+            0.2 * $unit 0.2 * $unit $unit #fff,
+            0 0 2 * $unit var(--neon-text-color),
+            0 0 4 * $unit var(--neon-text-color),
+            0 0 6 * $unit var(--neon-text-color),
+            0 0 8 * $unit var(--neon-text-color),
+            0 0 10 * $unit var(--neon-text-color);
+
+        box-shadow: 0 0 0.5 * $unit #fff, inset 0 0 0.5 * $unit #fff,
+            0 0 2 * $unit var(--neon-border-color),
+            inset 0 0 2 * $unit var(--neon-border-color),
+            0 0 4 * $unit var(--neon-border-color),
+            inset 0 0 4 * $unit var(--neon-border-color);
+    }
+
+    20%,
+    24%,
+    55% {
+        text-shadow: none;
+        box-shadow: none;
+    }
 }

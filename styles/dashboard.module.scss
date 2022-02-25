@@ -1,0 +1,229 @@
+@import "fonts.scss";
+@import "animations.scss";
+
+.dashboard {
+    min-height: 100vh;
+    background-color: #000;
+    background-image: url("/images/bg/dashboard.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 70vw;
+    h2 {
+        display: inline-block;
+        position: absolute;
+        // background-color: #faebd755;
+        margin: 0;
+        color: #fff;
+        width: 22vw;
+        height: 7vw;
+        left: 47vw;
+        top: 4vw;
+        text-align: center;
+        line-height: 7vw;
+        font-family: "badabb";
+        font-size: 4vw;
+        letter-spacing: 0.1vw;
+    }
+}
+
+.menubar {
+    position: absolute;
+    width: 22vw;
+    height: 47vw;
+    left: 10vw;
+    top: 9vw;
+
+    button {
+        position: absolute;
+        display: block;
+        color: #fff;
+        background-color: #00000000;
+        border: #000000 0;
+        font-size: 3.2vw;
+        font-family: "badabb";
+        text-transform: uppercase;
+        cursor: pointer;
+        text-shadow: 0.5vw 0.5vw 0.5vw #000;
+    }
+
+    button.active {
+        text-shadow: 0vw 0vw 0.5vw #000 !important;
+    }
+
+    button.overview {
+        top: 4vw;
+        left: 4vw;
+        transform: rotate(15deg);
+    }
+
+    button.citizen {
+        top: 13vw;
+        left: 5vw;
+        // transform: rotate(15deg);
+    }
+
+    button.assets {
+        top: 22vw;
+        left: 5.5vw;
+        transform: rotate(-10deg);
+    }
+
+    button.rewards {
+        top: 30vw;
+        left: 6.5vw;
+        transform: rotate(-15deg);
+    }
+
+    button.events {
+        top: 38.5vw;
+        left: 10.5vw;
+        transform: rotate(-22deg);
+    }
+}
+
+.display {
+    position: absolute;
+    // background-color: #00ffff66;
+    width: 58.5vw;
+    height: 35vw;
+    left: 29vw;
+    top: 12.5vw;
+
+    header {
+        // background-color: #f40;
+        width: 100%;
+        height: 9vw;
+        text-align: center;
+        h3 {
+            display: inline-block;
+            padding: 0.5vw 1vw;
+            margin-top: 3vw;
+            /* Set neon color */
+            --neon-text-color: #f40;
+            --neon-border-color: #08f;
+            font-family: "Comfortaa";
+            font-size: 2vw;
+            font-weight: 200;
+            color: #fff;
+            border: 0.2vw solid #fff;
+            border-radius: 0.8vw;
+            // text-transform: uppercase;
+            animation: flicker 1.5s infinite alternate;
+        }
+
+        h3::-moz-selection {
+            background-color: var(--neon-border-color);
+            color: var(--neon-text-color);
+        }
+
+        h3::selection {
+            background-color: var(--neon-border-color);
+            color: var(--neon-text-color);
+        }
+
+        h3:focus {
+            outline: none;
+        }
+    }
+
+    main {
+        font-family: "Comfortaa";
+        font-size: 2vw;
+        color: #c6e2ff;
+        animation: neon 0.08s ease-in-out infinite alternate;
+    }
+
+    main.overview {
+        padding-top: 3vw;
+        p {
+            position: relative;
+            margin: 0vw 0vw 0.4vw 5vw;
+            display: block;
+            span.seprt {
+                position: absolute;
+                left: 25vw;
+            }
+            span.amount {
+                position: absolute;
+                right: 17vw;
+            }
+            span.unit {
+                position: absolute;
+                left: 40vw;
+            }
+        }
+    }
+
+    // main.citizen {
+    //   .cardcontainer {
+    //     height: 22vw;
+    //   }
+    // }
+
+    main.none {
+        text-align: center;
+        line-height: 15vw;
+    }
+
+    .citizenCard {
+        width: 12vw;
+        height: 17vw;
+        margin: 1.5vw;
+    }
+
+    .cardcontainer {
+        text-align: center;
+        p {
+            display: block;
+            margin: 0;
+        }
+        position: absolute;
+        width: 47vw;
+        height: 22vw;
+        // background-color: #f40;
+        left: 6vw;
+        // padding: 0vw 8vw;
+        overflow-y: auto;
+    }
+
+    .cardcontainer::-webkit-scrollbar {
+        width: 7px;
+    }
+    .cardcontainer::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px #000000d2;
+    }
+}
+
+.exit {
+    position: absolute;
+    color: #fff;
+    top: 9vw;
+    right: 9.1vw;
+    font-size: 3vw;
+    font-family: "badabb";
+}
+
+.chair {
+    position: absolute;
+    width: 15vw;
+    height: 18vw;
+    float: right;
+    right: 23vw;
+    top: 50vw;
+    animation: chair 3s ease-in-out infinite;
+}
+
+@keyframes neon {
+    from {
+        text-shadow: 0 0 6px rgba(202, 228, 225, 0.92),
+            0 0 30px rgba(202, 228, 225, 0.34),
+            0 0 12px rgba(30, 132, 242, 0.52), 0 0 21px rgba(30, 132, 242, 0.92),
+            0 0 34px rgba(30, 132, 242, 0.78), 0 0 54px rgba(30, 132, 242, 0.92);
+    }
+    to {
+        text-shadow: 0 0 6px rgba(202, 228, 225, 0.98),
+            0 0 30px rgba(202, 228, 225, 0.42),
+            0 0 12px rgba(30, 132, 242, 0.58), 0 0 22px rgba(30, 132, 242, 0.84),
+            0 0 38px rgba(30, 132, 242, 0.88), 0 0 60px rgba(30, 132, 242, 1);
+    }
+}

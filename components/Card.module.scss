@@ -1,0 +1,28 @@
+@import "../styles/fonts.scss";
+
+.Card {
+    z-index: 1;
+    position: relative;
+    display: inline-block;
+}
+
+.background {
+    z-index: 1;
+}
+
+.img {
+    background-color: #fff;
+    position: absolute;
+    left: 12%;
+    top: 20%;
+    $width: 77%;
+    $height: 53%;
+    span {
+        width: 100% !important;
+        height: 100% !important;
+        // object-position: 10vw 10vw;
+    }
+    width: $width;
+    height: $height;
+    z-index: 0;
+}

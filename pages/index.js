@@ -36,6 +36,7 @@ import contractAddress from "../contractAddress.json";
 import citizenAbi from "../contracts/artifacts/FelizCitizen.json";
 import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
+import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 
 export default function Home() {
     const router = useRouter();
@@ -48,6 +49,7 @@ export default function Home() {
                 console.log("account is changed", accounts);
                 setAccount(undefined);
                 setAddress("");
+                connectWalletHandler();
             });
 
             // detect Network account change
@@ -108,6 +110,7 @@ export default function Home() {
         }
     };
 
+    // Check if the account has any feliz token
     const isFelizCitizen = async (signer) => {
         var ret = false;
         try {
@@ -131,19 +134,32 @@ export default function Home() {
                         signer
                     );
                     // Minted CASKs
-                    const totalGoldCasks = (
+                    let totalGoldCasks = (
                         await stardustContract.balanceOf(
                             signer.getAddress(),
-                            signer.getAddress()
+                            SC_ID_GOLD
                         )
                     ).toNumber();
-                    console.log("stardust balance: ", citizen);
+                    console.log("stardust balance: ", totalGoldCasks);
+                    totalGoldCasks += (
+                        await stardustContract.balanceOf(
+                            signer.getAddress(),
+                            SC_ID_SILVER
+                        )
+                    ).toNumber();
+                    console.log("stardust balance: ", totalGoldCasks);
+                    totalGoldCasks += (
+                        await stardustContract.balanceOf(
+                            signer.getAddress(),
+                            SC_ID_BRONZ
+                        )
+                    ).toNumber();
+                    console.log("stardust balance: ", totalGoldCasks);
                     if (totalGoldCasks > 0) ret = true;
                 }
                 if (!ret) {
                     alert("You are not feliz citizen", WARN);
                 } else {
-                    alert("citizen");
                     router.push("/dashboard", undefined, { scroll: false });
                 }
             }

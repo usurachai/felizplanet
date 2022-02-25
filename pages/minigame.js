@@ -23,12 +23,14 @@ import { ethers } from "ethers";
 import { contractError } from "../utils/errorFilter";
 import styles from "../styles/Minigame.module.scss";
 
+import ImageLink from "../components/ImageLink";
+import { SC_GOLD, SC_SILVER, SC_BRONZ } from "../utils/enum/scnftType";
+
 import contractAddress from "../contractAddress.json";
 import minigameAbi from "../contracts/artifacts/SupplyGas.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
-import ImageLink from "../components/ImageLink";
 
-const spender = "0xcE84ed4dF9fba491a0fB2988BF1e60da23Da92E4";
+const spender = contractAddress.Minigame;
 
 export default function Minigame() {
     const router = useRouter();
@@ -124,6 +126,7 @@ export default function Minigame() {
             window.ethereum.on("accountsChanged", function (accounts) {
                 setAccount(undefined);
                 setAddress("");
+                connectWalletHandler();
             });
 
             // detect Network account change
@@ -214,9 +217,11 @@ export default function Minigame() {
                 );
 
                 // get SD
-                const balance = (
-                    await contract.balanceOf(signer.getAddress())
-                ).toNumber();
+                const balance = Number(
+                    ethers.utils.formatEther(
+                        await contract.balanceOf(signer.getAddress())
+                    )
+                );
                 setSD(balance);
                 console.log("balance", balance);
                 // const balance = await nftContract.preSaleEndDate()
@@ -245,7 +250,10 @@ export default function Minigame() {
                     LOADING
                 );
                 const txn = await contract.getGas(to);
+                await txn.wait();
                 console.log(txn);
+                await getSD(signer);
+                await getSupply(signer);
                 modal(
                     "Congratulation!",
                     "Stardrust already send to your wallet.",
@@ -284,11 +292,13 @@ export default function Minigame() {
                     erc20Abi.abi,
                     signer
                 );
-                const allowance = (
-                    await contract.allowance(signer.getAddress(), spender)
-                ).toString();
+                const allowance = Number(
+                    ethers.utils.formatEther(
+                        await contract.allowance(signer.getAddress(), spender)
+                    )
+                );
                 console.log(allowance);
-                if (allowance === "0") ret = 0;
+                if (allowance === 0) ret = 0;
                 else ret = 1;
                 // const balance = await nftContract.preSaleEndDate()
             }
@@ -312,9 +322,11 @@ export default function Minigame() {
                     minigameAbi.abi,
                     signer
                 );
-                const supply = (await contract.getSupply()).toNumber();
+                const supply = await contract.getSupply(signer.getAddress());
+                console.log(supply);
+                supply = Number(ethers.utils.formatEther(supply));
                 setSupply(supply);
-                console.log("supply", supply);
+                console.log("supply", supply, typeof supply);
                 ret = supply;
                 // const balance = await nftContract.preSaleEndDate()
             }
@@ -337,18 +349,20 @@ export default function Minigame() {
                     erc20Abi.abi,
                     signer
                 );
+                modal("", "Approve in progress, please wait...", LOADING);
                 const txn = await contract.approve(
                     spender,
                     "999999000000000000000000"
                 );
+                await txn.wait();
                 // setSupply(txn)
                 console.log("approve", txn);
-                const allowance = await getAllowance(signer);
-                console.log("approve allowance", allowance);
-                if (allowance > 0) {
-                    setIsApproved(true);
-                    modal("Congratulation", "You are approved!", SUCCESS);
-                }
+                // const allowance = await getAllowance(signer)
+                // console.log("approve allowance", allowance)
+                // if (allowance > 0) {
+                setIsApproved(true);
+                modal("Congratulation", "You are approved!", SUCCESS);
+                // }
                 // const balance = await nftContract.preSaleEndDate()
             }
         } catch (err) {
@@ -373,11 +387,16 @@ export default function Minigame() {
                 );
                 modal("", "Supply Stardust to spaceship, please wait", LOADING);
                 const txn = await contract.sendGas();
+                await txn.wait();
                 // setSupply(txn)
                 console.log("doSupply", txn);
+                setIsApproved(true);
+                const supply = await getSupply(signer);
+                setSupply(supply);
+                await getSD(signer);
                 modal(
-                    "Congratulation!",
-                    "You are whitelisted see you on mint date.",
+                    "",
+                    "Your stardust already supplied to spaceship",
                     SUCCESS
                 );
                 // const balance = await nftContract.preSaleEndDate()
@@ -404,15 +423,15 @@ export default function Minigame() {
                 );
                 modal("", "Claiming, please wait.", LOADING);
                 const txn = await contract.cliamWL();
+                await txn.wait();
                 // setSupply(txn)
                 console.log("approve", txn);
+                await getSupply(signer);
                 modal(
-                    "",
-                    "Your stardust already supplied to spaceship",
+                    "Congratulation!",
+                    "You are whitelisted see you on mint date.",
                     SUCCESS
                 );
-                const supply = await getSupply(signer);
-                setSupply(supply);
                 // const balance = await nftContract.preSaleEndDate()
             }
         } catch (err) {
