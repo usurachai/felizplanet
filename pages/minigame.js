@@ -24,7 +24,7 @@ import { contractError } from "../utils/errorFilter";
 import styles from "../styles/Minigame.module.scss";
 
 import ImageLink from "../components/ImageLink";
-import { SC_GOLD, SC_SILVER, SC_BRONZ } from "../utils/enum/scnftType";
+import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 
 import contractAddress from "../contractAddress.json";
 import minigameAbi from "../contracts/artifacts/SupplyGas.json";
@@ -444,6 +444,12 @@ export default function Minigame() {
 
     useEffect(() => {
         checkWalletIsConnected();
+        return () => {
+            if (window.ethereum && window.ethereum.removeEventListener) {
+                window.ethereum.removeEventListener("accountsChanged");
+                window.ethereum.removeEventListener("networkChanged");
+            }
+        };
     }, []);
 
     return (

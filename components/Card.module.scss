@@ -4,6 +4,7 @@
     z-index: 1;
     position: relative;
     display: inline-block;
+    font-size: 100%;
 }
 
 .background {
@@ -11,6 +12,10 @@
 }
 
 .img {
+    color: black;
+    // font: 0.2vw;
+    line-height: 9vw;
+    text-align: center;
     background-color: #fff;
     position: absolute;
     left: 12%;
@@ -25,4 +30,29 @@
     width: $width;
     height: $height;
     z-index: 0;
+}
+
+.title,
+.description {
+    color: #f0c004;
+    text-transform: uppercase;
+    position: absolute;
+    font-family: "digi";
+    font-size: 46%;
+    // background-color: rgba(0, 255, 255, 0.37);
+    z-index: 2;
+}
+
+.title {
+    width: 70%;
+    top: 5%;
+    left: 16%;
+}
+
+.description {
+    width: 82%;
+    height: 17%;
+    top: 78%;
+    left: 9%;
+    line-height: 250%;
 }

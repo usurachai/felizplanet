@@ -1,4 +1,9 @@
-import React, { useEffect, useState, ReactElement } from "react";
+import React, {
+    useEffect,
+    useState,
+    ReactElement,
+    useLayoutEffect,
+} from "react";
 import styles from "../styles/Home.module.scss";
 import ImageLink from "../components/ImageLink";
 import Link from "next/link";
@@ -37,8 +42,21 @@ import citizenAbi from "../contracts/artifacts/FelizCitizen.json";
 import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
+import { useMetaMask } from "metamask-react";
 
 export default function Home() {
+    const cntMetamask = useMetaMask();
+    // let maccount = cntMetamask.account
+
+    // useEffect(() => {
+    //   // setAccount(account)
+    //   connectWalletHandler()
+    // }, [cntMetamask.account])
+
+    useEffect(() => {
+        checkWalletIsConnected();
+    }, [cntMetamask.status, cntMetamask.chainId]);
+
     const router = useRouter();
     const checkWalletIsConnected = async () => {
         const { ethereum } = window;
@@ -68,12 +86,32 @@ export default function Home() {
             });
         }
 
+        let chainId = "";
+        if (ethereum) {
+            chainId = ethereum.chainId;
+            // ethereum.request({ method: 'eth_requestAccounts' })
+        }
+
+        console.log(
+            "checkWalletIsConnected ethtereum isConnected: ",
+            ethereum.isConnected()
+        );
+        console.log("checkWalletIsConnected ethtereum: ", ethereum);
+        console.log(
+            "checkWalletIsConnected ethtereum chainID(): ",
+            ethereum.chainId
+        );
         if (!ethereum) {
             // alert('Please install Metamask')
+            console.log("checkWalletIsConnected ethtereum null: ", ethereum);
             setAccount(undefined);
             setAddress("");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (chainId !== "0x4") {
             // alert("Change network to Rinkeby network.")
+            console.log(
+                "checkWalletIsConnected ethtereum chainId: ",
+                ethereum.chainId
+            );
             setAccount(undefined);
             setAddress("");
         } else {
@@ -82,14 +120,21 @@ export default function Home() {
                 const signer = await provider.getSigner();
                 setAccount(signer);
                 setAddress(await signer.getAddress());
-            } catch (err) {}
+                console.log("checkWalletIsConnected signer: ", signer);
+                console.log(
+                    "checkWalletIsConnected signer: ",
+                    await signer.getAddress()
+                );
+            } catch (err) {
+                console.log(err);
+            }
         }
     };
 
     const connectWalletHandler = async () => {
         const { ethereum } = window;
 
-        // console.log(ethereum.chainId, typeof ethereum.chainId)
+        console.log("metamask", ethereum);
         if (!ethereum) {
             alert("Please install Metamask");
         } else if (ethereum.chainId !== "0x4") {
@@ -172,7 +217,7 @@ export default function Home() {
     };
 
     useEffect(() => {
-        checkWalletIsConnected();
+        // checkWalletIsConnected();
         const interval = setInterval(() => {
             const todate = mintDate - Date.now();
             // console.log(mintDate, Date.now(), mintDate - Date.now())
@@ -189,6 +234,10 @@ export default function Home() {
 
         return () => {
             clearInterval(interval);
+            if (window.ethereum && window.ethereum.removeEventListener) {
+                window.ethereum.removeEventListener("accountsChanged");
+                window.ethereum.removeEventListener("networkChanged");
+            }
         };
     }, []);
 

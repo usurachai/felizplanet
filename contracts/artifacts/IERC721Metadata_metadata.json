@@ -391,7 +391,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Feliz_CitizensFlat_1_5.sol": "IERC721Metadata"
+			"Feliz_CitizensFlat_1_6.sol": "IERC721Metadata"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -405,12 +405,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Feliz_CitizensFlat_1_5.sol": {
-			"keccak256": "0x4f9bdc3449852118719294534156236bec7d84a6a61bb1dffb083347bf63d29a",
+		"Feliz_CitizensFlat_1_6.sol": {
+			"keccak256": "0x91ab417e57d7ee8ed87b1be3704049c33a4766eab39b51f19fb45b6e823245b7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1d448abe73a2d878065721de81f35a501a3836daa6b9276aed8789cdf0906c15",
-				"dweb:/ipfs/Qmbp99ftUM7etoPjAR4WAt2BHrqRr7Kgux9DPa3UiyQqjQ"
+				"bzz-raw://c409fded21ce21ef514b300a353d7e289f95341a1410bd29cc07e19d4f1e7e34",
+				"dweb:/ipfs/QmcTnSL7hHsuG9FKoZ1X8Bv7pPJxsNT2nocrJSPzFriAfz"
 			]
 		}
 	},

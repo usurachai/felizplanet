@@ -12,6 +12,9 @@ import citizenAbi from "../contracts/artifacts/FelizCitizen.json";
 import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
+import { FELIZ_CITIZENS, FELIZ_STARDRUST } from "../utils/enum/token";
+
+import meta2image, { scUri2image } from "../utils/ipfs2http";
 
 const OVERVIEW = "OVERVIEW";
 const CITIZEN = "CITIZEN";
@@ -24,8 +27,8 @@ export default function Dashboard() {
     const [account, setAccount] = useState(undefined);
 
     function redirectHome(error) {
-        console.log(error);
-        // route.push('/', undefined, {scroll: false})
+        // console.log(error)
+        route.push("/", undefined, { scroll: false });
     }
     const checkWalletIsConnected = async () => {
         const { ethereum } = window;
@@ -35,7 +38,6 @@ export default function Dashboard() {
             window.ethereum.on("accountsChanged", function (accounts) {
                 connectWalletHandler();
             });
-
             // detect Network account change
             window.ethereum.on("networkChanged", function (networkId) {
                 console.log(
@@ -89,15 +91,19 @@ export default function Dashboard() {
     };
 
     function accountUpdate(account) {
-        getBalances(account);
+        load(account);
         setAccount(account);
     }
 
     // Get balances of the tokens which account own.
-    const getBalances = async (signer) => {
+    const load = async (signer) => {
         try {
             const { ethereum } = window;
             if (ethereum) {
+                setLoadedBalance(false);
+                setLoadedCitizen(false);
+                setLoadedAssets(false);
+
                 // Owned Citizen tokens
                 const citizenContract = new ethers.Contract(
                     contractAddress.FelizCitizen,
@@ -115,26 +121,88 @@ export default function Dashboard() {
                     stardrustAbi.abi,
                     signer
                 );
-                let totalCasks = (
+                const goldCasks = (
                     await stardustContract.balanceOf(
                         signer.getAddress(),
                         SC_ID_GOLD
                     )
                 ).toNumber();
-                totalCasks += (
+                const silverCasks = (
                     await stardustContract.balanceOf(
                         signer.getAddress(),
                         SC_ID_SILVER
                     )
                 ).toNumber();
-                totalCasks += (
+                const bronzCasks = (
                     await stardustContract.balanceOf(
                         signer.getAddress(),
                         SC_ID_BRONZ
                     )
                 ).toNumber();
+                const totalCasks = goldCasks + silverCasks + bronzCasks;
                 console.log("stardust balance: ", totalCasks);
+                setLoadedBalance(true);
                 setCasksNum(totalCasks);
+                if (citizen === 0 && totalCasks === 0) {
+                    redirectHome("0 balance");
+                } else {
+                    // get citizen images
+                    const citizenTokens = await citizenContract.walletOfOwner(
+                        signer.getAddress()
+                    );
+                    const citizenImages = [];
+                    for (let i = 0; i < citizenTokens.length; i++) {
+                        const tokenId = citizenTokens[i];
+                        try {
+                            const imageURI = await meta2image(
+                                await citizenContract.tokenURI(tokenId)
+                            );
+                            citizenImages.push({
+                                image: imageURI,
+                                tokenId: tokenId.toString(),
+                            });
+                        } catch (error) {
+                            console.log(error);
+                        }
+                        setCitizens(citizenImages);
+                    }
+                    console.log("citizenImages", citizenImages);
+                    setLoadedCitizen(true);
+
+                    // console.log(await scUri2image(goldUri))
+                    const scImages = [];
+                    if (goldCasks > 0) {
+                        scImages.push({
+                            image: await scUri2image(
+                                await stardustContract.uri(SC_ID_GOLD)
+                            ),
+                            tokenId: SC_ID_GOLD,
+                            balance: goldCasks,
+                        });
+                    }
+                    if (silverCasks > 0) {
+                        scImages.push({
+                            image: await scUri2image(
+                                await stardustContract.uri(SC_ID_SILVER)
+                            ),
+                            tokenId: SC_ID_SILVER,
+                            balance: goldCasks,
+                        });
+                    }
+                    if (bronzCasks > 0) {
+                        scImages.push({
+                            image: await scUri2image(
+                                await stardustContract.uri(SC_ID_BRONZ)
+                            ),
+                            tokenId: SC_ID_BRONZ,
+                            balance: goldCasks,
+                        });
+                    }
+                    console.log("scImages", scImages);
+                    setStardusts(scImages);
+                    // stardustContract
+                    setLoadedAssets(true);
+                }
             }
         } catch (err) {
             console.log(err);
@@ -145,29 +213,21 @@ export default function Dashboard() {
     const [active, setActive] = useState(OVERVIEW);
     const [citizenNum, setCitizenNum] = useState(0);
     const [casksNum, setCasksNum] = useState(0);
-    const [citizens, setCitizens] = useState([
-        "/images/fish.png",
-        "/images/fish.png",
-        "/images/fish.png",
-        "/images/fish.png",
-        "/images/fish.png",
-    ]);
-    const [assets, setAssets] = useState([
-        {
-            type: "Feliz stardust casks",
-            images: [
-                "/images/fish.png",
-                "/images/fish.png",
-                "/images/fish.png",
-                "/images/fish.png",
-                "/images/fish.png",
-                "/images/fish.png",
-            ],
-        },
-    ]);
+    const [citizens, setCitizens] = useState([]);
+    const [stardusts, setStardusts] = useState([]);
+
+    const [loadedBalance, setLoadedBalance] = useState(true);
+    const [loadedCitizen, setLoadedCitizen] = useState(true);
+    const [loadedAssets, setLoadedAssets] = useState(true);
 
     useEffect(() => {
         checkWalletIsConnected();
+        return () => {
+            if (window.ethereum && window.ethereum.removeEventListener) {
+                window.ethereum.removeEventListener("accountsChanged");
+                window.ethereum.removeEventListener("networkChanged");
+            }
+        };
     }, []);
 
     function tabBtn(active, type) {
@@ -210,6 +270,28 @@ export default function Dashboard() {
         );
     }
 
+    function genTitle(active) {
+        switch (active) {
+            case OVERVIEW:
+                return <h3>Overview</h3>;
+
+            case CITIZEN:
+                return <h3>Citizen</h3>;
+
+            case ASSETS:
+                return <h3>Assets</h3>;
+
+            case REWARDS:
+                return <h3>Rewards</h3>;
+
+            case EVENTS:
+                return <h3>Events</h3>;
+
+            default:
+                return <h3>None</h3>;
+        }
+    }
+
     function genContent(active) {
         switch (active) {
             case OVERVIEW:
@@ -218,7 +300,10 @@ export default function Dashboard() {
                         <p>
                             <span className={styles.type}>Feliz Citizens</span>
                             <span className={styles.seprt}>:</span>
-                            <span className={styles.amount}>{citizenNum}</span>
+                            <span className={styles.amount}>
+                                {loadedBalance && citizenNum}
+                                {!loadedBalance && "..."}
+                            </span>
                             <span className={styles.unit}>unit</span>
                         </p>
                         <p>
@@ -226,7 +311,10 @@ export default function Dashboard() {
                                 Feliz Stardust Casks
                             </span>
                             <span className={styles.seprt}>:</span>
-                            <span className={styles.amount}>{casksNum}</span>
+                            <span className={styles.amount}>
+                                {loadedBalance && casksNum}
+                                {!loadedBalance && "..."}
+                            </span>
                             <span className={styles.unit}>unit</span>
                         </p>
                         <p>
@@ -234,13 +322,19 @@ export default function Dashboard() {
                                 Feliz Property NFT
                             </span>
                             <span className={styles.seprt}>:</span>
-                            <span className={styles.amount}>-</span>
+                            <span className={styles.amount}>
+                                {loadedBalance && "-"}
+                                {!loadedBalance && "..."}
+                            </span>
                             <span className={styles.unit}>unit</span>
                         </p>
                         <p>
                             <span className={styles.type}>Special NFT</span>
                             <span className={styles.seprt}>:</span>
-                            <span className={styles.amount}>-</span>
+                            <span className={styles.amount}>
+                                {loadedBalance && "-"}
+                                {!loadedBalance && "..."}
+                            </span>
                             <span className={styles.unit}>unit</span>
                         </p>
                         <p>
@@ -248,7 +342,10 @@ export default function Dashboard() {
                                 Claimable $PEARL
                             </span>
                             <span className={styles.seprt}>:</span>
-                            <span className={styles.amount}>-</span>
+                            <span className={styles.amount}>
+                                {loadedBalance && "-"}
+                                {!loadedBalance && "..."}
+                            </span>
                             <span className={styles.unit}>$PEARL</span>
                         </p>
                     </main>
@@ -257,45 +354,62 @@ export default function Dashboard() {
             case CITIZEN:
                 return (
                     <main className={styles.citizen}>
-                        <div className={styles.cardcontainer}>
-                            {console.log(citizens)}
-                            {citizens.map((url, idx) => {
-                                console.log(url, idx);
-                                return (
-                                    <Card
-                                        key={idx}
-                                        className={styles.citizenCard}
-                                        url={url}
-                                    />
-                                );
-                            })}
-                        </div>
+                        {!loadedCitizen && (
+                            <p className={styles.loading}>Loading...</p>
+                        )}
+                        {loadedCitizen && (
+                            <div className={styles.cardcontainer}>
+                                {console.log(citizens)}
+                                {citizens.map(({ image, tokenId }, idx) => {
+                                    console.log(image, idx);
+                                    return (
+                                        <Card
+                                            key={idx}
+                                            className={styles.citizenCard}
+                                            url={image}
+                                            tokenId={tokenId}
+                                            type={FELIZ_CITIZENS}
+                                        />
+                                    );
+                                })}
+                            </div>
+                        )}
                     </main>
                 );
 
             case ASSETS:
                 return (
                     <main className={styles.citizen}>
-                        <div className={styles.cardcontainer}>
-                            {assets.map((asset, aIdx) => {
-                                return (
-                                    <>
-                                        <p key={"asset" + aIdx}>{asset.type}</p>
-                                        {asset.images.map((url, idx) => {
-                                            return (
-                                                <Card
-                                                    key={`${aIdx}-${idx}`}
-                                                    className={
-                                                        styles.citizenCard
-                                                    }
-                                                    url={url}
-                                                />
-                                            );
-                                        })}
-                                    </>
-                                );
-                            })}
-                        </div>
+                        {!loadedAssets && (
+                            <p className={styles.loading}>Loading...</p>
+                        )}
+                        {loadedAssets && (
+                            <div className={styles.cardcontainer}>
+                                <p>Feliz stardust casks</p>
+                                {stardusts.map(
+                                    (
+                                        {
+                                            image: { uri, name },
+                                            tokenId,
+                                            balance,
+                                        },
+                                        idx
+                                    ) => {
+                                        return (
+                                            <Card
+                                                key={`stardust-${idx}`}
+                                                className={styles.citizenCard}
+                                                url={uri}
+                                                tokenId={tokenId}
+                                                type={FELIZ_STARDRUST}
+                                                balance={balance}
+                                                name={name}
+                                            />
+                                        );
+                                    }
+                                )}
+                            </div>
+                        )}
                     </main>
                 );
             default:
@@ -318,9 +432,7 @@ export default function Dashboard() {
                 {tabBtn(active, EVENTS)}
             </aside>
             <section className={styles.display}>
-                <header>
-                    <h3>Your Wallet</h3>
-                </header>
+                <header>{genTitle(active)}</header>
                 {genContent(active)}
             </section>
             <Img src="/images/chair.png" className={styles.chair}></Img>

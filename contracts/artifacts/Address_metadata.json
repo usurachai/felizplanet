@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/MiniGame_v_1_4.sol": "Address"
+			"Feliz_CitizensFlat_1_6.sol": "Address"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -33,12 +33,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/MiniGame_v_1_4.sol": {
-			"keccak256": "0xabe48eeadf3a993b25fff69e1e5b6c506405e754108a354cde450e35d9a7aaf2",
+		"Feliz_CitizensFlat_1_6.sol": {
+			"keccak256": "0x91ab417e57d7ee8ed87b1be3704049c33a4766eab39b51f19fb45b6e823245b7",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4ba449ed37691d2f60ff79fc10151d0be745c73f049549ebc4beb1674be8cb97",
-				"dweb:/ipfs/QmaU6kyw4ZpmoaMJu6iL8qQDYyimuw2nb1x3ESeZp2BG1S"
+				"bzz-raw://c409fded21ce21ef514b300a353d7e289f95341a1410bd29cc07e19d4f1e7e34",
+				"dweb:/ipfs/QmcTnSL7hHsuG9FKoZ1X8Bv7pPJxsNT2nocrJSPzFriAfz"
 			]
 		}
 	},

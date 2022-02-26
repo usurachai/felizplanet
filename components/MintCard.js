@@ -20,6 +20,7 @@ import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import Web3 from "web3";
 
 import { SUCCESS, LOADING, FAILED } from "../components/Modal";
+import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 
 export default function MintCard({
     src,
@@ -118,7 +119,7 @@ export default function MintCard({
                     maxMintAmountPresale.toNumber()
                 );
 
-                // Presale maxMintAmountPerTx
+                // MaxMintAmountPerTx
                 const maxMintAmountPerTx =
                     await nftContract.maxMintAmountPerTx();
                 console.log(
@@ -165,24 +166,28 @@ export default function MintCard({
                     ) / 1000
                 );
 
-                // Max CASK
+                setMaxSupply(100);
+
+                // Total Gold CASKs
+                const totalGoldCasks = await nftContract.getTotalGoldenCasks();
+                setTotalSupply(totalGoldCasks.toNumber());
+                console.log("totalGoldCasks: ", totalGoldCasks.toNumber());
+
+                // Max CASK per address
                 const MaxCasksPerAddress =
                     await nftContract.MaxCasksPerAddress();
-                setMaxSupply(MaxCasksPerAddress.toNumber());
+                // setMaxSupply(MaxCasksPerAddress.toNumber())
                 console.log(
                     "MaxCasksPerAddress: ",
                     MaxCasksPerAddress.toNumber()
                 );
 
-                // Minted CASKs
-                const totalGoldCasks = await nftContract.getTotalGoldenCasks();
-                setTotalSupply(totalGoldCasks.toNumber());
-                console.log("totalGoldCasks: ", totalGoldCasks.toNumber());
+                // Minted Gold Casks
+                // const mintedGoldCasks = (await stardustContract.balanceOf(signer.getAddress(), SC_ID_GOLD)).toNumber()
 
                 // Limit
-                setLimit(
-                    MaxCasksPerAddress.toNumber() - totalGoldCasks.toNumber()
-                );
+                // setLimit(MaxCasksPerAddress.toNumber() - mintedGoldCasks)
+                setLimit(MaxCasksPerAddress.toNumber());
             }
         } catch (err) {
             console.log(err);
@@ -215,25 +220,29 @@ export default function MintCard({
                     ) / 1000
                 );
 
-                // Max CASK
-                const MaxCasksPerAddress =
-                    await nftContract.MaxCasksPerAddress();
-                setMaxSupply(MaxCasksPerAddress.toNumber());
-                console.log(
-                    "MaxCasksPerAddress: ",
-                    MaxCasksPerAddress.toNumber()
-                );
+                setMaxSupply(100);
 
-                // Minted CASKs
+                // total Silver Cask
                 const totalSilverCasks =
                     await nftContract.getTotalSilverCasks();
                 setTotalSupply(totalSilverCasks.toNumber());
                 console.log("totalSilverCasks: ", totalSilverCasks.toNumber());
 
-                // Limit
-                setLimit(
-                    MaxCasksPerAddress.toNumber() - totalSilverCasks.toNumber()
+                // Minted Silver casks
+                // const mintedSilverCasks = (await stardustContract.balanceOf(signer.getAddress(), SC_ID_SILVER)).toNumber()
+
+                // Max CASK
+                const MaxCasksPerAddress =
+                    await nftContract.MaxCasksPerAddress();
+                // setMaxSupply(MaxCasksPerAddress.toNumber())
+                console.log(
+                    "MaxCasksPerAddress: ",
+                    MaxCasksPerAddress.toNumber()
                 );
+
+                // Limit
+                // setLimit(MaxCasksPerAddress.toNumber() - mintedSilverCasks)
+                setLimit(MaxCasksPerAddress.toNumber());
             }
         } catch (err) {
             console.log(err);
@@ -341,6 +350,22 @@ export default function MintCard({
                 console.log(
                     `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
                 );
+
+                // Minted Silver casks
+                // const mintedSilverCasks = (await stardustContract.balanceOf(signer.getAddress(), SC_ID_SILVER)).toNumber()
+
+                // Max CASK
+                const MaxCasksPerAddress =
+                    await nftContract.MaxCasksPerAddress();
+                // setMaxSupply(MaxCasksPerAddress.toNumber())
+                console.log(
+                    "MaxCasksPerAddress: ",
+                    MaxCasksPerAddress.toNumber()
+                );
+
+                // Limit
+                // setLimit(MaxCasksPerAddress.toNumber() - mintedSilverCasks)
+                setLimit(MaxCasksPerAddress.toNumber());
             }
         } catch (err) {
             // modal("", err.message, FAILED)
@@ -394,6 +419,22 @@ export default function MintCard({
                 console.log(
                     `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
                 );
+
+                // Max CASK per address
+                const MaxCasksPerAddress =
+                    await nftContract.MaxCasksPerAddress();
+                // setMaxSupply(MaxCasksPerAddress.toNumber())
+                console.log(
+                    "MaxCasksPerAddress: ",
+                    MaxCasksPerAddress.toNumber()
+                );
+
+                // Minted Gold Casks
+                // const mintedGoldCasks = (await stardustContract.balanceOf(signer.getAddress(), SC_ID_GOLD)).toNumber()
+
+                // Limit
+                // setLimit(MaxCasksPerAddress.toNumber() - mintedGoldCasks)
+                setLimit(MaxCasksPerAddress.toNumber());
             }
         } catch (err) {
             // modal("", err.message, FAILED)
