@@ -13,6 +13,8 @@ import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 import { FELIZ_CITIZENS, FELIZ_STARDRUST } from "../utils/enum/token";
+import { useMetaMask } from "metamask-react";
+import network from "../network.json";
 
 import meta2image, { scUri2image } from "../utils/ipfs2http";
 
@@ -23,6 +25,12 @@ const REWARDS = "REWARDS";
 const EVENTS = "EVENTS";
 
 export default function Dashboard() {
+    const cntMetamask = useMetaMask();
+
+    useEffect(() => {
+        checkWalletIsConnected();
+    }, [cntMetamask.status, cntMetamask.chainId]);
+
     const route = useRouter();
     const [account, setAccount] = useState(undefined);
 
@@ -44,9 +52,9 @@ export default function Dashboard() {
                     "networkChanged",
                     networkId,
                     typeof networkId,
-                    networkId !== "4"
+                    networkId !== network.id
                 );
-                if (networkId !== "4") {
+                if (networkId !== network.id) {
                     redirectHome("wrong network ID");
                 }
             });
@@ -54,7 +62,7 @@ export default function Dashboard() {
 
         if (!ethereum) {
             redirectHome("Metamasl errpr");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (ethereum.chainId !== network.id) {
             redirectHome("wrong network ID");
         } else {
             try {
@@ -73,7 +81,7 @@ export default function Dashboard() {
         // console.log(ethereum.chainId, typeof ethereum.chainId)
         if (!ethereum) {
             redirectHome("Metamask error");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (ethereum.chainId !== network.id) {
             redirectHome("wrong network ID");
         } else {
             try {
@@ -186,7 +194,7 @@ export default function Dashboard() {
                                 await stardustContract.uri(SC_ID_SILVER)
                             ),
                             tokenId: SC_ID_SILVER,
-                            balance: goldCasks,
+                            balance: silverCasks,
                         });
                     }
                     if (bronzCasks > 0) {
@@ -195,7 +203,7 @@ export default function Dashboard() {
                                 await stardustContract.uri(SC_ID_BRONZ)
                             ),
                             tokenId: SC_ID_BRONZ,
-                            balance: goldCasks,
+                            balance: bronzCasks,
                         });
                     }
                     console.log("scImages", scImages);
@@ -221,7 +229,7 @@ export default function Dashboard() {
     const [loadedAssets, setLoadedAssets] = useState(true);
 
     useEffect(() => {
-        checkWalletIsConnected();
+        // checkWalletIsConnected()
         return () => {
             if (window.ethereum && window.ethereum.removeEventListener) {
                 window.ethereum.removeEventListener("accountsChanged");

@@ -28,7 +28,7 @@ import MintCard from "../components/MintCard";
 import Navbar from "../components/Navbar";
 
 import { MINT, MINT_COMMING, MINT_PRESALE } from "../utils/enum/mint";
-import mintDate from "../utils/test/mintDate";
+import { mintDate } from "../dates";
 import dateFormatter from "../utils/dateFormatter";
 import Modal, { SUCCESS, LOADING, FAILED } from "../components/Modal";
 import PopUp, { WARN } from "../components/PopUp";
@@ -43,15 +43,10 @@ import stardrustAbi from "../contracts/artifacts/StardustCask.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 import { useMetaMask } from "metamask-react";
+import network from "../network.json";
 
 export default function Home() {
     const cntMetamask = useMetaMask();
-    // let maccount = cntMetamask.account
-
-    // useEffect(() => {
-    //   // setAccount(account)
-    //   connectWalletHandler()
-    // }, [cntMetamask.account])
 
     useEffect(() => {
         checkWalletIsConnected();
@@ -76,9 +71,9 @@ export default function Home() {
                     "networkChanged",
                     networkId,
                     typeof networkId,
-                    networkId !== "4"
+                    networkId !== network.id
                 );
-                if (networkId !== "4") {
+                if (networkId !== network.id) {
                     alert("Wrong network");
                     setAccount(undefined);
                     setAddress("");
@@ -106,7 +101,7 @@ export default function Home() {
             console.log("checkWalletIsConnected ethtereum null: ", ethereum);
             setAccount(undefined);
             setAddress("");
-        } else if (chainId !== "0x4") {
+        } else if (chainId !== network.id) {
             // alert("Change network to Rinkeby network.")
             console.log(
                 "checkWalletIsConnected ethtereum chainId: ",
@@ -137,7 +132,7 @@ export default function Home() {
         console.log("metamask", ethereum);
         if (!ethereum) {
             alert("Please install Metamask");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (ethereum.chainId !== network.id) {
             alert("Change network to Rinkeby network.");
         } else {
             try {
@@ -415,48 +410,7 @@ export default function Home() {
                 <section className={styles.story} id="story">
                     <article>
                         <h2>The Feliz Story</h2>
-                        <div className="feliz_story">
-                            <p>
-                                Backdate last 2 decades ago, the cat planet
-                                called “Feliz” is such a lovely pleasant living
-                                for many kitten citizen dreamed of. The river
-                                are fruitful and plenty of prosperous with fatty
-                                fish swimming in the river so lively. Suddenly,
-                                the unexpected even is happening, the comet had
-                                fallen to feliz planet which caused many changes
-                                and untold stories has just begun. Naoh, the
-                                fishermen clan, started noticing that fishes
-                                become more and more dying in the ocean. Their
-                                resource as a main food becomes lessen everyday
-                                hunting for living. Feliz citizen are also
-                                afraid of dying. They are trying their best to
-                                find the reason why and wish to evacuate their
-                                people out to source a better place again. By
-                                the top operator under named “Agent-T” explore
-                                across the galaxy and seem to prove “The Earth”
-                                is another new world for them.
-                            </p>
-                            <p>
-                                All your main charters remaining exclusive
-                                kittens from Feliz Cats Planet turbo GOING
-                                RELEASE 8888 people of the felizian kitten — now
-                                in space! The last 5 clans consist of Haru,
-                                Nami, Naoh and Carrot. They mutually agreed and
-                                consensus in sending their top agent for 83
-                                people of each clan out to complete the mission
-                                and in fact finding what really is happening
-                                right now. The evolution continues - now brave
-                                with 5 cats flying on spaceship and conquer the
-                                galaxy! It’s time for the first space kitten to
-                                master and inhabit a new galactic planet! Each
-                                normal cat became the cat in space! Merge cats
-                                to help cat evolution and allow Cats unlock the
-                                potential to adapt sklls to the unknown galactic
-                                world!
-                            </p>
-                        </div>
                     </article>
-
                     <Img src="/images/fish.png" className={styles.fish1} />
                     <Img src="/images/fish.png" className={styles.fish2} />
                     <Img src="/images/fish.png" className={styles.fish3} />

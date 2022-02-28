@@ -25,14 +25,23 @@ import styles from "../styles/Minigame.module.scss";
 
 import ImageLink from "../components/ImageLink";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
+import { useMetaMask } from "metamask-react";
 
 import contractAddress from "../contractAddress.json";
 import minigameAbi from "../contracts/artifacts/SupplyGas.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
+import { navStart, navEnd } from "../dates";
+import network from "../network.json";
 
 const spender = contractAddress.Minigame;
 
 export default function Minigame() {
+    const cntMetamask = useMetaMask();
+
+    useEffect(() => {
+        checkWalletIsConnected();
+    }, [cntMetamask.status, cntMetamask.chainId]);
+
     const router = useRouter();
     const [navlist, setNavlist] = useState([
         {
@@ -57,8 +66,8 @@ export default function Minigame() {
         },
     ]);
 
-    const [startTime, setStartTime] = useState(Date.now());
-    const [endTime, setEndTime] = useState(Date.now() + 300000);
+    const [startTime, setStartTime] = useState(navStart);
+    const [endTime, setEndTime] = useState(navEnd);
     const [address, setAddress] = useState("");
     const [account, setAccount] = useState(undefined);
     const [sd, setSD] = useState(0);
@@ -135,9 +144,9 @@ export default function Minigame() {
                     "networkChanged",
                     networkId,
                     typeof networkId,
-                    networkId !== "4"
+                    networkId !== network.id
                 );
-                if (networkId !== "4") {
+                if (networkId !== network.id) {
                     alert("Wrong network");
                     setAccount(undefined);
                     setAddress("");
@@ -149,7 +158,7 @@ export default function Minigame() {
             // alert('Please install Metamask')
             setAccount(undefined);
             setAddress("");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (ethereum.chainId !== network.id) {
             // alert("Change network to Rinkeby network.")
             setAccount(undefined);
             setAddress("");
@@ -177,7 +186,7 @@ export default function Minigame() {
         // console.log(ethereum.chainId, typeof ethereum.chainId)
         if (!ethereum) {
             alert("Please install Metamask");
-        } else if (ethereum.chainId !== "0x4") {
+        } else if (ethereum.chainId !== network.id) {
             alert("Change network to Rinkeby network.");
         } else {
             try {
@@ -443,7 +452,7 @@ export default function Minigame() {
     };
 
     useEffect(() => {
-        checkWalletIsConnected();
+        // checkWalletIsConnected();
         return () => {
             if (window.ethereum && window.ethereum.removeEventListener) {
                 window.ethereum.removeEventListener("accountsChanged");

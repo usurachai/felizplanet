@@ -118,7 +118,6 @@ $bg_partner: (
     position: relative;
     width: img($bg_main, "width");
     height: img($bg_main, "height");
-    z-index: 1;
 
     // nav {
     //   display: inline-block;
@@ -277,7 +276,6 @@ $bg_partner: (
     box-sizing: border-box;
     height: img($bg_story, "height") - $marinTop + 10vw;
     width: 100%;
-    z-index: 0;
 
     margin-top: $marinTop;
     article {
@@ -290,27 +288,6 @@ $bg_partner: (
             font-family: "badabb";
             color: white;
             font-size: 7vw;
-        }
-
-        div {
-            font-family: "bm_jua";
-            // font-size: 1.1em;
-            // line-height: 1.2em;
-            font-size: 2.8vw;
-            color: #ffffff;
-            height: 70vw;
-            overflow-y: scroll;
-
-            &::-webkit-scrollbar {
-                -webkit-appearance: none;
-                width: 7px;
-            }
-
-            &::-webkit-scrollbar-thumb {
-                border-radius: 4px;
-                background-color: rgba(0, 0, 0, 0.5);
-                box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
-            }
         }
     }
 }
@@ -326,8 +303,6 @@ $bg_partner: (
     margin-top: $marginTop;
     height: img($bg_mission, "height");
     width: 100%;
-    z-index: 1;
-    position: relative;
     h2 {
         text-transform: uppercase;
         text-align: center;

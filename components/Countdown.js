@@ -11,10 +11,10 @@ function padZero(num) {
 }
 
 export default function Countdown({ endTime, className }) {
-    const [day, setDay] = useState(1);
-    const [hour, setHour] = useState(1);
-    const [min, setMin] = useState(1);
-    const [sec, setSec] = useState(1);
+    const [day, setDay] = useState(0);
+    const [hour, setHour] = useState(0);
+    const [min, setMin] = useState(0);
+    const [sec, setSec] = useState(0);
 
     useState(() => {
         const timer = setInterval(() => {
