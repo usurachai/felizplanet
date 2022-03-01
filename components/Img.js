@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import Image from "next/image";
 
 export default function Img({ src, alt, className, style, onClick }) {

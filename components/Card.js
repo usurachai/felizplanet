@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Card.module.scss";

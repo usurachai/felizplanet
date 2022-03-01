@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import ImageLink from "./ImageLink";
 import Img from "./Img";
 import styles from "./Socials.module.scss";

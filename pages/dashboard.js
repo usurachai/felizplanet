@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import styles from "../styles/dashboard.module.scss";
 import Img from "../components/Img";

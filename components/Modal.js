@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useState, useEffect } from "react";
 import RModal from "react-modal";
 // import styles from './MintCard.module.scss'
