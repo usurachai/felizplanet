@@ -409,7 +409,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Feliz_CitizensFlat_1_5.sol": "ERC721"
+			"Feliz_CitizensFlat_1_6.sol": "ERC721"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -423,12 +423,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Feliz_CitizensFlat_1_5.sol": {
-			"keccak256": "0x4f9bdc3449852118719294534156236bec7d84a6a61bb1dffb083347bf63d29a",
+		"Feliz_CitizensFlat_1_6.sol": {
+			"keccak256": "0x6fe3b53c61bcae20223325cb24ceb2e835a0b5a3cbcb6555435ee00954657918",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1d448abe73a2d878065721de81f35a501a3836daa6b9276aed8789cdf0906c15",
-				"dweb:/ipfs/Qmbp99ftUM7etoPjAR4WAt2BHrqRr7Kgux9DPa3UiyQqjQ"
+				"bzz-raw://96942ae4c9d38c810eb80d6b1362ec870c4c8aa20c6c01ef638430fbe33cf381",
+				"dweb:/ipfs/QmXyHcbce2PASsz2CTt8vmHyHHgryXRZbonvSGLek5DX5R"
 			]
 		}
 	},

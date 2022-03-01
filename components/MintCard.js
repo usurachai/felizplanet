@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./MintCard.module.scss";
@@ -53,10 +54,10 @@ export default function MintCard({
                 setTitle("Feliz Citizens");
                 break;
             case FELIZ_STARDRUST_SILVER:
-                setTitle("Feliz Stardrust");
+                setTitle("Sliver Stardust");
                 break;
             case FELIZ_STARDRUST_GOLD:
-                setTitle("Feliz Stardrust");
+                setTitle("Golden Stardust");
                 break;
         }
     }, [type]);
@@ -299,10 +300,11 @@ export default function MintCard({
             // console.log(err.body, typeof err)
             // console.log(err.message.split('(')[0], typeof err.message)
             // console.log(err.stack, typeof err.stack)
-            // // console.log(await JSON.parse(err.message))
+            // console.log(await JSON.parse(err.message));
             console.log(err.message, typeof err.message);
             // modal("")
-            modal("", contractError(err), FAILED);
+            modal("", err.message.split("(")[0], FAILED);
+            // modal("", contractError(err), FAILED);
             // modal("", err.message, FAILED)
         }
     };
@@ -369,8 +371,8 @@ export default function MintCard({
             }
         } catch (err) {
             // modal("", err.message, FAILED)
-            // modal("", err.message.split('(')[0], FAILED)
-            modal("", contractError(err), FAILED);
+            modal("", err.message.split("(")[0], FAILED);
+            // modal("", contractError(err), FAILED);
 
             // modal("", err.message, FAILED)
 
@@ -438,10 +440,11 @@ export default function MintCard({
             }
         } catch (err) {
             // modal("", err.message, FAILED)
-            // modal("", err.message.split('(')[0], FAILED)
-            modal("", contractError(err), FAILED);
+            modal("", err.message.split("(")[0], FAILED);
+            // modal("", contractError(err), FAILED);
 
             // modal("", err.message, FAILED)
+            console.log(err.message.split("(")[0]);
 
             console.log(err.name, typeof err);
             console.log(err.message, typeof err.message);

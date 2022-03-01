@@ -43,7 +43,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/StardustCasks_v1_6.sol": "ERC165"
+			"Feliz_CitizensFlat_1_6.sol": "ERC165"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -57,12 +57,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/StardustCasks_v1_6.sol": {
-			"keccak256": "0x899f09be64f153d440e92f0b9728cf04298556dc1b18b97bb492dbae7c9680c5",
+		"Feliz_CitizensFlat_1_6.sol": {
+			"keccak256": "0x6fe3b53c61bcae20223325cb24ceb2e835a0b5a3cbcb6555435ee00954657918",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://77de094a31a7e760051faf85a042767e134325e1290cac6daab88e184d5840b5",
-				"dweb:/ipfs/QmYf5xpfT27QQQ4aLUbBL5PgqSFBSLT8E6gKrkY4ss3baz"
+				"bzz-raw://96942ae4c9d38c810eb80d6b1362ec870c4c8aa20c6c01ef638430fbe33cf381",
+				"dweb:/ipfs/QmXyHcbce2PASsz2CTt8vmHyHHgryXRZbonvSGLek5DX5R"
 			]
 		}
 	},

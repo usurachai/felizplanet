@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
@@ -20,7 +21,11 @@ export default function Navbar({ navs, className }) {
                     return (
                         <li key={classname + idx.toString()}>
                             <Link href={navEle.href}>
-                                <a>{navEle.data}</a>
+                                {navEle.newWindow ? (
+                                    <a target="_blank">{navEle.data}</a>
+                                ) : (
+                                    <a>{navEle.data}</a>
+                                )}
                             </Link>
                         </li>
                     );

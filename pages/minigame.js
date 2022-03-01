@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -47,23 +48,25 @@ export default function Minigame() {
         {
             href: "/",
             data: "Home",
+            newWindow: false,
         },
         {
-            href: "/#mission",
-            data: "Mission",
+            href: "https://faucets.chain.link/rinkeby",
+            data: "rinkeby faucet",
+            newWindow: true,
         },
-        {
-            href: "/#roadmap",
-            data: "Roadmap",
-        },
-        {
-            href: "/minigame",
-            data: "Faq",
-        },
-        {
-            href: "/minigame",
-            data: "My collection",
-        },
+        // {
+        //     href: "/#roadmap",
+        //     data: "Roadmap",
+        // },
+        // {
+        //     href: "/minigame",
+        //     data: "Faq",
+        // },
+        // {
+        //     href: "/minigame",
+        //     data: "My collection",
+        // },
     ]);
 
     const [startTime, setStartTime] = useState(navStart);
