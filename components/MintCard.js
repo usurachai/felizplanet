@@ -23,6 +23,9 @@ import Web3 from "web3";
 import { SUCCESS, LOADING, FAILED } from "../components/Modal";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 
+// stardust cask, allow mint ?
+import { stardustallowmint } from "../stardust";
+
 export default function MintCard({
     src,
     className,
@@ -32,6 +35,7 @@ export default function MintCard({
     countdown,
     modal,
     alert,
+    proof,
 }) {
     // const [type, setType] = useState('')
     const [title, setTitle] = useState("");
@@ -45,8 +49,11 @@ export default function MintCard({
     const [limit, setLimit] = useState(1);
     // cosnt [curDate, setCurDate] = useState("curDate")
     const [timer, setTimer] = useState(-1);
+    const [presale, setPresale] = useState("");
 
     const router = useRouter();
+
+    // console.log("mintcard proof: ", proof);
 
     useEffect(() => {
         switch (type) {
@@ -54,7 +61,7 @@ export default function MintCard({
                 setTitle("Feliz Citizens");
                 break;
             case FELIZ_STARDRUST_SILVER:
-                setTitle("Sliver Stardust");
+                setTitle("Silver Stardust");
                 break;
             case FELIZ_STARDRUST_GOLD:
                 setTitle("Golden Stardust");
@@ -86,6 +93,7 @@ export default function MintCard({
 
                 // Presale End date
                 const preSaleEndDate = await nftContract.preSaleEndDate();
+                setPresale(preSaleEndDate.toNumber() * 1000);
                 // console.log("preSaleEndDate: ", preSaleEndDate.toString())
                 console.log(
                     "preSaleEndDate: ",
@@ -252,7 +260,14 @@ export default function MintCard({
     };
 
     const mintCitizens = async (amount, cost, signer) => {
-        // console.log("mint Citizen")
+        console.log("mint Citizen");
+
+        // console.log("preSaleEndDate: ", presale);
+        // console.log("now: ", new Date().valueOf());
+
+        // console.log("mintOpen: ", mintOpen);
+        // console.log("address: ", await signer.getAddress());
+
         try {
             const { ethereum } = window;
             if (ethereum) {
@@ -275,26 +290,83 @@ export default function MintCard({
                 // console.log("balance: ", (await signer.getBalance()).toNumber())
                 modal("", "Minting in process, please wait.", LOADING);
                 // await nftContract.setPaused(false)
-                let nftTxn = await nftContract.mint(amount, {
-                    value: ethers.utils.parseEther((amount * cost).toString()),
-                });
 
-                console.log("Mining... please wait");
-                await nftTxn.wait();
-                modal(
-                    "Congratulation!",
-                    "Your transaction is completed.",
-                    SUCCESS
-                );
+                if (new Date().valueOf() < presale) {
+                    // if (new Date().valueOf() < 1646226694000) {
+                    // mint whitelist
+                    console.log("mint whitelist");
+                    console.log("amount: ", amount);
+                    console.log(
+                        "value: ",
+                        ethers.utils.parseEther((amount * cost).toString())
+                    );
+                    console.log("proof: ", proof);
+                    console.log(
+                        "proof byte32: ",
+                        ethers.utils.formatBytes32String(toString(proof))
+                    );
 
-                // totalSupply
-                const totalSupply = await nftContract.totalSupply();
-                console.log("totalSupply: ", totalSupply.toNumber());
-                setTotalSupply(totalSupply.toNumber());
+                    let nftTxn = await nftContract.mintWhitelist(
+                        amount,
+                        // ethers.utils.formatBytes32String(toString(proof)),
+                        proof ? proof.split(",") : [],
+                        // [
+                        //     "0xe979b7d6ca070c535101fe02859ed6b4155c2998060d5e66b3c5568b45f62ba1",
+                        //     "0xd407939729d2b772c6321853a5172caf65f061daf612d21bc4e714f8ff04337f",
+                        //     "0x9b87ee4ed4c6cb96c3f31636d2493da8f90f9c1e39e27608e9c04427f1bed7b1",
+                        //     "0x12439383eb4910dceaff908c0d15921e06c2ef5d415adb0365b9dd330cbfa2a5",
+                        //     "0x3784993e28b1697c87d1535ea131f73dca45e7eb5b1939de274b8bb4986d173f",
+                        //     "0x89095332eaa0f40ea91ff4af54fe26db5d41024f9c4f614457ef255e774679b2",
+                        // ],
+                        {
+                            value: ethers.utils.parseEther(
+                                (amount * cost).toString()
+                            ),
+                        }
+                    );
 
-                console.log(
-                    `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
-                );
+                    console.log("Mining... please wait");
+                    await nftTxn.wait();
+                    modal(
+                        "Congratulation!",
+                        "Your transaction is completed.",
+                        SUCCESS
+                    );
+
+                    // totalSupply
+                    const totalSupply = await nftContract.totalSupply();
+                    console.log("totalSupply: ", totalSupply.toNumber());
+                    setTotalSupply(totalSupply.toNumber());
+
+                    console.log(
+                        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+                    );
+                } else {
+                    // mint
+                    console.log("mint");
+                    let nftTxn = await nftContract.mint(amount, {
+                        value: ethers.utils.parseEther(
+                            (amount * cost).toString()
+                        ),
+                    });
+
+                    console.log("Mining... please wait");
+                    await nftTxn.wait();
+                    modal(
+                        "Congratulation!",
+                        "Your transaction is completed.",
+                        SUCCESS
+                    );
+
+                    // totalSupply
+                    const totalSupply = await nftContract.totalSupply();
+                    console.log("totalSupply: ", totalSupply.toNumber());
+                    setTotalSupply(totalSupply.toNumber());
+
+                    console.log(
+                        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+                    );
+                }
             }
         } catch (err) {
             // console.log(err.body, typeof err)
@@ -303,7 +375,13 @@ export default function MintCard({
             // console.log(await JSON.parse(err.message));
             console.log(err.message, typeof err.message);
             // modal("")
-            modal("", err.message.split("(")[0], FAILED);
+
+            const _match = err.message.match(/error=(.*?), method/);
+            if (_match) {
+                modal("", JSON.parse(_match[1])["message"], FAILED);
+            } else {
+                modal("", err.message, FAILED);
+            }
             // modal("", contractError(err), FAILED);
             // modal("", err.message, FAILED)
         }
@@ -534,13 +612,31 @@ export default function MintCard({
                 break;
 
             case FELIZ_STARDRUST_SILVER:
-                loadSilverCask();
+                // loadSilverCask();
+                loadSilverCask().then(() => {
+                    console.log("stardustallowmint: ", stardustallowmint);
+                    if (stardustallowmint === true) {
+                        setMintType("MINT");
+                    } else {
+                        setMintType("NO_MINT");
+                    }
+                });
+
                 break;
 
             case FELIZ_STARDRUST_GOLD:
                 // console.log("CARD TYPE", type)
 
-                loadGoldCask();
+                // loadGoldCask();
+
+                loadGoldCask().then(() => {
+                    console.log("stardustallowmint: ", stardustallowmint);
+                    if (stardustallowmint === true) {
+                        setMintType("MINT");
+                    } else {
+                        setMintType("NO_MINT");
+                    }
+                });
                 // setTitle("Feliz Stardrust")
                 break;
 
@@ -567,7 +663,8 @@ export default function MintCard({
     };
 
     const mintImage = (mintType) => {
-        // console.log("mintType", mintType)
+        // console.log("mintType", mintType);
+        // console.log("mintOpen", mintOpen);
         if (!mintOpen) {
             return (
                 <div className={styles.buy}>
@@ -585,14 +682,46 @@ export default function MintCard({
                         <Image src="/images/mint.png" alt="buy" layout="fill" />
                     </div>
                 );
-            } else {
+            } else if (mintType === MINT_PRESALE) {
                 return (
                     <div className={styles.buy} onClick={mint}>
                         <Image src="/images/mint.png" alt="buy" layout="fill" />
                     </div>
                 );
+            } else {
+                return (
+                    <div className={styles.buy}>
+                        <Image
+                            src="/images/mint_coming.png"
+                            alt="buy"
+                            layout="fill"
+                        />
+                    </div>
+                );
             }
         }
+    };
+
+    const cardlabel = () => {
+        let label = "";
+
+        if (mintOpen) {
+            if (type === FELIZ_CITIZENS) {
+                label = `mint : ${totalSupply}/${maxSupply}
+                    price : ${cost} eth`;
+            } else {
+                if (stardustallowmint) {
+                    label = `mint : ${totalSupply}/${maxSupply}
+                    price : ${cost} eth`;
+                } else {
+                    label = "Generating...";
+                }
+            }
+        } else {
+            label = "Generating...";
+        }
+
+        return label;
     };
 
     return (
@@ -604,11 +733,18 @@ export default function MintCard({
                 className={styles.background}
             />
             <p className={styles.title}>{title}</p>
-            <p className={styles.contents}>
-                mint : {totalSupply}/{maxSupply}
-                <br />
-                price : {cost} eth
-            </p>
+            {/* {mintOpen ? (
+                <p className={styles.contents}>
+                    mint : {totalSupply}/{maxSupply}
+                    <br />
+                    price : {cost} eth
+                </p>
+            ) : (
+                <p className={styles.contents}>Generating...</p>
+            )} */}
+
+            <p className={styles.contents}>{cardlabel()}</p>
+
             <p className={styles.amount}>{amount}</p>
             <div className={styles.img}>
                 <Image src={src} alt={alt} layout="fill" />

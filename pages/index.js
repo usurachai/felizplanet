@@ -46,6 +46,11 @@ import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 import { useMetaMask } from "metamask-react";
 import network from "../network.json";
 
+// merkle tree
+import { MerkleTree } from "merkletreejs";
+import keccak256 from "keccak256";
+const whiteListAddresses = require("../whitelist.json");
+
 export default function Home() {
     const cntMetamask = useMetaMask();
     // let maccount = cntMetamask.account
@@ -54,6 +59,27 @@ export default function Home() {
     //   // setAccount(account)
     //   connectWalletHandler()
     // }, [cntMetamask.account])
+
+    // merkle tree
+    const [proof, setProof] = useState("");
+    // const [mytree, setMytree] = useState({});
+
+    const whiteListAddressesLeaves = whiteListAddresses.map((x) =>
+        keccak256(x)
+    );
+    const tree = new MerkleTree(whiteListAddressesLeaves, keccak256, {
+        sortPairs: true,
+    });
+    // const whitelistRootHash = tree.getHexRoot();
+    // console.log("root hash: ", whitelistRootHash);
+
+    const getMerkleProof = (address) => {
+        console.log("get merkleproof address: ", address);
+        const hashedAddress = keccak256(address);
+        const _proof = tree.getHexProof(hashedAddress);
+
+        return _proof.join(",");
+    };
 
     useEffect(() => {
         checkWalletIsConnected();
@@ -121,12 +147,12 @@ export default function Home() {
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 const signer = await provider.getSigner();
                 setAccount(signer);
-                setAddress(await signer.getAddress());
+                const _addr = await signer.getAddress();
+                setAddress(_addr);
                 console.log("checkWalletIsConnected signer: ", signer);
-                console.log(
-                    "checkWalletIsConnected signer: ",
-                    await signer.getAddress()
-                );
+                const _proof = getMerkleProof(_addr);
+                console.log("proof:", _proof);
+                setProof(_proof);
             } catch (err) {
                 console.log(err);
             }
@@ -149,7 +175,11 @@ export default function Home() {
                 const signer = await provider.getSigner();
                 console.log("signer", signer);
                 setAccount(signer);
-                setAddress(await signer.getAddress());
+                const _addr = await signer.getAddress();
+                setAddress(_addr);
+                const _proof = getMerkleProof(_addr);
+                // console.log("proof:", _proof);
+                setProof(_proof);
             } catch (err) {
                 console.log(err);
                 alert(errorFilter(err));
@@ -263,8 +293,9 @@ export default function Home() {
             data: "Partner",
         },
         {
-            href: "/",
+            href: "https://feliz-1.gitbook.io/feliz-project/5mUISVvj17vRzoTA0XTN/",
             data: "Whitepaper",
+            newWindow: true,
         },
     ]);
 
@@ -504,6 +535,7 @@ export default function Home() {
                                     countdown={countdown}
                                     alert={alert}
                                     modal={modal}
+                                    proof={proof}
                                 />
                             );
                         })}
