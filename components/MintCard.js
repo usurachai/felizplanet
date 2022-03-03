@@ -707,8 +707,7 @@ export default function MintCard({
 
         if (mintOpen) {
             if (type === FELIZ_CITIZENS) {
-                label = `mint : ${totalSupply}/${maxSupply}
-                    price : ${cost} eth`;
+                label = `mint : ${totalSupply}/${maxSupply}\nprice : ${cost} eth`;
             } else {
                 if (stardustallowmint) {
                     label = `mint : ${totalSupply}/${maxSupply}
