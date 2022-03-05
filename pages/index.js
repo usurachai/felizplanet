@@ -305,7 +305,7 @@ export default function Home() {
 
     const [cardList, setCardList] = useState([
         {
-            src: "/images/token.png",
+            src: "/images/feliz.gif",
             type: FELIZ_CITIZENS,
         },
         {
@@ -436,7 +436,7 @@ export default function Home() {
                     href="/minigame"
                     className={styles.basket}
                 />
-                <Link href="https://discord.com/">
+                <Link href="https://discord.gg/qKsJ2fZ3">
                     <a className={styles.island_discord}></a>
                 </Link>
                 <ImageLink
@@ -557,19 +557,19 @@ export default function Home() {
                         ></div>
                         {/* <Link href='/dashboard'><a className={styles.door}></a></Link> */}
                         <ImageLink
-                            href="https://discord.com/"
+                            href="https://discord.gg/qKsJ2fZ3"
                             src="/images/mimi screen1.png"
                             className={styles.miniscreen1}
                             text="Discord"
                         />
                         <ImageLink
-                            href="https://twitter.com/"
+                            href="https://twitter.com/FelizPlanet"
                             src="/images/mimi screen2.png"
                             className={styles.miniscreen2}
                             text="Twitter"
                         />
                         <ImageLink
-                            href="/"
+                            href="https://feliz-1.gitbook.io/feliz-project/5mUISVvj17vRzoTA0XTN/"
                             src="/images/mimi screen3.png"
                             className={styles.miniscreen3}
                             text="Whitepaper"
