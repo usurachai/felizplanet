@@ -51,10 +51,10 @@ export default function Card({
         let dct = "";
         switch (type) {
             case FELIZ_CITIZENS:
-                dct = `feliz citizens # ${tokenId}`;
+                dct = `citizens#${tokenId}`;
                 break;
             case FELIZ_STARDRUST:
-                dct = `${balance} # ${tokenId}`;
+                dct = `${balance} x cask#${tokenId} `;
                 break;
             default:
                 dct = "none";
