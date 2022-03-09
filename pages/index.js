@@ -120,15 +120,15 @@ export default function Home() {
             // ethereum.request({ method: 'eth_requestAccounts' })
         }
 
-        console.log(
-            "checkWalletIsConnected ethtereum isConnected: ",
-            ethereum.isConnected()
-        );
-        console.log("checkWalletIsConnected ethtereum: ", ethereum);
-        console.log(
-            "checkWalletIsConnected ethtereum chainID(): ",
-            ethereum.chainId
-        );
+        // console.log(
+        //     "checkWalletIsConnected ethtereum isConnected: ",
+        //     ethereum.isConnected()
+        // );
+        // console.log("checkWalletIsConnected ethtereum: ", ethereum);
+        // console.log(
+        //     "checkWalletIsConnected ethtereum chainID(): ",
+        //     ethereum.chainId
+        // );
         if (!ethereum) {
             // alert('Please install Metamask')
             console.log("checkWalletIsConnected ethtereum null: ", ethereum);
@@ -166,7 +166,7 @@ export default function Home() {
         if (!ethereum) {
             alert("Please install Metamask");
         } else if (ethereum.chainId !== network.id) {
-            alert("Change network to Rinkeby network.");
+            alert(`Change network to ${network.name} network.`);
         } else {
             try {
                 // if (ethereum.accounts.length === 0) alert('Please login metamask')
@@ -293,7 +293,7 @@ export default function Home() {
             data: "Partner",
         },
         {
-            href: "https://feliz-1.gitbook.io/feliz-project/5mUISVvj17vRzoTA0XTN/",
+            href: "https://whitepaper.felizplanet.com/",
             data: "Whitepaper",
             newWindow: true,
         },
@@ -536,6 +536,8 @@ export default function Home() {
                                     alert={alert}
                                     modal={modal}
                                     proof={proof}
+                                    fnConnectWallet={connectWalletHandler}
+                                    address={address}
                                 />
                             );
                         })}
@@ -569,7 +571,7 @@ export default function Home() {
                             text="Twitter"
                         />
                         <ImageLink
-                            href="https://feliz-1.gitbook.io/feliz-project/5mUISVvj17vRzoTA0XTN/"
+                            href="https://whitepaper.felizplanet.com/"
                             src="/images/mimi screen3.png"
                             className={styles.miniscreen3}
                             text="Whitepaper"
