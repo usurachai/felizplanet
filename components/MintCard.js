@@ -36,6 +36,8 @@ export default function MintCard({
     modal,
     alert,
     proof,
+    fnConnectWallet,
+    address,
 }) {
     // const [type, setType] = useState('')
     const [title, setTitle] = useState("");
@@ -665,30 +667,23 @@ export default function MintCard({
     const mintImage = (mintType) => {
         // console.log("mintType", mintType);
         // console.log("mintOpen", mintOpen);
-        if (!mintOpen) {
+
+        // console.log(address);
+        if (!address) {
+            // wallet not connected
             return (
-                <div className={styles.buy}>
+                <div className={styles.buy} onClick={fnConnectWallet}>
                     <Image
-                        src="/images/mint_coming.png"
+                        src="/images/mint_connectwallet.png"
                         alt="buy"
                         layout="fill"
                     />
                 </div>
             );
         } else {
-            if (mintType === MINT) {
-                return (
-                    <div className={styles.buy} onClick={mint}>
-                        <Image src="/images/mint.png" alt="buy" layout="fill" />
-                    </div>
-                );
-            } else if (mintType === MINT_PRESALE) {
-                return (
-                    <div className={styles.buy} onClick={mint}>
-                        <Image src="/images/mint.png" alt="buy" layout="fill" />
-                    </div>
-                );
-            } else {
+            // wallet connected
+
+            if (!mintOpen) {
                 return (
                     <div className={styles.buy}>
                         <Image
@@ -698,6 +693,38 @@ export default function MintCard({
                         />
                     </div>
                 );
+            } else {
+                if (mintType === MINT) {
+                    return (
+                        <div className={styles.buy} onClick={mint}>
+                            <Image
+                                src="/images/mint.png"
+                                alt="buy"
+                                layout="fill"
+                            />
+                        </div>
+                    );
+                } else if (mintType === MINT_PRESALE) {
+                    return (
+                        <div className={styles.buy} onClick={mint}>
+                            <Image
+                                src="/images/mint.png"
+                                alt="buy"
+                                layout="fill"
+                            />
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div className={styles.buy}>
+                            <Image
+                                src="/images/mint_coming.png"
+                                alt="buy"
+                                layout="fill"
+                            />
+                        </div>
+                    );
+                }
             }
         }
     };

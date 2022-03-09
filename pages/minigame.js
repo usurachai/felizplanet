@@ -32,7 +32,7 @@ import contractAddress from "../contractAddress.json";
 import minigameAbi from "../contracts/artifacts/SupplyGas.json";
 import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { navStart, navEnd } from "../dates";
-import network from "../network.json";
+import network from "../network_game.json";
 
 const spender = contractAddress.Minigame;
 
@@ -190,7 +190,7 @@ export default function Minigame() {
         if (!ethereum) {
             alert("Please install Metamask");
         } else if (ethereum.chainId !== network.id) {
-            alert("Change network to Rinkeby network.");
+            alert(`Change network to ${network.name} network.`);
         } else {
             try {
                 const provider = new ethers.providers.Web3Provider(ethereum);
