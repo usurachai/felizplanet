@@ -599,16 +599,16 @@ export default function Home() {
                         <Img src="/images/road.png" className={styles.road} />
                         <aside className={styles.roadpoint1}>
                             <h4>Feliz flight to the earth</h4>
-                            <p>-Giveaway 2 citiaen NFTs</p>
-                            <p>& WL begin</p>
+                            <p>-Giveaway 5 citiaen NFTs</p>
+                            <p>& WL begin @ mini-game.</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint2}>
-                            <h4>Stardrust casks</h4>
-                            <h4>project launch</h4>
+                            <h4>Feliz HQ launch</h4>
+                            <p>- Giveaway 5 citizens NFTs.</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
@@ -616,59 +616,53 @@ export default function Home() {
                         </aside>
                         <aside className={styles.roadpoint3}>
                             <h4>Feliz HQ launch</h4>
-                            <p>- Airdrop suprises for the community.</p>
+                            <p>- Special gift for community.</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint4}>
-                            <h4>Feliz citizen launch</h4>
-                            <p>- Mini game for WL begins.</p>
-                            <p>& WL begin</p>
+                            <h4>
+                                Donation of 3 ETH to a chartiable Organization
+                                after 1,000 NFTs Sold.
+                            </h4>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint5}>
-                            <h4>Donation of 3 ETH</h4>
-                            <p>to a chartiable Organization</p>
-                            <p>after 1,000 NFTs Sold</p>
+                            <h4>Stardust casks project launch</h4>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint6}>
-                            <h4>Upgrade feliz HQ</h4>
-                            <p>For support $Pearl.</p>
-                            <p>& WL begin</p>
+                            <h4>Upgrade Feliz HQ to support $PEARL.</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint7}>
-                            <h4>Start feliz</h4>
-                            <h4>initial project.</h4>
+                            <h4>Feliz initial project</h4>
+                            <p>- Airdrop for Property NFTs.</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint8}>
-                            <h4>Consider buying NFT</h4>
-                            <h4>World land</h4>
-                            <p>For feliz game in the future.</p>
+                            <h4>Feliz planet mini-game begin.</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint9}>
-                            <h4>DAO Start!</h4>
-                            <p>Real estate</p>
+                            <h4>Preparing for DAOs.</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
