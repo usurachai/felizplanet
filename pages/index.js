@@ -600,15 +600,15 @@ export default function Home() {
                         <aside className={styles.roadpoint1}>
                             <h4>Feliz flight to the earth</h4>
                             <p>-Giveaway 5 citiaen NFTs</p>
-                            <p>& WL begin @ mini-game.</p>
+                            <p>& WL begin @ mini-game</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint2}>
-                            <h4>Feliz HQ launch</h4>
-                            <p>- Giveaway 5 citizens NFTs.</p>
+                            <h4>Feliz citizen launch</h4>
+                            <p>- Giveaway 5 citizens NFTs</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
@@ -616,7 +616,7 @@ export default function Home() {
                         </aside>
                         <aside className={styles.roadpoint3}>
                             <h4>Feliz HQ launch</h4>
-                            <p>- Special gift for community.</p>
+                            <p>- Special gift for community</p>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
@@ -625,7 +625,7 @@ export default function Home() {
                         <aside className={styles.roadpoint4}>
                             <h4>
                                 Donation of 3 ETH to a chartiable Organization
-                                after 1,000 NFTs Sold.
+                                after 1,000 NFTs Sold
                             </h4>
                             <Img
                                 src="/images/road_point.png"
@@ -640,7 +640,7 @@ export default function Home() {
                             />
                         </aside>
                         <aside className={styles.roadpoint6}>
-                            <h4>Upgrade Feliz HQ to support $PEARL.</h4>
+                            <h4>Upgrade Feliz HQ to support $PEARL</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
@@ -648,21 +648,21 @@ export default function Home() {
                         </aside>
                         <aside className={styles.roadpoint7}>
                             <h4>Feliz initial project</h4>
-                            <p>- Airdrop for Property NFTs.</p>
+                            <p>- Airdrop for Property NFTs</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint8}>
-                            <h4>Feliz planet mini-game begin.</h4>
+                            <h4>Feliz planet mini-game begin</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint9}>
-                            <h4>Preparing for DAOs.</h4>
+                            <h4>Preparing for DAOs</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
