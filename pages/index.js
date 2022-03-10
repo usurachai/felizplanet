@@ -610,7 +610,7 @@ export default function Home() {
                             <h4>Feliz citizen launch</h4>
                             <p>- Giveaway 5 citizens NFTs</p>
                             <Img
-                                src="/images/road_point.png"
+                                src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
@@ -618,7 +618,7 @@ export default function Home() {
                             <h4>Feliz HQ launch</h4>
                             <p>- Special gift for community</p>
                             <Img
-                                src="/images/road_point.png"
+                                src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
@@ -628,14 +628,14 @@ export default function Home() {
                                 after 1,000 NFTs Sold
                             </h4>
                             <Img
-                                src="/images/road_point.png"
+                                src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint5}>
                             <h4>Stardust casks project launch</h4>
                             <Img
-                                src="/images/road_point.png"
+                                src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
