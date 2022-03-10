@@ -380,7 +380,17 @@ export default function MintCard({
 
             const _match = err.message.match(/error=(.*?), method/);
             if (_match) {
-                modal("", JSON.parse(_match[1])["message"], FAILED);
+                const error_code = JSON.parse(_match[1])["code"];
+
+                if (error_code === -32000) {
+                    modal(
+                        "",
+                        "Insufficient funds for intrinsic transaction",
+                        FAILED
+                    );
+                } else {
+                    modal("", JSON.parse(_match[1])["message"], FAILED);
+                }
             } else {
                 modal("", err.message, FAILED);
             }
