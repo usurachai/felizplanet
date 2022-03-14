@@ -631,7 +631,7 @@ export default function Minigame() {
                             claimWL(account);
                         }}
                     >
-                        Claim White List
+                        Claim Whitelist
                     </span>
                 </div>
             </main>

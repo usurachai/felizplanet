@@ -663,8 +663,9 @@ $bg_partner: (
     }
 
     .socials {
+        display: flex;
         position: absolute;
-        top: 73vw;
+        top: 82vw;
         .socialIcon1,
         .socialIcon2,
         .socialIcon3 {

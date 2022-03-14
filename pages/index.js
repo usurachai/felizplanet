@@ -45,6 +45,7 @@ import erc20Abi from "../contracts/artifacts/IERC20.json";
 import { SC_ID_GOLD, SC_ID_SILVER, SC_ID_BRONZ } from "../utils/enum/scnftType";
 import { useMetaMask } from "metamask-react";
 import network from "../network.json";
+import Socials from "../components/Socials";
 
 // merkle tree
 import { MerkleTree } from "merkletreejs";
@@ -674,20 +675,7 @@ export default function Home() {
 
             <footer className={styles.partner} id="partner">
                 <h2>Partner</h2>
-                <div className={styles.socials}>
-                    <Img
-                        src="/images/social/discord.png"
-                        className={styles.socialIcon1}
-                    />
-                    <Img
-                        src="/images/social/opensea.png"
-                        className={styles.socialIcon2}
-                    />
-                    <Img
-                        src="/images/social/twitter.png"
-                        className={styles.socialIcon3}
-                    />
-                </div>
+                <Socials className={styles.socials} style="display: flex" />
                 <Link href="/">
                     <a>Terms and conditions</a>
                 </Link>
