@@ -410,7 +410,7 @@ export default function Home() {
                 />
                 <span>
                     <h3 className={styles.info}>
-                        8,700 Citizens NFT is coming soon
+                        8,800 Citizens NFT is coming soon
                     </h3>
                 </span>
                 <Link href="#mission">
