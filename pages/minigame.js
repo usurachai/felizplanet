@@ -615,7 +615,7 @@ export default function Minigame() {
                 <ImageLink
                     src="/images/spaceship.png"
                     className={styles.discord}
-                    href="https://discord.gg/qKsJ2fZ3"
+                    href=" https://discord.gg/qvN3ZC6DvB"
                 />
                 <div className={styles.tab}>
                     <Image src="/images/tab.png" alt="tab" layout="fill" />

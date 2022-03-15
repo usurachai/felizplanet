@@ -560,7 +560,7 @@ export default function Home() {
                         ></div>
                         {/* <Link href='/dashboard'><a className={styles.door}></a></Link> */}
                         <ImageLink
-                            href="https://discord.gg/qKsJ2fZ3"
+                            href=" https://discord.gg/qvN3ZC6DvB"
                             src="/images/mimi screen1.png"
                             className={styles.miniscreen1}
                             text="Discord"
@@ -676,7 +676,7 @@ export default function Home() {
             <footer className={styles.partner} id="partner">
                 <h2>Partner</h2>
                 <Socials className={styles.socials} style="display: flex" />
-                <Link href="/">
+                <Link href="https://whitepaper.felizplanet.com/terms-and-conditions">
                     <a>Terms and conditions</a>
                 </Link>
                 {/* <h3></h3> */}

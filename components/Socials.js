@@ -8,7 +8,7 @@ export default function Socials({ className }) {
         <div className={styles.Socials + " " + className}>
             <ImageLink
                 src="/images/social/discord.png"
-                href="https://discord.gg/qKsJ2fZ3"
+                href=" https://discord.gg/qvN3ZC6DvB"
                 className={styles.socialIcon1}
             />
             <ImageLink
