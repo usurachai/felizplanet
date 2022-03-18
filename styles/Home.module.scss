@@ -751,6 +751,10 @@ $bg_partner: (
     animation: basket 5s ease-in-out infinite;
 }
 
+.basket:hover {
+    cursor: pointer;
+}
+
 .opensea {
     position: absolute !important;
     // padding-top: -20vw;

@@ -380,6 +380,11 @@ export default function Home() {
         setModalNum((prev) => prev + 1);
     };
 
+    const clickBasket = (e) => {
+        e.preventDefault();
+        alert("Mini Game is comming soon");
+    };
+
     return (
         <>
             <Head>
@@ -432,11 +437,20 @@ export default function Home() {
                     alt="ship"
                     layout="fill"
                 />
-                <ImageLink
+                <div onClick={clickBasket}>
+                    <Img
+                        src="/images/m_basket.png"
+                        className={styles.basket}
+                        alt="basket"
+                        layout="fill"
+                    />
+                </div>
+
+                {/* <ImageLink
                     src="/images/m_basket.png"
                     href="/minigame"
                     className={styles.basket}
-                />
+                /> */}
                 <Link href="https://discord.gg/qvN3ZC6DvB">
                     <a className={styles.island_discord}></a>
                 </Link>
