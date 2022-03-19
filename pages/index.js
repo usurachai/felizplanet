@@ -689,6 +689,52 @@ export default function Home() {
 
             <footer className={styles.partner} id="partner">
                 <h2>Partner</h2>
+                <div className={styles.partner_groups}>
+                    <div>
+                        <div className={styles.partner_logo}>
+                            <img
+                                src="/images/partners/Phuket9.png"
+                                style={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "auto",
+                                }}
+                            />
+                        </div>
+                        <div className={styles.partner_logo}>
+                            <img
+                                src="/images/partners/4D.png"
+                                style={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "auto",
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div className={styles.partner_logo}>
+                            <img
+                                src="/images/partners/KK.png"
+                                style={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "auto",
+                                }}
+                            />
+                        </div>
+                        <div className={styles.partner_logo}>
+                            <img
+                                src="/images/partners/lobster.png"
+                                style={{
+                                    display: "block",
+                                    width: "100%",
+                                    height: "auto",
+                                }}
+                            />
+                        </div>
+                    </div>
+                </div>
                 <Socials className={styles.socials} style="display: flex" />
                 <Link href="https://whitepaper.felizplanet.com/terms-and-conditions">
                     <a>Terms and conditions</a>

@@ -14,6 +14,7 @@
     text-align: center;
     // padding: 10vw auto;
     margin: 2.7vw auto;
+    // text-shadow: 6px 7px 20px #6c2190;
 }
 
 $bg_main: (
@@ -712,6 +713,16 @@ $bg_partner: (
         text-align: center;
         font-family: "badabb";
     }
+}
+
+.partner_groups {
+    display: flex;
+    margin: 8vw 4vw 8vw;
+}
+
+.partner_logo {
+    flex: 1;
+    padding: 2vw;
 }
 
 // ship
