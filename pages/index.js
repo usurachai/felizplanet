@@ -50,6 +50,7 @@ import Socials from "../components/Socials";
 // merkle tree
 import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
+import Team from "../components/Team";
 const whiteListAddresses = require("../whitelist.json");
 
 export default function Home() {
@@ -688,53 +689,93 @@ export default function Home() {
             </main>
 
             <footer className={styles.partner} id="partner">
-                <h2>Partner</h2>
+                <h2>Partners</h2>
                 <div className={styles.partner_groups}>
-                    <div>
-                        <div className={styles.partner_logo}>
-                            <img
-                                src="/images/partners/Phuket9.png"
-                                style={{
-                                    display: "block",
-                                    width: "100%",
-                                    height: "auto",
-                                }}
-                            />
-                        </div>
-                        <div className={styles.partner_logo}>
-                            <img
-                                src="/images/partners/4D.png"
-                                style={{
-                                    display: "block",
-                                    width: "100%",
-                                    height: "auto",
-                                }}
-                            />
-                        </div>
+                    <div className={styles.partner_logo}>
+                        <img
+                            src="/images/partners/Phuket9.png"
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        />
                     </div>
-                    <div>
-                        <div className={styles.partner_logo}>
-                            <img
-                                src="/images/partners/KK.png"
-                                style={{
-                                    display: "block",
-                                    width: "100%",
-                                    height: "auto",
-                                }}
-                            />
-                        </div>
-                        <div className={styles.partner_logo}>
-                            <img
-                                src="/images/partners/lobster.png"
-                                style={{
-                                    display: "block",
-                                    width: "100%",
-                                    height: "auto",
-                                }}
-                            />
-                        </div>
+                    <div className={styles.partner_logo}>
+                        <img
+                            src="/images/partners/4D.png"
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        />
+                    </div>
+                    <div className={styles.partner_logo}>
+                        <img
+                            src="/images/partners/KK.png"
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        />
+                    </div>
+                    <div className={styles.partner_logo}>
+                        <img
+                            src="/images/partners/lobster.png"
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                height: "auto",
+                            }}
+                        />
                     </div>
                 </div>
+                <h2>Teams</h2>
+                <div className={styles.team_group}>
+                    <Team
+                        name="0xProxies"
+                        title="Project Lead"
+                        photo="/images/teams/25.png"
+                    />
+                    <Team
+                        name="AobNow"
+                        title="Phuket9"
+                        photo="/images/teams/19.png"
+                    />
+                    <Team
+                        name="AVEGEE"
+                        title="Artist"
+                        photo="/images/teams/12.png"
+                    />
+                    <Team
+                        name="Jeedz"
+                        title="Architect"
+                        photo="/images/teams/20.png"
+                    />
+                    <Team
+                        name="Pop"
+                        title="Business"
+                        photo="/images/teams/9.png"
+                    />
+                    <Team
+                        name="Toro"
+                        title="Head Dev"
+                        photo="/images/teams/10.png"
+                    />
+                    <Team
+                        name="Elle"
+                        title="Admin"
+                        photo="/images/teams/6.png"
+                    />
+                    <Team
+                        name="Kitja"
+                        title="Consult"
+                        photo="/images/teams/2.png"
+                    />
+                </div>
+
                 <Socials className={styles.socials} style="display: flex" />
                 <Link href="https://whitepaper.felizplanet.com/terms-and-conditions">
                     <a>Terms and conditions</a>

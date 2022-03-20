@@ -667,7 +667,7 @@ $bg_partner: (
     h2 {
         @include section-title;
         margin-top: 0vw;
-        padding-top: 8vw;
+        padding-top: 3vw;
     }
 
     .socials {
@@ -717,7 +717,7 @@ $bg_partner: (
 
 .partner_groups {
     display: flex;
-    margin: 8vw 4vw 8vw;
+    margin: 2vw 4vw 2vw;
 }
 
 .partner_logo {
@@ -862,4 +862,8 @@ $bg_partner: (
     height: $height;
     animation: meteor 6s ease-in-out infinite;
     z-index: -1;
+}
+
+.team_group {
+    display: flex;
 }

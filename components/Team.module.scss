@@ -1,0 +1,35 @@
+.teams {
+    color: white;
+    flex: 1;
+    position: relative;
+    margin-top: 5vw;
+}
+
+.profileimage {
+    // width: 100px;
+    height: 10vw;
+    // border-radius: 50%;
+    // position: relative;
+}
+
+.profilename {
+    color: white;
+    position: relative;
+    top: 11vw;
+    text-align: center;
+
+    h4 {
+        font-size: 2.2vw;
+    }
+}
+
+.profiletitle {
+    color: white;
+    position: relative;
+    top: -21vw;
+    text-align: center;
+
+    h4 {
+        font-size: 1.8vw;
+    }
+}
