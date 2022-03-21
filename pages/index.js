@@ -311,11 +311,11 @@ export default function Home() {
             type: FELIZ_CITIZENS,
         },
         {
-            src: "/images/LogoScreen.png",
+            src: "/images/silver.gif",
             type: FELIZ_STARDRUST_SILVER,
         },
         {
-            src: "/images/LogoScreen.png",
+            src: "/images/golden.gif",
             type: FELIZ_STARDRUST_GOLD,
         },
     ]);
