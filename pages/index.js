@@ -615,7 +615,7 @@ export default function Home() {
                         <Img src="/images/road.png" className={styles.road} />
                         <aside className={styles.roadpoint1}>
                             <h4>Feliz flight to the earth</h4>
-                            <p>-Giveaway 5 citiaen NFTs</p>
+                            <p>-Giveaway 5 citizen NFTs</p>
                             <p>& WL begin @ mini-game</p>
                             <Img
                                 src="/images/road_point.png"
@@ -624,61 +624,63 @@ export default function Home() {
                         </aside>
                         <aside className={styles.roadpoint2}>
                             <h4>Feliz citizen launch</h4>
-                            <p>- Giveaway 5 citizens NFTs</p>
+                            <p>- Giveaway 5 citizen NFTs</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint3}>
-                            <h4>Feliz HQ launch</h4>
-                            <p>- Special gift for community</p>
+                            <h4>Feliz Private Beach Party</h4>
+                            <p>- After 1,000 Sold</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint4}>
-                            <h4>
-                                Donation of 3 ETH to a chartiable Organization
-                                after 1,000 NFTs Sold
-                            </h4>
+                            <h4>Buy “Otherside” LAND</h4>
+                            <p>- After 2,500 sold</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint5}>
-                            <h4>Stardust casks project launch</h4>
+                            <h4>FELIZ NFT Club</h4>
+                            <p>- After 4,500 sold</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint6}>
-                            <h4>Upgrade Feliz HQ to support $PEARL</h4>
+                            <h4>FELIZ initial project</h4>
+                            <p>- After 6,500 sold</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint7}>
-                            <h4>Feliz initial project</h4>
-                            <p>- Airdrop for Property NFTs</p>
+                            <h4>
+                                Donation of 3 ETH to a chartiable Organization
+                            </h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint8}>
-                            <h4>Feliz planet mini-game begin</h4>
+                            <h4>FELIZ HQ upgrade</h4>
+                            <p>- To support $PEARL</p>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint9}>
-                            <h4>Preparing for DAOs</h4>
+                            <h4>Stardust Casks project launch</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
