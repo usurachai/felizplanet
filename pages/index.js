@@ -76,7 +76,7 @@ export default function Home() {
     // console.log("root hash: ", whitelistRootHash);
 
     const getMerkleProof = (address) => {
-        console.log("get merkleproof address: ", address);
+        // console.log("get merkleproof address: ", address);
         const hashedAddress = keccak256(address);
         const _proof = tree.getHexProof(hashedAddress);
 
@@ -90,6 +90,7 @@ export default function Home() {
     const router = useRouter();
     const checkWalletIsConnected = async () => {
         const { ethereum } = window;
+        console.log("chekc walllet is connected, ethereum: ", ethereum);
         // console.log(ethereum.chainId, typeof ethereum.chainId)
         if (ethereum) {
             // detect Metamask account change

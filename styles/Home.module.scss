@@ -170,26 +170,27 @@ $bg_partner: (
     top: img($m_skyDevice, "y") + 6.3vw;
     left: img($m_skyDevice, "x") + 3vw;
     width: 12vw;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
     display: inline-block;
     text-align: center;
     color: #fff;
     text-shadow: 0px 0px 0.5vw #000000;
-    font-family: "bm_jua" !important;
+    font-family: "patron" !important;
+    margin: 0;
 }
 .mint {
     position: absolute;
     display: inline-block;
-    top: img($m_skyDevice, "y") + 15vw;
-    left: img($m_skyDevice, "x") + 6vw;
+    top: img($m_skyDevice, "y") + 14.5vw;
+    left: img($m_skyDevice, "x") + 5.75vw;
     // background-color: aqua;
     // width: 5vw;
     // height: 3vw;
     color: #fff;
-    font-family: "bm_jua" !important;
+    font-family: "patron" !important;
     text-shadow: 0px 0px 0.5vw #000000;
 
-    font-size: 2.6vw;
+    font-size: 2.1vw;
 }
 
 .mint:hover {
@@ -220,7 +221,8 @@ $bg_partner: (
         // line-height: 6vw;
         line-height: 4.5vw;
         text-align: center;
-        font-size: 2vw;
+        font-size: 1.9vw;
+        font-family: patron;
     }
 }
 
@@ -524,8 +526,8 @@ $bg_partner: (
             width: 55vw;
             margin: 0vw auto;
             color: white;
-            font-family: "bm_jua";
-            font-size: 2.8vw;
+            font-family: "patron";
+            font-size: 2vw;
             text-align: center;
         }
     }
@@ -624,13 +626,13 @@ $bg_partner: (
             // padding-right: 18vw;
             // margin-bottom: 6vw;
             color: #fff;
-            font-family: bm_jua;
+            font-family: patron;
             h4 {
-                font-size: 2.3vw;
+                font-size: 1.3vw;
                 margin: 0vw;
             }
             p {
-                font-size: 1.5vw;
+                font-size: 1vw;
                 margin: 0vw;
             }
             .point {
