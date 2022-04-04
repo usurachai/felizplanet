@@ -36,7 +36,7 @@ import network from "../network_game.json";
 
 const spender = contractAddress.Minigame;
 
-const COOKIE_EXPIRE_SECOND = 60 * 3;
+const COOKIE_EXPIRE_SECOND = 60 * 60 * 3; // 3 hours
 
 export default function Minigame() {
     const cntMetamask = useMetaMask();
@@ -679,7 +679,7 @@ export default function Minigame() {
                             claimWL(account);
                         }}
                     >
-                        Claim Whitelist
+                        Claim Lottery
                     </span>
                 </div>
             </main>
