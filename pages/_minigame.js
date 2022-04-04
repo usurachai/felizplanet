@@ -36,6 +36,8 @@ import network from "../network_game.json";
 
 const spender = contractAddress.Minigame;
 
+const COOKIE_EXPIRE_SECOND = 60 * 3;
+
 export default function Minigame() {
     const cntMetamask = useMetaMask();
 
@@ -272,6 +274,8 @@ export default function Minigame() {
                     SUCCESS
                 );
 
+                inc_gamecounter();
+
                 // const balance = await nftContract.preSaleEndDate()
             }
         } catch (err) {
@@ -454,6 +458,41 @@ export default function Minigame() {
         return true;
     };
 
+    const inc_gamecounter = () => {
+        const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("fzgame="))
+            ?.split("=")[1];
+
+        if (cookieValue === undefined) {
+            // no cookie
+            document.cookie = `fzgame=1;max-age=${COOKIE_EXPIRE_SECOND};`;
+        } else {
+            // cookie detected
+            document.cookie = `fzgame=${
+                +cookieValue + 1
+            };max-age=${COOKIE_EXPIRE_SECOND};`;
+        }
+    };
+
+    const checkCounter = () => {
+        const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("fzgame="))
+            ?.split("=")[1];
+        // console.log(cookieValue);
+
+        if (cookieValue >= 3) {
+            // exceed qouta
+            // alert("exceed");
+            return false;
+        } else {
+            // within qouta
+            // alert("within");
+            return true;
+        }
+    };
+
     useEffect(() => {
         // checkWalletIsConnected();
         return () => {
@@ -538,18 +577,27 @@ export default function Minigame() {
                                 }
                             );
                         } else {
-                            modal(
-                                "Send Stardrust token to your friend",
-                                "",
-                                INPUT,
-                                "Send SD",
-                                (value) => {
-                                    sendSD(account, value);
-                                },
-                                "",
-                                "",
-                                true
-                            );
+                            // check condition here
+                            if (checkCounter()) {
+                                // true
+
+                                // popup for the input of receiver address
+                                modal(
+                                    "Send Stardrust token to your friend",
+                                    "",
+                                    INPUT,
+                                    "Send SD",
+                                    (value) => {
+                                        sendSD(account, value);
+                                    },
+                                    "",
+                                    "",
+                                    true
+                                );
+                            } else {
+                                // false
+                                alert("Please try again in next 3 hours");
+                            }
                         }
                     }}
                 ></span>
