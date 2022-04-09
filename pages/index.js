@@ -453,7 +453,9 @@ export default function Home() {
                     href="/minigame"
                     className={styles.basket}
                 /> */}
-                <Link href="https://discord.gg/qvN3ZC6DvB">
+
+                {/* <Link href="https://discord.gg/qvN3ZC6DvB"> */}
+                <Link href="https://discord.com">
                     <a className={styles.island_discord}></a>
                 </Link>
                 <ImageLink
@@ -576,7 +578,8 @@ export default function Home() {
                         ></div>
                         {/* <Link href='/dashboard'><a className={styles.door}></a></Link> */}
                         <ImageLink
-                            href="https://discord.gg/qvN3ZC6DvB"
+                            // href="https://discord.gg/qvN3ZC6DvB"
+                            href="https://discord.com"
                             src="/images/mimi screen1.png"
                             className={styles.miniscreen1}
                             text="Discord"
