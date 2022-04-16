@@ -439,20 +439,20 @@ export default function Home() {
                     alt="ship"
                     layout="fill"
                 />
-                <div onClick={clickBasket}>
+                {/* <div onClick={clickBasket}>
                     <Img
                         src="/images/m_basket.png"
                         className={styles.basket}
                         alt="basket"
                         layout="fill"
                     />
-                </div>
+                </div> */}
 
-                {/* <ImageLink
+                <ImageLink
                     src="/images/m_basket.png"
                     href="/minigame"
                     className={styles.basket}
-                /> */}
+                />
 
                 {/* <Link href="https://discord.gg/qvN3ZC6DvB"> */}
                 <Link href="https://discord.com">
