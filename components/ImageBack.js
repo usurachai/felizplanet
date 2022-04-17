@@ -13,10 +13,7 @@ export default function ImageBack({
     return (
         <div className={styles.ImageBack + " " + className} onClick={onClick}>
             {/* {console.log(styles.ImageBack)} */}
-            <h3>
-                {text}
-                {/* --:--:--:-- */}
-            </h3>
+            <h3>{text}</h3>
             <Image src={src} alt={alt} layout="fill" />
         </div>
     );
