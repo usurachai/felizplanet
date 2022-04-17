@@ -14,8 +14,8 @@ export default function ImageBack({
         <div className={styles.ImageBack + " " + className} onClick={onClick}>
             {/* {console.log(styles.ImageBack)} */}
             <h3>
-                {/* {text} */}
-                --:--:--:--
+                {text}
+                {/* --:--:--:-- */}
             </h3>
             <Image src={src} alt={alt} layout="fill" />
         </div>

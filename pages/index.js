@@ -431,7 +431,8 @@ export default function Home() {
                 <ImageBack
                     src="/images/m_countdown.png"
                     className={styles.countdown}
-                    text={countdown}
+                    // text={countdown}
+                    text={"--:--:--:--"}
                 />
                 <Img
                     src="/images/m_ship.png"
