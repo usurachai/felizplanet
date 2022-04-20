@@ -10,7 +10,7 @@ module.exports = {
             },
             animation: {
                 astronaut: "astronaut 6s infinite",
-                box: "box 6s infinite",
+                stardust: "stardust 4s",
             },
             keyframes: {
                 astronaut: {
@@ -24,6 +24,17 @@ module.exports = {
                         transform: "translatey(-70px)",
                     },
                 },
+                stardust: {
+                    "0%": {
+                        transform: "translate(0px, 0px)",
+                    },
+                    "100%": {
+                        transform: "translate(55px, 55px)",
+                    },
+                },
+            },
+            fontFamily: {
+                badabb: ["badabb"],
             },
         },
     },

@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* https://stackoverflow.com/questions/3087360/cant-stop-animation-at-end-of-one-cycle */
+.animation_iteration_count_1 {
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@font-face {
+    font-family: badabb;
+    src: url("/fonts/BADABB__.TTF");
+    font-display: block;
+}
+
 html,
 body {
     padding: 0;
