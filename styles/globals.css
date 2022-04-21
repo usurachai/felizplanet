@@ -15,6 +15,37 @@
     font-display: block;
 }
 
+@font-face {
+    font-family: patron;
+    src: url("/fonts/Patron.otf");
+}
+
+@layer utilities {
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+
+    /* https://github.com/tailwindlabs/tailwindcss/issues/162 */
+    @variants responsive {
+        .text-shadow {
+            text-shadow: 2px 2px 4px black;
+        }
+        .text-shadow-md {
+            text-shadow: 4px 4px 8px black;
+        }
+        .text-shadow-lg {
+            text-shadow: 3px -3px 0px black;
+        }
+        .text-shadow-none {
+            text-shadow: none;
+        }
+    }
+}
+
 html,
 body {
     padding: 0;

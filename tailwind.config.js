@@ -6,11 +6,12 @@ module.exports = {
     theme: {
         extend: {
             backgroundImage: {
-                star: "url('/images/bg/m_roadmap.png')",
+                star: "url('/images/bg/wp2863958.webp')",
             },
             animation: {
                 astronaut: "astronaut 6s infinite",
-                stardust: "stardust 4s",
+                stardust: "stardust 6s",
+                ingredient: "ingredient 3s infinite",
             },
             keyframes: {
                 astronaut: {
@@ -29,12 +30,24 @@ module.exports = {
                         transform: "translate(0px, 0px)",
                     },
                     "100%": {
-                        transform: "translate(55px, 55px)",
+                        transform: "translate(190px, 110px)",
+                    },
+                },
+                ingredient: {
+                    "0%": {
+                        transform: "translate(0px, 0px)",
+                    },
+                    "50%": {
+                        transform: "translatey(50px)",
+                    },
+                    "100%": {
+                        transform: "translate(120px, 120px)",
                     },
                 },
             },
             fontFamily: {
                 badabb: ["badabb"],
+                patron: ["patron"],
             },
         },
     },
