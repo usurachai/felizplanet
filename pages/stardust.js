@@ -63,6 +63,14 @@ export default function Stardust() {
         "RawaiVIPVilla.png",
         "Thames.png",
         "kk.png",
+        "CALMM.png",
+        "Canpus.png",
+        "DiveSupply.png",
+        "HomeSolution.png",
+        "Paripas.png",
+        "Saily.png",
+        "SanSabay.png",
+        "ThamesPoolAccess.png",
     ];
 
     // merkle tree
@@ -209,7 +217,7 @@ export default function Stardust() {
                 <title>Stardust</title>
             </Head>
             {/* https://tailwindcss.com/docs/position#sticky-positioning-elements */}
-            <header className="fixed top-0 left-0 right-0 flex justify-between items-center p-2 sm:px-8 sm:pt-4">
+            <header className=" flex justify-between items-center p-2 sm:px-8 sm:pt-4">
                 <Link href="/" passHref={true}>
                     <img
                         alt="logo"
@@ -242,7 +250,7 @@ export default function Stardust() {
                 </div>
             </header>
 
-            <div className=" flex mt-40 mb-[10px] sm:mt-60 sm:mb-10 font-monoid text-2xl sm:text-4xl lg:text-6xl text-gray-200 justify-center text-center">
+            <div className=" flex my-[10px] sm:my-10 font-monoid text-2xl sm:text-4xl lg:text-6xl text-gray-200 justify-center text-center">
                 {/* <Typewriter
                     options={{
                         strings: [
@@ -258,7 +266,7 @@ export default function Stardust() {
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
-                            .typeString("Stardust Portion Machine")
+                            .typeString("Stardust Potion Machine")
                             .changeDelay(50)
                             .start();
                     }}
@@ -384,7 +392,7 @@ export default function Stardust() {
                     ))}
                 </div>
             </div>
-            <footer className="my-8">
+            <footer className="my-4">
                 <StardustSocial />
             </footer>
 
