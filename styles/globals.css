@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* https://stackoverflow.com/questions/3087360/cant-stop-animation-at-end-of-one-cycle */
-.animation_iteration_count_1 {
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    -webkit-animation-fill-mode: forwards;
-}
-
 @font-face {
     font-family: badabb;
     src: url("/fonts/BADABB__.TTF");
@@ -20,13 +13,32 @@
     src: url("/fonts/Patron.otf");
 }
 
+@font-face {
+    font-family: digi;
+    src: url("/fonts/DS-DIGI.TTF");
+    font-display: block;
+}
+
+@font-face {
+    font-family: monoid;
+    src: url("/fonts/Monoid-Regular.ttf");
+    font-display: block;
+}
+
 @layer utilities {
+    /* https://stackoverflow.com/questions/3087360/cant-stop-animation-at-end-of-one-cycle */
+    .animation_iteration_count_1 {
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+    }
+
     .animation-delay-2000 {
-        animation-delay: 2s;
+        animation-delay: 0.5s;
     }
 
     .animation-delay-4000 {
-        animation-delay: 4s;
+        animation-delay: 1s;
     }
 
     /* https://github.com/tailwindlabs/tailwindcss/issues/162 */
@@ -38,7 +50,7 @@
             text-shadow: 4px 4px 8px black;
         }
         .text-shadow-lg {
-            text-shadow: 3px -3px 0px black;
+            text-shadow: 1px -2px 1px black;
         }
         .text-shadow-none {
             text-shadow: none;

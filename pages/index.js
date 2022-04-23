@@ -451,7 +451,7 @@ export default function Home() {
 
                 <ImageLink
                     src="/images/m_basket.png"
-                    href="/minigame"
+                    href="/stardust"
                     className={styles.basket}
                 />
 
@@ -762,24 +762,25 @@ export default function Home() {
                         photo="/images/teams/20.png"
                     />
                     <Team
-                        name="Pop"
-                        title="Business"
+                        name="Jenny"
+                        title="Commu Director"
                         photo="/images/teams/9.png"
                     />
                     <Team
-                        name="Toro"
-                        title="Head Dev"
-                        photo="/images/teams/10.png"
+                        name="Kitja"
+                        title="Consult"
+                        photo="/images/teams/2.png"
                     />
                     <Team
                         name="Elle"
                         title="Admin"
                         photo="/images/teams/6.png"
                     />
+
                     <Team
-                        name="Kitja"
-                        title="Consult"
-                        photo="/images/teams/2.png"
+                        name="Toro"
+                        title="Head Dev"
+                        photo="/images/teams/10.png"
                     />
                 </div>
 

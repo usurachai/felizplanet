@@ -432,7 +432,7 @@ $bg_partner: (
             position: absolute;
             width: 28vw;
             left: 17vw;
-            top: 7vw;
+            top: 4vw;
             transform: rotate(-4deg);
             color: #fff;
             text-transform: uppercase;
@@ -663,7 +663,8 @@ $bg_partner: (
     background-position: img($bg_partner, "x") img($bg_partner, "y");
     box-sizing: border-box;
     width: 100%;
-    height: img($bg_partner, "height") !important;
+    // height: img($bg_partner, "height") !important;
+    height: 100vw !important;
     margin-top: -1vw;
 
     h2 {
@@ -745,7 +746,7 @@ $bg_partner: (
 // basket
 .basket {
     $width: 25vw;
-    $height: 15vw;
+    $height: 20vw;
     position: absolute !important;
     // top: 77.5vw;
     top: 55.5vw;
