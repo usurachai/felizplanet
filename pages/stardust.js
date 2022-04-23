@@ -392,7 +392,7 @@ export default function Stardust() {
                     ))}
                 </div>
             </div>
-            <footer className="my-4">
+            <footer className="mt-10 mb-2 sm:mb-6">
                 <StardustSocial />
             </footer>
 
