@@ -38,3 +38,6 @@ yarn-error.log*
 
 # contracts
 /contracts/articles
+
+# whitelist
+/wl_stardust.json

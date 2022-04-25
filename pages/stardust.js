@@ -71,6 +71,7 @@ export default function Stardust() {
         "Saily.png",
         "SanSabay.png",
         "ThamesPoolAccess.png",
+        "Boat.png",
     ];
 
     // merkle tree
@@ -194,7 +195,7 @@ export default function Stardust() {
                 await nftTxn.wait();
 
                 // setTitle("Congratuation");
-                setMsg("Your transaction is completed");
+                setMsg("Your potion is produced");
                 // setIsOpen(true);
                 setMinting(false);
                 setBoard("Congrat");
