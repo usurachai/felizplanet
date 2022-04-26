@@ -651,7 +651,7 @@ export default function Home() {
                             />
                         </aside>
                         <aside className={styles.roadpoint5}>
-                            <h4>Sky Beach Club After 5,000 SOLD</h4>
+                            <h4>Sky Beach Club After 6,500 SOLD</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
