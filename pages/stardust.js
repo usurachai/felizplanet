@@ -72,6 +72,7 @@ export default function Stardust() {
         "SanSabay.png",
         "ThamesPoolAccess.png",
         "Boat.png",
+        "Bird.png",
     ];
 
     // merkle tree

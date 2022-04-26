@@ -779,7 +779,12 @@ export default function MintCard({
                 <p className={styles.contents}>Generating...</p>
             )} */}
 
-            <p className={styles.contents}>{cardlabel()}</p>
+            <p
+                className={styles.contents}
+                style={{ textAlign: "center", marginTop: "2vw" }}
+            >
+                {cardlabel()}
+            </p>
 
             <p className={styles.amount}>{amount}</p>
             <div className={styles.img}>

@@ -608,7 +608,7 @@ export default function Home() {
 
                 <section className={styles.roadmap} id="roadmap">
                     <header>
-                        <h2>Q1-Q2 Road Map</h2>
+                        <h2>Road Map</h2>
                         <p>
                             The Felis are still traveling. They had a great time
                             harvesting. And they always share these good times
@@ -734,48 +734,53 @@ export default function Home() {
                         />
                     </div>
                 </div>
-                <h2>Teams</h2>
+                <h2>Team</h2>
                 <div className={styles.team_group}>
                     <Team
                         name="0xProxies"
                         title="Project Lead"
-                        photo="/images/teams/25.png"
+                        photo="/images/teams/Dome.jpg"
                     />
                     <Team
-                        name="AobNow"
+                        name="Now"
                         title="Phuket9"
-                        photo="/images/teams/19.png"
+                        photo="/images/teams/Now.jpg"
+                    />
+                    <Team
+                        name="Aob"
+                        title="Phuket9"
+                        photo="/images/teams/Aob.jpg"
                     />
                     <Team
                         name="AVEGEE"
                         title="Artist"
-                        photo="/images/teams/12.png"
+                        photo="/images/teams/Jeng.jpg"
                     />
                     <Team
                         name="Jeedz"
                         title="Architect"
-                        photo="/images/teams/20.png"
+                        photo="/images/teams/Jeedz.jpg"
                     />
                     <Team
                         name="Jenny"
                         title="Commu Director"
-                        photo="/images/teams/9.png"
+                        photo="/images/teams/Jane.jpg"
                     />
                     <Team
                         name="Kitja"
                         title="Consult"
-                        photo="/images/teams/2.png"
+                        photo="/images/teams/Mint.jpg"
                     />
                     <Team
                         name="Elle"
                         title="Admin"
-                        photo="/images/teams/6.png"
+                        photo="/images/teams/Elle.jpg"
                     />
 
                     <Team
                         name="Toro"
                         title="Head Dev"
-                        photo="/images/teams/10.png"
+                        photo="/images/teams/Toro.jpg"
                     />
                 </div>
 
