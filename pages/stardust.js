@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useMetaMask, useConnectedMetaMask } from "metamask-react";
 import { ethers } from "ethers";
 import { shortenAddress } from "../utils/shortenAddress";
-import catnipAbi from "../contracts/artifacts/Catnip.json";
+import contractAbi from "../contracts/artifacts/StardustPotion.json";
 import contractAddress from "../contractAddress.json";
 import { errManager } from "../utils/errorManager";
 import Typewriter from "typewriter-effect";
@@ -15,6 +15,9 @@ import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
 import MyDialog from "../components/MyDialog";
 const whiteListAddresses = require("../wl_stardust.json");
+
+const CHAIN_ID = "0x2a";
+const CHAIN_NAME = "Kovan";
 
 export default function Stardust() {
     // dialog
@@ -73,6 +76,7 @@ export default function Stardust() {
         "ThamesPoolAccess.png",
         "Boat.png",
         "Bird.png",
+        "WxParadi.png",
     ];
 
     // merkle tree
@@ -154,9 +158,9 @@ export default function Stardust() {
             return;
         }
 
-        if (chainId != "0x4") {
+        if (chainId != CHAIN_ID) {
             // setTitle("Incorrect Chain ID");
-            setMsg("Change your connected network to Rinkeby");
+            setMsg(`Change your connected network to ${CHAIN_NAME}`);
             // setIsOpen(true);
             setBoard("Wrong Chain");
             return;
@@ -172,7 +176,7 @@ export default function Stardust() {
                 const signer = provider.getSigner();
                 const nftContract = new ethers.Contract(
                     contractAddress.Minigame,
-                    catnipAbi.abi,
+                    contractAbi.abi,
                     signer
                 );
                 const cost = await nftContract.cost();

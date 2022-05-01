@@ -610,7 +610,7 @@ export default function Home() {
                     <header>
                         <h2>Road Map</h2>
                         <p>
-                            The Felis are still traveling. They had a great time
+                            The Feliz are still traveling. They had a great time
                             harvesting. And they always share these good times
                             with their friends.
                         </p>
@@ -619,68 +619,63 @@ export default function Home() {
                     <main>
                         <Img src="/images/road.png" className={styles.road} />
                         <aside className={styles.roadpoint1}>
-                            <h4>Feliz Fight to The Earth </h4>
-                            <p>- Stardust NFT Free Mint Program </p>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint2}>
-                            <h4>
-                                Reveal Stardust Utility and Exclusive Partner
-                            </h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint3}>
-                            <h4>Feliz Citizen Launch</h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint4}>
-                            <h4>NFT Incubator Program </h4>
-                            <p>- Supported by Dot.Connex Studio </p>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint5}>
-                            <h4>Sky Beach Club After 6,500 SOLD</h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint6}>
-                            <h4>NFT Stardust Cask </h4>
-                            <p>- Fractional Real Estate Program</p>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint7}>
-                            <h4>$PEARL</h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint8}>
-                            <h4>coming soon</h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
                             />
                         </aside>
                         <aside className={styles.roadpoint9}>
-                            <h4>coming soon</h4>
+                            <h4>Coming soon</h4>
                             <Img
                                 src="/images/road_point_off.png"
                                 className={styles.point}
