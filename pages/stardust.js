@@ -16,8 +16,8 @@ import keccak256 from "keccak256";
 import MyDialog from "../components/MyDialog";
 const whiteListAddresses = require("../wl_stardust.json");
 
-// const CHAIN_ID = "0x2a";
-// const CHAIN_NAME = "Kovan";
+// const CHAIN_ID = "0x4";
+// const CHAIN_NAME = "Rinkeby";
 const CHAIN_ID = "0x1";
 const CHAIN_NAME = "Mainnet";
 
@@ -199,7 +199,8 @@ export default function Stardust() {
                 // setMsg("Please wait");
                 // setIsOpen(true);
 
-                await nftTxn.wait();
+                const receipt = await nftTxn.wait();
+                // console.log(receipt);
 
                 // setTitle("Congratuation");
                 setMsg("Your potion is produced");
@@ -209,13 +210,28 @@ export default function Stardust() {
                 setRelease(true);
             }
         } catch (err) {
-            // console.error(err);
-            // console.log(errManager(err));
-            // setTitle("Error");
-            setMsg(errManager(err));
-            // setIsOpen(true);
-            setMinting(false);
-            setBoard("ERROR !!!");
+            console.error(err);
+
+            // check error because transcation replacement
+            if (err.message.includes("transaction was replaced")) {
+                // replaced transaction
+
+                // https://docs.ethers.io/v5/api/providers/types/#providers-TransactionReceipt
+                if (err.message.match(/status":(.*?),/)[1] === "1") {
+                    // success transaction
+                    setMsg("Your potion is produced");
+                    setMinting(false);
+                    setBoard("Congrat");
+                    setRelease(true);
+                }
+            } else {
+                // console.log(errManager(err));
+                // setTitle("Error");
+                setMsg(errManager(err));
+                // setIsOpen(true);
+                setMinting(false);
+                setBoard("ERROR !!!");
+            }
         }
     };
 
