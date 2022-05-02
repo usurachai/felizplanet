@@ -16,8 +16,10 @@ import keccak256 from "keccak256";
 import MyDialog from "../components/MyDialog";
 const whiteListAddresses = require("../wl_stardust.json");
 
-const CHAIN_ID = "0x2a";
-const CHAIN_NAME = "Kovan";
+// const CHAIN_ID = "0x2a";
+// const CHAIN_NAME = "Kovan";
+const CHAIN_ID = "0x1";
+const CHAIN_NAME = "Mainnet";
 
 export default function Stardust() {
     // dialog
