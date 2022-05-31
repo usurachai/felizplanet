@@ -45,4 +45,4 @@ wl_stardust.json
 # config file
 whitelist.json
 network.json
-contractAddresses.json
+contractAddress.json
