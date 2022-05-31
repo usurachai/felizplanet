@@ -1,0 +1,21 @@
+POST http://localhost:3002/api/qouta HTTP/1.1
+content-type: application/json
+
+[{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+},
+{
+    "name": "sample",
+    "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}]
+
+###
+
+GET http://localhost:3002/api/qouta HTTP/1.1
+content-type: application/json
+
+###
+
+PUT http://localhost:3002/api/qouta?acc=0x31185f782a7c11044566d70dfcf1c8175486f451 HTTP/1.1
+content-type: application/json
