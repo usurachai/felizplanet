@@ -40,4 +40,9 @@ yarn-error.log*
 /contracts/articles
 
 # whitelist
-/wl_stardust.json
+wl_stardust.json
+
+# config file
+whitelist.json
+network.json
+contractAddresses.json
