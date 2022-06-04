@@ -24,18 +24,22 @@ export default async function handler(req, res) {
 
         // update existing
         const newqouta = qouta.map((q) =>
-            q.account == req.query.acc ? { ...q, qouta: 0 } : q
+            q.account.toUpperCase() == req.query.acc.toUpperCase()
+                ? { ...q, qouta: 0 }
+                : q
         );
 
         // add new line for new
-        const ex = qouta.find((o) => o.account == req.query.acc);
+        const ex = qouta.find(
+            (o) => o.account.toUpperCase() == req.query.acc.toUpperCase()
+        );
 
         if (!ex) {
             // not found
             fs.writeFileSync(
                 "./data/qouta.json",
                 JSON.stringify([
-                    { account: req.query.acc, qouta: 0 },
+                    { account: req.query.acc.toUpperCase(), qouta: 0 },
                     ...newqouta,
                 ])
             );

@@ -12,10 +12,10 @@ content-type: application/json
 
 ###
 
-GET http://localhost:3002/api/qouta HTTP/1.1
+GET http://localhost:3000/api/qouta HTTP/1.1
 content-type: application/json
 
 ###
 
-PUT http://localhost:3002/api/qouta?acc=0x31185f782a7c11044566d70dfcf1c8175486f451 HTTP/1.1
+PUT http://localhost:3000/api/qouta?acc=0xC3BB134280e64ee6dB6C50CF2baBC81883309B9F HTTP/1.1
 content-type: application/json

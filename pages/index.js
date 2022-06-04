@@ -90,7 +90,7 @@ export default function Home() {
     const router = useRouter();
     const checkWalletIsConnected = async () => {
         const { ethereum } = window;
-        console.log("chekc walllet is connected, ethereum: ", ethereum);
+        // console.log("chekc walllet is connected, ethereum: ", ethereum);
         // console.log(ethereum.chainId, typeof ethereum.chainId)
         if (ethereum) {
             // detect Metamask account change
@@ -103,12 +103,12 @@ export default function Home() {
 
             // detect Network account change
             window.ethereum.on("networkChanged", function (networkId) {
-                console.log(
-                    "networkChanged",
-                    networkId,
-                    typeof networkId,
-                    networkId !== network.id
-                );
+                // console.log(
+                //     "networkChanged",
+                //     networkId,
+                //     typeof networkId,
+                //     networkId !== network.id
+                // );
                 if (networkId !== network.id) {
                     alert("Wrong network");
                     setAccount(undefined);
@@ -134,15 +134,15 @@ export default function Home() {
         // );
         if (!ethereum) {
             // alert('Please install Metamask')
-            console.log("checkWalletIsConnected ethtereum null: ", ethereum);
+            // console.log("checkWalletIsConnected ethtereum null: ", ethereum);
             setAccount(undefined);
             setAddress("");
         } else if (chainId !== network.id) {
             // alert("Change network to Rinkeby network.")
-            console.log(
-                "checkWalletIsConnected ethtereum chainId: ",
-                ethereum.chainId
-            );
+            // console.log(
+            //     "checkWalletIsConnected ethtereum chainId: ",
+            //     ethereum.chainId
+            // );
             setAccount(undefined);
             setAddress("");
         } else {
@@ -152,9 +152,9 @@ export default function Home() {
                 setAccount(signer);
                 const _addr = await signer.getAddress();
                 setAddress(_addr);
-                console.log("checkWalletIsConnected signer: ", signer);
+                // console.log("checkWalletIsConnected signer: ", signer);
                 const _proof = getMerkleProof(_addr);
-                console.log("proof:", _proof);
+                // console.log("proof:", _proof);
                 setProof(_proof);
             } catch (err) {
                 console.log(err);
@@ -165,7 +165,7 @@ export default function Home() {
     const connectWalletHandler = async () => {
         const { ethereum } = window;
 
-        console.log("metamask", ethereum);
+        // console.log("metamask", ethereum);
         if (!ethereum) {
             alert("Please install Metamask");
         } else if (ethereum.chainId !== network.id) {
@@ -176,7 +176,7 @@ export default function Home() {
                 const provider = new ethers.providers.Web3Provider(ethereum);
                 await provider.send("eth_requestAccounts", []);
                 const signer = await provider.getSigner();
-                console.log("signer", signer);
+                // console.log("signer", signer);
                 setAccount(signer);
                 const _addr = await signer.getAddress();
                 setAddress(_addr);
@@ -204,8 +204,8 @@ export default function Home() {
                 const citizen = (
                     await citizenContract.balanceOf(signer.getAddress())
                 ).toNumber();
-                console.log("citizen balance: ", citizen);
-                console.log("test", citizen);
+                // console.log("citizen balance: ", citizen);
+                // console.log("test", citizen);
                 if (citizen > 0) ret = true;
                 if (!ret) {
                     const stardustContract = new ethers.Contract(
@@ -220,21 +220,21 @@ export default function Home() {
                             SC_ID_GOLD
                         )
                     ).toNumber();
-                    console.log("stardust balance: ", totalGoldCasks);
+                    // console.log("stardust balance: ", totalGoldCasks);
                     totalGoldCasks += (
                         await stardustContract.balanceOf(
                             signer.getAddress(),
                             SC_ID_SILVER
                         )
                     ).toNumber();
-                    console.log("stardust balance: ", totalGoldCasks);
+                    // console.log("stardust balance: ", totalGoldCasks);
                     totalGoldCasks += (
                         await stardustContract.balanceOf(
                             signer.getAddress(),
                             SC_ID_BRONZ
                         )
                     ).toNumber();
-                    console.log("stardust balance: ", totalGoldCasks);
+                    // console.log("stardust balance: ", totalGoldCasks);
                     if (totalGoldCasks > 0) ret = true;
                 }
                 if (!ret) {
@@ -349,7 +349,7 @@ export default function Home() {
     const onMouseUp = (e) => {
         // console.log(posX - e.clientX)
         const delta = e.clientX - posX;
-        console.log("delta", delta);
+        // console.log("delta", delta);
         if (delta > 0) slideLeft();
         else if (delta < 0) slideRight();
     };
@@ -363,7 +363,7 @@ export default function Home() {
     const onTouchEnd = (e) => {
         const delta = e.changedTouches[0].clientX - posX;
         // console.log("onTouchEnd", e)
-        console.log("delta", delta);
+        // console.log("delta", delta);
         // console.log()
         if (delta > 0) slideLeft();
         else if (delta < 0) slideRight();
@@ -543,7 +543,7 @@ export default function Home() {
                                 className = styles.mintCardmain;
                             else if (idx === (index + 1) % cardList.length)
                                 className = styles.mintCardnext;
-                            console.log("card-", card.type);
+                            // console.log("card-", card.type);
                             return (
                                 <MintCard
                                     key={"card-" + idx}
@@ -568,7 +568,7 @@ export default function Home() {
                         <div
                             className={styles.door}
                             onClick={() => {
-                                console.log("signer", account);
+                                // console.log("signer", account);
                                 // console.log("signer", signer.getAddress())
                                 if (!account) {
                                     alert("Please connect wallet");
