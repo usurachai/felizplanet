@@ -15,18 +15,12 @@ import { MerkleTree } from "merkletreejs";
 import keccak256 from "keccak256";
 import MyDialog from "../components/MyDialog";
 const whiteListAddresses = require("../wl_stardust.json");
-import axios from "axios";
 
+// const CHAIN_ID = "0x4";
+// const CHAIN_NAME = "Rinkeby";
 const CHAIN_ID = process.env.NODE_ENV == "development" ? "0x4" : "0x1";
 const CHAIN_NAME =
     process.env.NODE_ENV == "development" ? "Rinkeby" : "Mainnet";
-// const CHAIN_ID = "0x1";
-// const CHAIN_NAME = "Mainnet";
-
-const baseURL =
-    process.env.NODE_ENV == "development"
-        ? "http://localhost:3000"
-        : "https://felizplanet.com/";
 
 export default function Stardust() {
     // dialog
@@ -36,8 +30,6 @@ export default function Stardust() {
 
     const [board, setBoard] = useState("");
     const [minting, setMinting] = useState(false);
-
-    const [qoutas, setQoutas] = useState([]);
 
     // function closeModal() {
     //     setIsOpen(false);
@@ -140,20 +132,6 @@ export default function Stardust() {
         // }
     }, [status, account, chainId]);
 
-    useEffect(() => {
-        (async () => {
-            // console.log(process.env.NODE_ENV);
-            try {
-                const { data } = await axios.get(`${baseURL}/api/qouta`);
-                // console.log("hi: ", data);
-                setQoutas(data);
-            } catch (err) {
-                console.error(err);
-                setQoutas([]);
-            }
-        })();
-    }, [minting]);
-
     const hanleConnect = (status) => () => {
         if (status === "initializing") {
             setAddr("Synchronisation with MetaMask ongoing...");
@@ -208,53 +186,29 @@ export default function Stardust() {
                 // console.log(cost);
                 // console.log("cost: ", ethers.utils.formatUnits(cost, "ether"));
 
-                // check qouta
-                let mintqouta = 1;
-
-                const qouta = qoutas.find(
-                    (q) => q.account.toUpperCase() == account.toUpperCase()
+                let nftTxn = await nftContract.mintAllowList(
+                    1,
+                    proof ? proof.split(",") : [],
+                    {
+                        value: ethers.utils.parseEther(cost.toString()),
+                    }
                 );
-                // console.log("qouta: ", qouta);
-                if (qouta) {
-                    // found
-                    if (qouta.qouta == 0) {
-                        mintqouta = 0;
-                    } else {
-                        mintqouta = qouta.qouta;
-                    }
-                }
 
-                if (mintqouta > 0) {
-                    let nftTxn = await nftContract.mintAllowList(
-                        mintqouta,
-                        proof ? proof.split(",") : [],
-                        {
-                            value: ethers.utils.parseEther(cost.toString()),
-                        }
-                    );
+                // console.log("Minting... please wait");
 
-                    const receipt = await nftTxn.wait();
+                // setTitle("Mining...");
+                // setMsg("Please wait");
+                // setIsOpen(true);
 
-                    // update qouta
-                    try {
-                        const res = await axios.put(
-                            `${baseURL}/api/qouta?acc=${account}`
-                        );
-                        // console.log(res);
-                    } catch (err) {
-                        console.error(err);
-                    }
+                const receipt = await nftTxn.wait();
+                // console.log(receipt);
 
-                    setMsg("Your potion is produced");
-                    setMinting(false);
-                    setBoard("Congrat");
-                    setRelease(true);
-                } else {
-                    // no qouta
-                    setMsg("No mint qouta for this batch");
-                    setMinting(false);
-                    setBoard("No Qouta");
-                }
+                // setTitle("Congratuation");
+                setMsg("Your potion is produced");
+                // setIsOpen(true);
+                setMinting(false);
+                setBoard("Congrat");
+                setRelease(true);
             }
         } catch (err) {
             console.error(err);
@@ -477,12 +431,3 @@ export default function Stardust() {
         </div>
     );
 }
-
-// export async function getServerSideProps(context) {
-//     const response = await fetch(`http://localhost:3002/api/qouta`);
-//     const data = await response.json();
-//     console.log(data);
-//     return {
-//         props: { data },
-//     };
-// }
