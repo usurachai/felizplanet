@@ -7,6 +7,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 star: "url('/images/bg/wp2863958.webp')",
+                alien: "url('/Bg-web.jpg')",
             },
             animation: {
                 astronaut: "astronaut 6s infinite",
@@ -77,6 +78,7 @@ module.exports = {
                 patron: ["patron"],
                 digi: ["digi"],
                 monoid: ["monoid"],
+                sfmono: ["sfmono"],
             },
             fontSize: {
                 xs: "0.75rem",

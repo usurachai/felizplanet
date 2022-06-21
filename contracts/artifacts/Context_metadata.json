@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.14+commit.80d49f37"
 	},
 	"language": "Solidity",
 	"output": {
@@ -19,7 +19,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Feliz_CitizensFlat_1_6.sol": "Context"
+			"TestStardust.sol": "Context"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -33,12 +33,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Feliz_CitizensFlat_1_6.sol": {
-			"keccak256": "0x6fe3b53c61bcae20223325cb24ceb2e835a0b5a3cbcb6555435ee00954657918",
+		"TestStardust.sol": {
+			"keccak256": "0x72e4ee23564727b58b31ab3306e1fb436e79cb86e7a97610c62e9b8cd11bbb3f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://96942ae4c9d38c810eb80d6b1362ec870c4c8aa20c6c01ef638430fbe33cf381",
-				"dweb:/ipfs/QmXyHcbce2PASsz2CTt8vmHyHHgryXRZbonvSGLek5DX5R"
+				"bzz-raw://047aad5990a6e09aee03a8a6a557aa280e0a4a6dc0d9866e254f92e6ccca304c",
+				"dweb:/ipfs/QmUFrAGWtKSMXU2wTJhbYnskgJhB3anYDw6Hftg6NA93m8"
 			]
 		}
 	},
