@@ -217,7 +217,7 @@ export default function Stardustalienpotion() {
     };
 
     const add = () => {
-        if (unit < 3) {
+        if (unit < 5) {
             setUnit(unit + 1);
         } else {
             setUnit(unit);
