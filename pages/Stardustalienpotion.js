@@ -5,7 +5,7 @@ import Link from "next/link";
 // import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import { useMetaMask, useConnectedMetaMask } from "metamask-react";
-import contractAbi from "../contracts/artifacts/StardustV2.json";
+import contractAbi from "../contracts/artifacts/StardustAlienPotion.json";
 import { ethers } from "ethers";
 import moment from "moment";
 import axios from "axios";
@@ -101,22 +101,13 @@ export default function Stardustalienpotion() {
                         process.env.NEXT_PUBLIC_CONTRACT
                     );
 
-                    const winnerURI = await nftContract.tokenURI(
-                        _totalsupply - 1
-                    );
-                    const secondURI = await nftContract.tokenURI(_totalsupply);
-                    const passURI = await nftContract.tokenURI(
-                        _totalsupply - 2
-                    );
-
-                    // setAccWinner(await nftContract.ownerOf(_totalsupply - 1));
-                    // setAccSecond(await nftContract.ownerOf(_totalsupply));
-                    // setAccPass(await nftContract.ownerOf(_totalsupply - 2));
-
-                    // console.log(winnerURI.replace("ipfs://", ""));
-                    // setWinner(await readIPFS(winnerURI));
-                    // setSecond(await readIPFS(secondURI));
-                    // setPass(await readIPFS(passURI));
+                    // const winnerURI = await nftContract.tokenURI(
+                    //     _totalsupply - 1
+                    // );
+                    // const secondURI = await nftContract.tokenURI(_totalsupply);
+                    // const passURI = await nftContract.tokenURI(
+                    //     _totalsupply - 2
+                    // );
 
                     setBalance(ethers.utils.formatEther(_balance));
                     setName(await nftContract.name());

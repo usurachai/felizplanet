@@ -1,0 +1,46 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"notice": "Error library for centralised error messaging",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/StardustCasks_v1_6.sol": "Errors"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/StardustCasks_v1_6.sol": {
+			"keccak256": "0x899f09be64f153d440e92f0b9728cf04298556dc1b18b97bb492dbae7c9680c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://77de094a31a7e760051faf85a042767e134325e1290cac6daab88e184d5840b5",
+				"dweb:/ipfs/QmYf5xpfT27QQQ4aLUbBL5PgqSFBSLT8E6gKrkY4ss3baz"
+			]
+		}
+	},
+	"version": 1
+}
