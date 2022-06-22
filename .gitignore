@@ -38,9 +38,9 @@ yarn-error.log*
 
 # contracts
 #/contracts/artifacts
-/contacts/.deps
-/contacts/_artifacts
-/contacts/artifacts/build-info
+/contracts/.deps
+/contracts/_artifacts
+/contracts/artifacts/build-info
 
 # whitelist
 wl_stardust.json
