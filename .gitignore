@@ -40,7 +40,7 @@ yarn-error.log*
 #/contracts/artifacts
 /contacts/.deps
 /contacts/_artifacts
-/contacts/articles/build-info
+/contacts/artifacts/build-info
 
 # whitelist
 wl_stardust.json
