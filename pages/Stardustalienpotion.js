@@ -408,7 +408,7 @@ export default function Stardustalienpotion() {
                         <p>
                             The cost is {ethers.constants.EtherSymbol} {cost}
                         </p>
-                        4,444 Free mint, 1 free mint / wallet, next will cost{" "}
+                        2,525 Free mint, 1 free mint / wallet, next will cost{" "}
                         {baseCost} {ethers.constants.EtherSymbol} / NFT.
                     </div>
                     <div
