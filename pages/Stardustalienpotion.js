@@ -126,11 +126,11 @@ export default function Stardustalienpotion() {
                 console.error(err);
 
                 setName("n/a");
-                setMaxSupply("n/a");
+                setMaxSupply("xxxx");
                 // setWinner("n/a");
                 setMaxNFT("n/a");
                 // setTimeLimit("n/a");
-                setTotalSupply("n/a");
+                setTotalSupply("xx");
                 setBalance(0);
                 // setWinner({});
                 // setSecond({});
@@ -149,7 +149,7 @@ export default function Stardustalienpotion() {
     }, [status, account, chainId]);
 
     useEffect(() => {
-        if (totalSupply == 0) {
+        if (totalSupply == 0 || maxSupply == "xxxx") {
             setMinted(" LOADING... ");
         } else if (totalSupply == maxSupply) {
             setMinted(" SOLD OUT ");
