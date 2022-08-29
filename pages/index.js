@@ -11,7 +11,7 @@ export default function Home() {
     useEffect(() => {
         const { pathname } = Router;
         if (pathname == "/") {
-            Router.push("/stardust");
+            Router.push("/Roadmap");
         }
     });
 

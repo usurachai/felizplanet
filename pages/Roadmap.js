@@ -25,27 +25,44 @@ export default function Roadmap() {
                         />
                     </div>
                     {/* birbs */}
-                    <div className="w-[80px] h-[82px] absolute top-[311px] left-[527px] scale-100 hover:scale-125 hover:cursor-pointer ">
-                        <Link href="https://birbsfriend.dotconnex.xyz/">
-                            <Image
-                                src="/images/newroadmap/birbs.png"
-                                layout="fill"
-                            />
+                    <div className="w-[80px] h-[82px] absolute top-[311px] left-[527px] scale-100 hover:scale-155 hover:cursor-pointer ">
+                        <Link
+                            href="https://birbsfriend.dotconnex.xyz/"
+                            passHref
+                        >
+                            <a target="_blank">
+                                <Image
+                                    src="/images/newroadmap/birbs.png"
+                                    layout="fill"
+                                />
+                            </a>
                         </Link>
                     </div>
 
                     {/* dc */}
-                    <div className="w-[200px] h-[182px] absolute top-[54px] left-[223px] scale-100 hover:scale-125 hover:cursor-pointer ">
-                        <Image src="/images/newroadmap/dc.png" layout="fill" />
+                    <div className="w-[200px] h-[182px] absolute top-[54px] left-[223px] scale-100 hover:scale-110 hover:cursor-pointer ">
+                        <Link href="https://ladyfoxynft.xyz/" passHref>
+                            <a target="_blank">
+                                <Image
+                                    src="/images/newroadmap/dc.png"
+                                    layout="fill"
+                                />
+                            </a>
+                        </Link>
                     </div>
 
                     {/* bottle */}
                     <div className="w-[100px] h-[73px] absolute top-[548px] left-[277px] scale-100 hover:scale-125 hover:cursor-pointer ">
-                        <Link href="https://felizplanet.com/Stardustalienpotion">
-                            <Image
-                                src="/images/newroadmap/bottle.png"
-                                layout="fill"
-                            />
+                        <Link
+                            href="https://felizplanet.com/Stardustalienpotion"
+                            passHref
+                        >
+                            <a target="_blank">
+                                <Image
+                                    src="/images/newroadmap/bottle.png"
+                                    layout="fill"
+                                />
+                            </a>
                         </Link>
                     </div>
 
@@ -57,7 +74,7 @@ export default function Roadmap() {
                         />
                     </div>
                     {/* alien #2 */}
-                    <div className="w-[300px] h-[231px] absolute top-[469px] left-[777px] scale-100  hover:scale-125 hover:cursor-pointer">
+                    <div className="w-[300px] h-[231px] absolute top-[469px] left-[777px] scale-100  hover:scale-110 hover:cursor-pointer">
                         <Image
                             src="/images/newroadmap/alien2.png"
                             layout="fill"
@@ -68,7 +85,7 @@ export default function Roadmap() {
                         <Image src="/images/newroadmap/cup.png" layout="fill" />
                     </div>
                     {/* block */}
-                    <div className="w-[300px] h-[180px] absolute top-[53px] left-[785px] scale-100  hover:scale-125 hover:cursor-pointer">
+                    <div className="w-[300px] h-[180px] absolute top-[53px] left-[785px] scale-100  hover:scale-110 hover:cursor-pointer">
                         <Image
                             src="/images/newroadmap/block.png"
                             layout="fill"
@@ -82,7 +99,7 @@ export default function Roadmap() {
                         />
                     </div>
                     {/* ship */}
-                    <div className="w-[150px] h-[224px] absolute top-[369px] left-[589px] scale-100 hover:scale-125  ">
+                    <div className="w-[150px] h-[224px] absolute top-[369px] left-[589px] scale-100 hover:scale-110  ">
                         <Image
                             src="/images/newroadmap/ship.png"
                             layout="fill"
